@@ -38,10 +38,9 @@
                                 <td>
                                     <ul class="list-inline m-0">
                                         <li class="list-inline-item">
-                                            <button class="btn btn-primary btn-sm rounded-0"
-                                                onclick="addOffer({{this._id}})" type="button" data-toggle="tooltip"
-                                                data-placement="top" title="Add Offer"><i
-                                                    class="fa fa-plus"></i></button>
+                                            <a href="/admin/add_product_offer/{{this._id}}"><button class="btn btn-primary btn-sm rounded-0"
+                                                 type="button" data-toggle="tooltip"
+                                                data-placement="top" title="Add Offer"> <i class="fa fa-plus"></i> </button></a>
                                         </li>
                                         <li class="list-inline-item">
                                             <button class="btn btn-success btn-sm rounded-0" type="button"
@@ -256,6 +255,7 @@
 
     <script>
         function addOffer(proId){
+            console.log('arrived in ajax')
             $.ajax({
                 url:'/add_offer',
                 data:{

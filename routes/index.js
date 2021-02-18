@@ -560,8 +560,4 @@ router.get('/girls_collection', (req, res) => {
   })
 })
 
-router.post('/add_offer', (req,res)=>{
-  console.log('product di',req.body);
-})
-
 module.exports = router;

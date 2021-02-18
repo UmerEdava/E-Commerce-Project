@@ -1,0 +1,119 @@
+<body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
+    <script>
+        NProgress.configure({ showSpinner: false });
+        NProgress.start();
+    </script>
+
+    <div class="mobile-sticky-body-overlay"></div>
+
+    <div class="wrapper">
+        <div class="page-wrapper">
+            <div class="content-wrapper">
+                <div class="content">
+                    <div class="card card-default">
+                        <div class="card-header card-header-border-bottom">
+                            <h2>ADD OFFER TO THE PRODUCT</h2>
+                        </div>
+                        <div class="card card-default">
+                            <div class="card-body">
+                                <p class="mb-5">Add a seasonal offer for the product by percentage or offer.</p>
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="text-dark font-weight-medium" for="">Offer Percentage</label>
+                                            <div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="inputGroupPrepend2">%</span>
+												</div>
+												<input type="text" class="form-control" id="offerPercentage" placeholder="Enter percentage" aria-describedby="inputGroupPrepend2" required="">
+											</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="text-dark font-weight-medium" for="">Offer starts from..</label>
+                                            <div class="input-group mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="mdi mdi-calendar-range"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="date" id="startDate" class="form-control" data-mask="00/00/0000"
+                                                    placeholder="" aria-label="" autocomplete="off" maxlength="10">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="text-dark font-weight-medium" for="">Valids till</label>
+                                            <div class="input-group mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="mdi mdi-calendar-range"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="date" id="lastDate" class="form-control" data-mask="00/00/0000"
+                                                    placeholder="" aria-label="" autocomplete="off" maxlength="10">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <input type="text" name="proId" id="proId" value="{{proId}}" hidden>
+
+                                    <button class="ladda-button btn btn-success btn-square btn-ladda mt-5" data-style="contract" id="addOffer">
+										<span class="ladda-label">Submit!</span>
+											
+										<span class="ladda-spinner"></span>
+                                    </button>
+
+                                    {{!-- <button class="ladda-button btn btn-success btn-square btn-ladda" data-style="contract-overlay">
+											<span class="ladda-label">Submit!</span>
+											
+										<span class="ladda-spinner"></span>
+                                    </button> --}}
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer mt-auto">
+                <div class="copyright bg-white">
+                    <p>
+                        &copy; <span id="copy-year">2019</span> Copyright Sleek Dashboard Bootstrap Template by
+                        <a class="text-primary" href="http://www.iamabdus.com/" target="_blank">Abdus</a>.
+                    </p>
+                </div>
+                <script>
+                    var d = new Date();
+                    var year = d.getFullYear();
+                    document.getElementById("copy-year").innerHTML = year;
+                </script>
+            </footer>
+
+        </div>
+    </div>
+
+<script>
+    $('#addOffer').click((e) => {
+        e.preventDefault()
+        let startDate = $('#startDate').val()
+        let lastDate = $('#lastDate').val()
+        let offerPercentage = $('#offerPercentage').val()
+        let proId = $('#proId')
+        $.ajax({
+            url: '/add_product_offer',
+            method: 'post',
+            data: {
+                startDate,
+                lastDate,
+                offerPercentage,
+                proId
+            },
+            success: (response) => {
+                window.location.href="/products_for_offer"                 
+            }
+        })
+    })
+</script>

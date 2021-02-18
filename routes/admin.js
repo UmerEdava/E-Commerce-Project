@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 const userHelpers = require('../helpers/user-helpers')
 const productHelpers = require('../helpers/product-helpers')
-const adminHelpers = require('../helpers/admin-helpers')
+const adminHelpers = require('../helpers/admin-helpers');
+const { response } = require('express');
 
 var verifyLogin = (req, res, next) => {
   var adminLogin = req.session.admin
@@ -308,7 +309,7 @@ router.get('/clear_men_collection', (req,res)=>{
   res.redirect('/men_collection')
 })
 
-router.get('/offer_for_all_products', (req,res)=>{
+router.get('/products_for_offer', (req,res)=>{
   isAdmin = true
   productHelpers.getAllProducts().then((products) => {
     res.render('admin/products-for-offer', {
@@ -316,6 +317,38 @@ router.get('/offer_for_all_products', (req,res)=>{
       isAdmin
     })
   })
+})
+
+// router.get('/add_product_offer/:id', (req,res)=>{
+//   let proId = req.params.id
+//   isAdmin = true
+//   console.log('id arrived in add page',proId);
+  
+//   res.render('admin/add-product-offer',{proId,isAdmin})
+
+//   res.json({response:true})
+// })
+
+router.get('/add_product_offer/:id', verifyLogin, (req, res) => {
+  console.log(req.params.id, 'product id routeril vanne');
+
+  let proId = req.params.id
+  let isAdmin = true
+  let isSubrouter = true
+  res.render('admin/add-product-offer', {
+    isAdmin,
+    isSubrouter,
+    proId
+  })
+})
+
+router.post('/add_product_offer', (req,res)=>{
+  console.log('product id',req.bod)
+
+  adminHelpers.addOfferForProduct(req.body).then(()=>{
+    req.json({status:true})
+  }) 
+  
 })
 
 module.exports = router;
