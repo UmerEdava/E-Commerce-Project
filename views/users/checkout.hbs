@@ -1,0 +1,205 @@
+<div class="breacrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb-text product-more">
+                    <a href="./index.html"><i class="fa fa-home"></i> Home</a>
+                    <a href="./shop.html">Shop</a>
+                    <span>Check Out</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="checkout-section spad">
+    <div class="container">
+        <form action="" class="checkout-form" id="shippingForm" method="POST">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="checkout-content">
+                        <a href="#" class="content-btn">Click Here To Login</a>
+                    </div>
+                    <h4>Biiling Details</h4>
+                    <div class="row">
+                        {{!-- <div class="col-lg-6">
+                            <label for="fir">First Name<span>*</span></label>
+                            <input type="text" id="fir">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="last">Last Name<span>*</span></label>
+                            <input type="text" id="last">
+                        </div> --}}
+                        <div class="col-lg-12">
+                            <label for="comp-name">Company Name</label>
+                            <input type="text" id="comp-name" name="company">
+                        </div>
+                        <div class="col-lg-12">
+                            <label for="country">Country<span>*</span></label>
+                            <input type="text" id="country" name="country">
+                        </div>
+                        <div class="col-lg-12">
+                            <label for="address">Street Address<span>*</span></label>
+                            <input type="text" id="street" class="street-first" name="address">
+                        </div>
+                        <div class="col-lg-12">
+                            <label for="pin">Postcode / ZIP (optional)</label>
+                            <input type="text" id="pin" name="pin">
+                        </div>
+                        <div class="col-lg-12">
+                            <label for="town">Town / City<span>*</span></label>
+                            <input type="text" id="town" name="town">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="email">Email Address<span>*</span></label>
+                            <input type="text" id="email" name="email">
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="phone">Phone<span>*</span></label>
+                            <input type="text" id="phone" name="phone">
+                        </div>
+                        <input type="text" name="userId" value="{{user._id}}" hidden>
+                        {{!-- <div class="col-lg-12">
+                            <div class="create-item">
+                                <label for="acc-create">
+                                    Create an account?
+                                    <input type="checkbox" id="acc-create">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div> --}}
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="checkout-content">
+                        <input type="text" placeholder="Enter Your Coupon Code">
+                    </div>
+                    <div class="place-order">
+                        <h4>Your Order</h4>
+                        <div class="order-total">
+                            <ul class="order-table">
+                                <li>Product <span>Total</span></li>
+                                <li class="fw-normal">Combination x 1 <span>$60.00</span></li>
+                                <li class="fw-normal">Combination x 1 <span>$60.00</span></li>
+                                <li class="fw-normal">Combination x 1 <span>$120.00</span></li>
+                                <li class="fw-normal">Subtotal <span>${{total}}.00</span></li>
+                                <li class="total-price">Total <span>${{total}}.00</span></li>
+                            </ul>
+                            <div class="payment-check">
+                                <div class="">
+                                    <input type="radio" id="pay-cod" name="payment-method" value="COD"
+                                        style="width: 3%;height: 12px;">
+                                    <label for="pc-check">Cash On Delivery</label>
+                                </div>
+                                <div class="">
+                                    <input type="radio" id="pay-online" name="payment-method" value="razorpay"
+                                        style="width: 3%;height: 12px;">
+                                    <label for="pc-paypal">Razorpay</label>
+                                </div>
+                                <div class="">
+                                    <input type="radio" id="pay-online" name="payment-method" value="paypal"
+                                        style="width: 3%;height: 12px;">
+                                    <label for="pc-paypal">Paypal</label>
+                                    <div id="paypal-button"></div>
+                                </div>
+                            </div>
+                            <div class="order-btn">
+                                <button type="submit" class="site-btn place-btn">Place Order</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script src="https://www.paypal.com/sdk/js?client-id=AaMe_nfrAkCyqpIwm2kbokqaA8c3yx0oUdoRnqxgF6qfegourFbXA9PGKtTwpIpOVEc8f_FRa3C3uEz6&disable-funding=credit,card"></script>
+{{!-- <script>paypal.Buttons().render('body');</script> --}}
+
+<script>
+    $('#shippingForm').submit((e) => {
+        e.preventDefault()
+        $.ajax({
+            url: '/place_order',
+            method: 'post',
+            data: $('#shippingForm').serialize(),
+            success: (response) => {
+                console.log(response)
+                alert(response)
+                if (response.codSuccess == 'COD') {
+                    location.href = '/order_success'
+                } else if(response.paypal) {
+                    console.log('returned to paypal ajax',response)
+                    paypal.Buttons({
+                        createOrder: function (data, actions) {
+                            return actions.order.create({
+                                purchase_units: [{
+                                    amount: {
+                                        value: response.paypalTotal
+                                    }
+                                }]
+                            })
+                        },
+                        onApprove: function (data, actions){
+                            return actions.order.capture().then((details)=>{
+                                alert('Transaction of' + details.payer.name.given_name)
+                                location.href = '/order_success'
+                            })
+                        }
+                    }).render('#paypal-button')
+                } else {
+                    razorpayPayment(response)
+                }
+            }
+        })
+    })
+
+    function razorpayPayment(order) {
+        var options = {
+            "key": "rzp_test_pq8S6HNUCPVXHT", // Enter the Key ID generated from the Dashboard
+            "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": "INR",
+            "name": "STYLO",
+            "description": "Test Transaction",
+            "image": "https://example.com/your_logo",
+            "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (response) {
+                verifyPayment(response, order)
+            },
+            "prefill": {
+                "name": "Gaurav Kumar",
+                "email": "gaurav.kumar@example.com",
+                "contact": "9999999999"
+            },
+            "notes": {
+                "address": "Razorpay Corporate Office"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+    }
+
+    function verifyPayment(payment, order) {
+        $.ajax({
+            url: '/verify_payment',
+            data: {
+                payment,
+                order
+            },
+            method: 'post',
+            success:(response)=>{
+                if(response.status){
+                    location.href = '/order_success'
+                }else{
+                    alert('payment failed')
+                }
+            }
+        })
+    }
+</script>

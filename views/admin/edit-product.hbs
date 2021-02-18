@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Sleek - Admin Dashboard Template</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500"
+        rel="stylesheet" />
+    <link href="https://cdn.materialdesignicons.com/3.0.39/css/materialdesignicons.min.css" rel="stylesheet" />
+
+    <!-- PLUGINS CSS STYLE -->
+    <link href="../assets/plugins/toaster/toastr.min.css" rel="stylesheet" />
+    <link href="../assets/plugins/nprogress/nprogress.css" rel="stylesheet" />
+    <link href="../assets/plugins/flag-icons/css/flag-icon.min.css" rel="stylesheet" />
+    <link href="../assets/plugins/jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
+    <link href="../assets/plugins/ladda/ladda.min.css" rel="stylesheet" />
+    <link href="../assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
+    <link href="../assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
+
+    <!-- SLEEK CSS -->
+    <link id="sleek-css" rel="stylesheet" href="../assets/css/sleek.css" />
+
+
+
+    <!-- FAVICON -->
+    <link href="../assets/img/favicon.png" rel="shortcut icon" />
+
+    <!--
+    HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
+  -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+    <style>
+        .top-information,
+        .bottom-information {
+            padding: 0 20px;
+        }
+
+        table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>td:first-child:before,
+        table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>th:first-child:before {
+            background-color: #29cc97;
+            top: 14px;
+            width: 16px;
+            height: 16px;
+            line-height: 16px;
+            border: 0;
+            font-weight: bold;
+            box-shadow: none;
+        }
+
+        table.dataTable.dtr-inline.collapsed>tbody>tr.parent>td:first-child:before,
+        table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
+            background-color: fec400;
+        }
+    </style>
+
+    <script>
+        jQuery(document).ready(function () {
+            jQuery('#responsive-data-table').DataTable({
+                "aLengthMenu": [[20, 30, 50, 75, -1], [20, 30, 50, 75, "All"]],
+                "pageLength": 20,
+                "dom": '<"row justify-content-between top-information"lf>rt<"row justify-content-between bottom-information"ip><"clear">'
+            });
+        });
+    </script>
+
+    <script src="../assets/plugins/nprogress/nprogress.js"></script>
+
+    <!-- vendroid assets starts -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+        href="../vendroid/img/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+        href="../vendroid/img/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../vendroid/img/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../vendroid/img/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="../vendroid/img/ico/favicon.png">
+
+
+    <!-- CSS -->
+
+    <!-- Bootstrap & FontAwesome & Entypo CSS -->
+    <link href="../vendroid/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="../vendroid/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!--[if IE 7]><link type="text/css" rel="stylesheet" href="css/font-awesome-ie7.min.css"><![endif]-->
+    <link href="../vendroid/css/font-entypo.css" rel="stylesheet" type="text/css">
+
+    <!-- Fonts CSS -->
+    <link href="../vendroid/css/fonts.css" rel="stylesheet" type="text/css">
+
+    <!-- Plugin CSS -->
+    <link href="../vendroid/plugins/jquery-ui/jquery-ui.custom.min.css" rel="stylesheet" type="text/css">
+    <link href="../vendroid/plugins/prettyPhoto-plugin/css/prettyPhoto.css" rel="stylesheet" type="text/css">
+    <link href="../vendroid/plugins/isotope/css/isotope.css" rel="stylesheet" type="text/css">
+    <link href="../vendroid/plugins/pnotify/css/jquery.pnotify.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="../vendroid/plugins/google-code-prettify/prettify.css" rel="stylesheet" type="text/css">
+
+
+    <link href="../vendroid/plugins/mCustomScrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css">
+    <link href="../vendroid/plugins/tagsInput/jquery.tagsinput.css" rel="stylesheet" type="text/css">
+    <link href="../vendroid/plugins/bootstrap-switch/bootstrap-switch.css" rel="stylesheet" type="text/css">
+    <link href="../vendroid/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css">
+    <link href="../vendroid/plugins/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css">
+    <link href="../vendroid/plugins/colorpicker/css/colorpicker.css" rel="stylesheet" type="text/css">
+
+    <!-- Specific CSS -->
+    <link href="../vendroid/plugins/dataTables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+    <link href="../plugins/dataTables/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="../plugins/jquery-file-upload/css/jquery.fileupload.css" rel="stylesheet" type="text/css">
+    <link href="../plugins/jquery-file-upload/css/jquery.fileupload-ui.css" rel="stylesheet" type="text/css">
+
+    <!-- Theme CSS -->
+    <link href="../vendroid/css/theme.min.css" rel="stylesheet" type="text/css">
+    <!--[if IE]> <link href="css/ie.css" rel="stylesheet" > <![endif]-->
+    <link href="../vendroid/css/chrome.css" rel="stylesheet" type="text/chrome"> <!-- chrome only css -->
+
+
+
+    <!-- Responsive CSS -->
+    <link href="../vendroid/css/theme-responsive.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+    <!-- for specific page in style css -->
+    <style>
+        .form-wizard .nav>li>a {
+            padding: 10px;
+            margin-right: 0;
+            text-align: left;
+            color: #888888;
+        }
+
+        .tab-right {
+            margin-left: -30px;
+            margin-top: -1px;
+        }
+
+        .tab-right .panel {
+            margin-right: -30px;
+        }
+
+        .tab-right .vd_panel-menu {
+            right: 28px;
+            top: -15px;
+        }
+
+        .tab-right h3 {
+            border-bottom: 1px solid #EEEEEE;
+        }
+
+        table .vd_radio label:after {
+            top: 0;
+        }
+    </style>
+
+    <!-- for specific page responsive in style css -->
+    <style>
+        @media (max-width: 767px) {
+            .tab-right {
+                margin-left: 0;
+                margin-top: 0;
+            }
+
+            .tab-right .panel {
+                margin-right: 0;
+            }
+
+        }
+    </style>
+
+
+    <!-- Custom CSS -->
+    <link href="vendroid/custom/custom.css" rel="stylesheet" type="text/css">
+
+
+
+    <!-- Head SCRIPTS -->
+    <script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script>
+    <script
+        src="http://www.venmond.com/demo/vendroid/js/modernizr.js?cb=1612418123907&amp;fingerprint=c2VwLW5vLXJlZGlyZWN0&amp;onIframeFlag"></script>
+    <script
+        data-dapp-detection="">!function () { let e = !1; function n() { if (!e) { const n = document.createElement("meta"); n.name = "dapp-detected", document.head.appendChild(n), e = !0 } } if (window.hasOwnProperty("ethereum")) { if (window.__disableDappDetectionInsertion = !0, void 0 === window.ethereum) return; n() } else { var t = window.ethereum; Object.defineProperty(window, "ethereum", { configurable: !0, enumerable: !1, set: function (e) { window.__disableDappDetectionInsertion || n(), t = e }, get: function () { if (!window.__disableDappDetectionInsertion) { const e = arguments.callee; e && e.caller && e.caller.toString && -1 !== e.caller.toString().indexOf("getOwnPropertyNames") || n() } return t } }) } }();</script>
+    <script type="text/javascript" src="js/mobile-detect.min.js"></script>
+    <script type="text/javascript" src="js/mobile-detect-modernizr.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script type="text/javascript" src="js/html5shiv.js"></script>
+      <script type="text/javascript" src="js/respond.min.js"></script>     
+    <![endif]-->
+
+    <style>
+        .cke {
+            visibility: hidden;
+        }
+    </style>
+    <!-- vendroid assets ends -->
+{{!-- 
+</head> --}}
+
+<body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
+    <script>
+        NProgress.configure({ showSpinner: false });
+        NProgress.start();
+    </script>
+
+    <div class="mobile-sticky-body-overlay"></div>
+<!--847-->
+
+    <!---8jfkjsfk--->
+
+    <!-- vendroid imported -->
+
+
+    <div class="vd_container">
+        <div class="vd_content clearfix">
+            <div class="vd_title-section clearfix">
+                <div class="vd_panel-header">
+                    <h1>Edit Product</h1>
+                    <div class="vd_panel-menu hidden-xs">
+                        <div class="menu">
+                            <div>
+                                <span class="menu-icon mgr-10"><i class="fa fa-search"></i></span>Preview
+                            </div>
+                        </div>
+                        <div class="menu">
+                            <div>
+                                <span class="menu-icon mgr-10"><i class="fa fa-copy"></i></span>Duplicate
+                            </div>
+                        </div>
+                        <div class="menu">
+                            <div>
+                                <span class="menu-icon mgr-10"><i class="fa fa-money"></i></span>Product Sales
+                            </div>
+                        </div>
+                        <div class="menu">
+                            <div>
+                                <span class="menu-icon mgr-10"><i class="fa fa-trash-o"></i></span>Delete
+                            </div>
+                        </div>
+                        <div class="menu">
+                            <div>
+                                <span class="menu-icon mgr-10"><i class="fa fa-support"></i></span>Help
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vd_panel-menu visible-xs">
+                        <div class="menu">
+                            <div data-action="click-trigger">
+                                <span class="menu-icon mgr-10"><i class="fa fa-bars"></i></span>Menu <i
+                                    class="fa fa-angle-down"></i>
+                            </div>
+                            <div data-action="click-target" class="vd_mega-menu-content width-xs-2 left-xs"
+                                style="display: none">
+                                <div class="child-menu">
+                                    <div class="content-list content-menu">
+                                        <ul class="list-wrapper pd-lr-10">
+                                            <li>
+                                                <a href="#">
+                                                    <div class="menu-icon">
+                                                        <i class="fa fa-search"></i>
+                                                    </div>
+                                                    <div class="menu-text">Preview</div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <div class="menu-icon">
+                                                        <i class="fa fa-copy"></i>
+                                                    </div>
+                                                    <div class="menu-text">Duplicate</div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <div class="menu-icon">
+                                                        <i class="fa fa-money"></i>
+                                                    </div>
+                                                    <div class="menu-text">Product Sales</div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <div class="menu-icon">
+                                                        <i class="fa fa-trash-o"></i>
+                                                    </div>
+                                                    <div class="menu-text">Delete</div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#">
+                                                    <div class="menu-icon">
+                                                        <i class="fa fa-support"></i>
+                                                    </div>
+                                                    <div class="menu-text">Help</div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- menu -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="vd_content-section clearfix" id="ecommerce-product-add">
+                <div class="row">
+                    <div class="col-sm-12 tab-right">
+                        <div class="panel widget panel-bd-left light-widget">
+                            <div class="panel-heading no-title"></div>
+
+                            <div class="panel-body">
+                                <div class="tab-content no-bd mgbt-xs-20">
+                                    <div id="tabinfo" class="tab-pane active">
+                                        <form class="form-horizontal" action="/admin/edit_product/{{product._id}}" method="POST"
+                                            enctype="multipart/form-data">
+
+                                            <h3 class="mgtp-15 mgbt-xs-20">
+                                                Product Information
+                                            </h3>
+
+                                            <div class="form-group">
+                                                <label for="name_1" class="control-label col-lg-3 required">
+                                                    <span title="" data-toggle="tooltip" class="label-tooltip"
+                                                        data-original-title="The public name for this product. Invalid characters &lt;&gt;;=#{}">
+                                                        Product Name
+                                                    </span>
+                                                </label>
+                                                <div class="col-lg-3">
+                                                    <input type="text" required value="{{product.name}}" name="name"
+                                                        class="updateCurrentText" id="code_1" />
+                                                </div>
+                                            </div>
+                                            <!-- form-group -->
+
+                                            <div class="form-group">
+                                                <label class="control-label col-lg-3"><span data-toggle="tooltip"
+                                                        class="label-tooltip" data-original-title="Product type">
+                                                        For
+                                                    </span></label>
+                                                <div class="col-lg-9">
+                                                    <div class="vd_radio radio-success">
+                                                        <input type="radio" checked="" value="Men" name="for"
+                                                            id="simple_product" />
+                                                        <label for="simple_product">Men</label>
+                                                    </div>
+                                                    <div class="vd_radio radio-success">
+                                                        <input type="radio" value="Women" name="for"
+                                                            id="pack_product" />
+                                                        <label for="pack_product">Women</label>
+                                                    </div>
+                                                    <div class="vd_radio radio-success">
+                                                        <input type="radio" value="Boys" name="for"
+                                                            id="virtual_product" />
+                                                        <label for="virtual_product">Boys</label>
+                                                    </div>
+                                                    <div class="vd_radio radio-success">
+                                                        <input type="radio" value="Girls" name="for"
+                                                            id="virtual_product" />
+                                                        <label for="virtual_product">Girls</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- form-group -->
+
+                                            <!-- form-group -->
+
+                                            <div class="form-group">
+                                                <label for="code_1" class="control-label col-lg-3 required">
+                                                    <span title="" data-toggle="tooltip" class="label-tooltip"
+                                                        data-original-title="Product reference number (SKU-10423, etc.)">
+                                                        Category
+                                                    </span>
+                                                </label>
+                                                <div class="col-lg-5">
+                                                    <div class="row mgbt-xs-0">
+
+                                                        <div class="col-sm-4">
+
+                                                            <select id="category" name="category">
+                                                                <option value="">{{product.category}}</option>
+                                                                <option value="Shirts">Shirts</option>
+                                                                <option value="T-Shirts">T-Shirts</option>
+                                                                <option value="Jeans">Jeans</option>
+                                                                <option value="Trowsers">Trowsers</option>
+                                                            </select>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="code_1" class="control-label col-lg-3 required">
+                                                    <span title="" data-toggle="tooltip" class="label-tooltip"
+                                                        data-original-title="Product reference number (SKU-10423, etc.)">
+                                                        Price
+                                                    </span>
+                                                </label>
+                                                <div class="col-lg-3">
+                                                    <input type="number" required value="{{product.price}}" name="price"
+                                                        value="{{product.price}}" class="updateCurrentText"
+                                                        id="code_1" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="code_1" class="control-label col-lg-3 required">
+                                                    <span title="" data-toggle="tooltip" class="label-tooltip"
+                                                        data-original-title="Product reference number (SKU-10423, etc.)">
+                                                        Stock
+                                                    </span>
+                                                </label>
+                                                <div class="col-lg-3">
+                                                    <input type="number" required name="stock"
+                                                        value="{{product.stock}}" class="updateCurrentText"
+                                                        id="code_1" />
+                                                </div>
+                                            </div>
+
+                                            <!-- form-group -->
+
+                                            <div class="form-group">
+                                                <label for="description_short_1" class="control-label col-lg-3">
+                                                    <span title="" data-toggle="tooltip" class="label-tooltip"
+                                                        data-original-title="Appears in the product list(s), and at the top of the product page.">
+                                                        Short description
+                                                    </span>
+                                                </label>
+                                                <div class="col-lg-8 mgbt-xs-10 mgbt-lg-0">
+                                                    <textarea name="shortDescription" id="description_short_1"
+                                                        value="" data-rel="ckeditor"
+                                                        rows="1">{{product.shortDescription}}</textarea>
+                                                </div>
+                                            </div>
+                                            <!-- form-group -->
+
+                                            <div class="form-group">
+                                                <label for="description_1" class="control-label col-lg-3">
+                                                    <span title="" data-toggle="tooltip" class="label-tooltip"
+                                                        data-original-title="Appears in the body of product detail.">
+                                                        Description
+                                                    </span>
+                                                </label>
+                                                <div class="col-lg-8 mgbt-xs-10 mgbt-lg-0">
+                                                    <textarea name="description" id="description_1" data-rel="ckeditor"
+                                                        value="" rows="1">{{product.description}}</textarea>
+                                                </div>
+                                            </div>
+                                            <!-- form-group -->
+
+
+                                            <div id="tabimage" class="tab-pane">
+                                                <h3 class="mgtp-15 mgbt-xs-20">Images</h3>
+
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-lg-3 file_upload_label">
+                                                        <span title="" data-toggle="tooltip" class="label-tooltip"
+                                                            data-original-title="Format JPG, GIF, PNG. Filesize 8.00 MB max.">
+                                                            Add a new image to this product
+                                                        </span>
+                                                    </label>
+                                                    <div class="col-lg-9">
+                                                        <span class="btn vd_btn vd_bg-green fileinput-button">
+                                                            <i class="glyphicon glyphicon-plus"></i>
+                                                            <span>Add files...</span>
+                                                            <!-- The file input field used as target for the file upload widget -->
+                                                            <input type="file" multiple name="image" id="fileupload"
+                                                                name="image" onchange="viewImage(event)">
+                                                        </span>
+                                                        <br />
+                                                        <br />
+                                                        <!-- The global progress bar -->
+                                                        <div id="progress" class="progress">
+                                                            <div class="progress-bar progress-bar-success"></div>
+                                                        </div>
+                                                        <!-- The container for the uploaded files -->
+                                                        <div id="files" class="files"></div>
+                                                        <br />
+                                                    </div>
+                                                </div>
+                                                {{!-- <div class="form-group">
+                                                    <label class="control-label col-lg-3">
+                                                        <span title="" data-toggle="tooltip" class="label-tooltip"
+                                                            data-original-title="Invalid characters &lt;&gt;;=#{}">
+                                                            Caption
+                                                        </span>
+                                                    </label>
+                                                    <div class="col-lg-9">
+                                                        <div class="translatable-field row lang-1">
+                                                            <div class="col-lg-6">
+                                                                <input type="text" value="Faded Short Sleeve T-shirts"
+                                                                    name="legend_1" id="legend_1" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> --}}
+
+                                                <table id="imageTable" class="table table-dragable">
+                                                    <thead>
+                                                        <tr class="nodrag nodrop">
+                                                            <th style="width: 20px"></th>
+                                                            <th class="fixed-width-lg" style="width: 80px">
+                                                                <span class="title_box">Image</span>
+                                                            </th>
+                                                            <th class="fixed-width-lg">
+                                                                <span class="title_box">Caption</span>
+                                                            </th>
+                                                            <th class="fixed-width-xs" style="width: 20px">
+                                                                <span class="title_box">Position</span>
+                                                            </th>
+                                                            <th class="fixed-width-xs">
+                                                                <span class="title_box">Cover</span>
+                                                            </th>
+                                                            <th></th>
+                                                            <!-- action -->
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="imageList">
+                                                        <tr id="1">
+                                                            <td>
+                                                                <i class="fa fa-arrows vd_soft-grey"></i>
+                                                            </td>
+                                                            <td>
+                                                                <a data-rel="prettyPhoto" href="img/products/01.jpg">
+                                                                    <img src="/images/product-images/{{product._id}}1.jpg" style="width: 60px"
+                                                                        alt="product image" id="editImg"/>
+                                                                </a>
+                                                            </td>
+                                                            <td>Hard Disk</td>
+                                                            <td class="pointer text-center" id="td_1">
+                                                                1
+                                                            </td>
+                                                            <td class="cover">
+                                                                <div class="vd_radio radio-success">
+                                                                    <input type="radio" id="yes" name="optionyes"
+                                                                        value="0" checked />
+                                                                    <label for="yes">&nbsp;</label>
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <a class="delete_product_image pull-right btn vd_btn vd_bg-yellow btn-sm"
+                                                                    href="/admin/delete_image_of_product">
+                                                                    <i class="icon-trash append-icon"></i>
+                                                                    Delete this image
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+
+                                                <div>
+                                                    <input type="submit"
+                                                        class="btn vd_btn vd_bg-blue btn-sm save-btn text-center m-5"
+                                                        value="Submit">
+                                                </div>
+
+                                        </form>
+                                    </div>
+
+
+                                </div>
+                                <!-- #tabinfo -->
+                                <div id="tabprice" class="tab-pane">
+                                    <div class="vd_panel-menu">
+                                        <div>
+                                            <a class="btn vd_btn vd_bg-blue btn-sm save-btn"><i
+                                                    class="fa fa-save append-icon"></i> Save
+                                                Changes</a>
+                                            <a class="btn btn-default btn-sm" data-toggle="modal"
+                                                data-target="#myModal"><i class="fa fa-times append-icon"></i>
+                                                Cancel Changes</a>
+                                        </div>
+                                    </div>
+                                    <h3 class="mgtp-15 mgbt-xs-20">Product Price</h3>
+                                    <form class="form-horizontal">
+                                        <div class="form-group">
+                                            <label for="wholesale_price" class="control-label col-lg-3">
+                                                <span title="" data-toggle="tooltip" class="label-tooltip"
+                                                    data-original-title="The wholesale price is the price you paid for the product. Do not include the tax.">Wholesale
+                                                    price</span>
+                                            </label>
+                                            <div class="col-lg-2">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">$ </span>
+                                                    <input type="text"
+                                                        onchange="this.value = this.value.replace(/,/g, '.');"
+                                                        value="4.95" id="wholesale_price" name="wholesale_price"
+                                                        maxlength="14" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="priceTE" class="control-label col-lg-3">
+                                                <span title="" data-toggle="tooltip" class="label-tooltip"
+                                                    data-original-title="The pre-tax retail price is the price for which you intend sell this product to your customers. It should be higher than the pre-tax wholesale price: the difference between the two will be your margin.">Retail
+                                                    price</span>
+                                            </label>
+                                            <div class="col-lg-2">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">$ </span>
+                                                    <input type="hidden" value="16.510000" name="price"
+                                                        id="priceTEReal" />
+                                                    <input type="text"
+                                                        onkeyup="$('#priceType').val('TE'); $('#priceTEReal').val(this.value.replace(/,/g, '.')); if (isArrowKey(event)) return; calcPriceTI();"
+                                                        onchange="noComma('priceTE'); $('#priceTEReal').val(this.value);"
+                                                        value="16.510000" name="price_displayed" id="priceTE"
+                                                        maxlength="14" size="11" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="id_tax_rules_group" class="control-label col-lg-3">
+                                                Tax rule
+                                            </label>
+                                            <div class="col-lg-8">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <select id="id_tax_rules_group" name="id_tax_rules_group"
+                                                            onchange="javascript:calcPrice(); unitPriceWithTax('unit');">
+                                                            <option value="0">No Tax</option>
+                                                            <option value="2">
+                                                                US-AK Rate (0%)
+                                                            </option>
+                                                            <option selected="selected" value="1">
+                                                                US-AL Rate (4%)
+                                                            </option>
+                                                            <option value="4">
+                                                                US-AR Rate (6%)
+                                                            </option>
+                                                            <option value="3">
+                                                                US-AZ Rate (6.6%)
+                                                            </option>
+                                                            <option value="5">
+                                                                US-CA Rate (8.25%)
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-lg-5">
+                                                        <a href="#">
+                                                            <i class="fa fa-plus append-icon"></i>
+                                                            Create new tax
+                                                            <i class="fa fa-external-link font-xs"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="unit_price" class="control-label col-lg-3">
+                                                <span title="" data-toggle="tooltip" class="label-tooltip"
+                                                    data-original-title='When selling a pack of items, you can indicate the unit price for each item of the pack. For instance, "per bottle" or "per pound".'>Unit
+                                                    price</span>
+                                            </label>
+                                            <div class="col-lg-4">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">$ </span>
+                                                    <input type="text"
+                                                        onkeyup="if (isArrowKey(event)) return ;this.value = this.value.replace(/,/g, '.'); unitPriceWithTax('unit');"
+                                                        maxlength="14" value="0.00" name="unit_price" id="unit_price" />
+                                                    <span class="input-group-addon">per</span>
+                                                    <input type="text" onchange="unitySecond();"
+                                                        onkeyup="if (isArrowKey(event)) return ;unitySecond();"
+                                                        maxlength="10" value="" name="unity" id="unity" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <h3 class="mgtp-15 mgbt-xs-20">
+                                            Specific Price
+                                        </h3>
+                                        <a class="btn vd_btn btn-sm vd_bg-green" href="#" data-toggle="modal"
+                                            data-target="#addPriceModal"><i class="fa fa-plus append-icon"></i> Add
+                                            Price
+                                        </a>
+                                        <table class="table table-condensed table-striped mgtp-10"
+                                            id="specific_price_table">
+                                            <thead class="vd_bg-dark-blue vd_white">
+                                                <tr>
+                                                    <th>Combination</th>
+                                                    <th>Price</th>
+                                                    <th>Enabled</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>S - Grey</td>
+                                                    <td>$20</td>
+                                                    <td class="text-center">
+                                                        <i class="fa fa-check vd_green"></i>
+                                                    </td>
+                                                    <td class="menu-action">
+                                                        <a class="btn menu-icon vd_green" data-placement="top"
+                                                            data-toggle="tooltip" data-original-title="Disabled">
+                                                            <i class="fa fa-power-off"></i>
+                                                        </a>
+                                                        <a class="btn menu-icon vd_yellow" data-placement="top"
+                                                            data-toggle="tooltip" data-original-title="edit">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </a>
+                                                        <a class="btn menu-icon vd_red" data-placement="top"
+                                                            data-toggle="tooltip" data-original-title="delete">
+                                                            <i class="fa fa-times"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>S - Blue</td>
+                                                    <td>$20</td>
+                                                    <td class="text-center">
+                                                        <i class="fa fa-times vd_grey"></i>
+                                                    </td>
+                                                    <td class="menu-action">
+                                                        <a class="btn menu-icon vd_grey" data-placement="top"
+                                                            data-toggle="tooltip" data-original-title="Enabled">
+                                                            <i class="fa fa-power-off"></i>
+                                                        </a>
+                                                        <a class="btn menu-icon vd_yellow" data-placement="top"
+                                                            data-toggle="tooltip" data-original-title="edit">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </a>
+                                                        <a class="btn menu-icon vd_red" data-placement="top"
+                                                            data-toggle="tooltip" data-original-title="delete">
+                                                            <i class="fa fa-times"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>M - Grey</td>
+                                                    <td>$15</td>
+                                                    <td class="text-center">
+                                                        <i class="fa fa-check vd_green"></i>
+                                                    </td>
+                                                    <td class="menu-action">
+                                                        <a class="btn menu-icon vd_green" data-placement="top"
+                                                            data-toggle="tooltip" data-original-title="Disabled">
+                                                            <i class="fa fa-power-off"></i>
+                                                        </a>
+                                                        <a class="btn menu-icon vd_yellow" data-placement="top"
+                                                            data-toggle="tooltip" data-original-title="edit">
+                                                            <i class="fa fa-pencil"></i>
+                                                        </a>
+                                                        <a class="btn menu-icon vd_red" data-placement="top"
+                                                            data-toggle="tooltip" data-original-title="delete">
+                                                            <i class="fa fa-times"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </form>
+                                </div>
+                                <!-- #tab-price -->
+
+
+
+                                <!-- tab-pane -->
+                                <div id="tabimage" class="tab-pane">
+                                    <h3 class="mgtp-15 mgbt-xs-20">Images</h3>
+                                    <form class="form-horizontal">
+                                        <div class="vd_panel-menu">
+                                            <div>
+                                                <a class="btn vd_btn vd_bg-blue btn-sm save-btn"><i
+                                                        class="fa fa-save append-icon"></i>
+                                                    Save Changes</a>
+                                                <a class="btn btn-default btn-sm" data-toggle="modal"
+                                                    data-target="#myModal"><i class="fa fa-times append-icon"></i>
+                                                    Cancel Changes</a>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-3 file_upload_label">
+                                                <span title="" data-toggle="tooltip" class="label-tooltip"
+                                                    data-original-title="Format JPG, GIF, PNG. Filesize 8.00 MB max.">
+                                                    Add a new image to this product
+                                                </span>
+                                            </label>
+                                            <div class="col-lg-9">
+                                                <span class="btn vd_btn vd_bg-green fileinput-button">
+                                                    <i class="glyphicon glyphicon-plus"></i>
+                                                    <span>Add files...</span>
+                                                    <!-- The file input field used as target for the file upload widget -->
+                                                    <input type="file" multiple name="files[]" id="fileupload" />
+                                                </span>
+                                                <br />
+                                                <br />
+                                                <!-- The global progress bar -->
+                                                <div id="progress" class="progress">
+                                                    <div class="progress-bar progress-bar-success"></div>
+                                                </div>
+                                                <!-- The container for the uploaded files -->
+                                                <div id="files" class="files"></div>
+                                                <br />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-lg-3">
+                                                <span title="" data-toggle="tooltip" class="label-tooltip"
+                                                    data-original-title="Invalid characters &lt;&gt;;=#{}">
+                                                    Caption
+                                                </span>
+                                            </label>
+                                            <div class="col-lg-9">
+                                                <div class="translatable-field row lang-1">
+                                                    <div class="col-lg-6">
+                                                        <input type="text" value="Faded Short Sleeve T-shirts"
+                                                            name="legend_1" id="legend_1" />
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <button tabindex="-1" data-toggle="dropdown"
+                                                            class="btn btn-default btn-xs dropdown-toggle"
+                                                            type="button">
+                                                            en <span class="caret"></span>
+                                                        </button>
+                                                        <ul class="dropdown-menu">
+                                                            <li>
+                                                                <a href="#">English (English)</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Español (Spanish)</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Français (French)</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Italiano (Italian)</a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="#">Deutsch (German)</a>
+                                                            </li>
+                                                            <li><a href="#">Dutch</a></li>
+                                                            <li><a href="#">Polish</a></li>
+                                                            <li><a href="#">Russian</a></li>
+                                                            <li>
+                                                                <a href="j.html#">Portuguese</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <table id="imageTable" class="table table-dragable">
+                                            <thead>
+                                                <tr class="nodrag nodrop">
+                                                    <th style="width: 20px"></th>
+                                                    <th class="fixed-width-lg" style="width: 80px">
+                                                        <span class="title_box">Image</span>
+                                                    </th>
+                                                    <th class="fixed-width-lg">
+                                                        <span class="title_box">Caption</span>
+                                                    </th>
+                                                    <th class="fixed-width-xs" style="width: 20px">
+                                                        <span class="title_box">Position</span>
+                                                    </th>
+                                                    <th class="fixed-width-xs">
+                                                        <span class="title_box">Cover</span>
+                                                    </th>
+                                                    <th></th>
+                                                    <!-- action -->
+                                                </tr>
+                                            </thead>
+                                            <tbody id="imageList">
+                                                <tr id="1">
+                                                    <td>
+                                                        <i class="fa fa-arrows vd_soft-grey"></i>
+                                                    </td>
+                                                    <td>
+                                                        <a data-rel="prettyPhoto" href="img/products/01.jpg">
+                                                            <img src="img/products/01.jpg" style="width: 60px"
+                                                                alt="product image" />
+                                                        </a>
+                                                    </td>
+                                                    <td>Hard Disk</td>
+                                                    <td class="pointer text-center" id="td_1">
+                                                        1
+                                                    </td>
+                                                    <td class="cover">
+                                                        <div class="vd_radio radio-success">
+                                                            <input type="radio" id="yes" name="optionyes" value="0"
+                                                                checked />
+                                                            <label for="yes">&nbsp;</label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <a class="delete_product_image pull-right btn vd_btn vd_bg-yellow btn-sm"
+                                                            href="#">
+                                                            <i class="icon-trash append-icon"></i>
+                                                            Delete this image
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr id="2">
+                                                    <td>
+                                                        <i class="fa fa-arrows vd_soft-grey"></i>
+                                                    </td>
+                                                    <td>
+                                                        <a data-rel="prettyPhoto" href="img/products/02.jpg">
+                                                            <img src="img/products/02.jpg" style="width: 60px"
+                                                                alt="product image" />
+                                                        </a>
+                                                    </td>
+                                                    <td>iMac</td>
+                                                    <td class="pointer text-center" id="td_2">
+                                                        2
+                                                    </td>
+                                                    <td class="cover">
+                                                        <div class="vd_radio radio-success">
+                                                            <input type="radio" id="yes2" name="optionyes" value="1" />
+                                                            <label for="yes2">&nbsp;</label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <a class="delete_product_image pull-right btn vd_btn vd_bg-yellow btn-sm"
+                                                            href="#">
+                                                            <i class="icon-trash append-icon"></i>
+                                                            Delete this image
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr id="3">
+                                                    <td>
+                                                        <i class="fa fa-arrows vd_soft-grey"></i>
+                                                    </td>
+                                                    <td>
+                                                        <a data-rel="prettyPhoto" href="img/products/03.jpg">
+                                                            <img src="img/products/03.jpg" style="width: 60px"
+                                                                alt="product image" />
+                                                        </a>
+                                                    </td>
+                                                    <td>iPad</td>
+                                                    <td class="pointer text-center" id="td_3">
+                                                        3
+                                                    </td>
+                                                    <td class="cover">
+                                                        <div class="vd_radio radio-success">
+                                                            <input type="radio" id="yes3" name="optionyes" value="2" />
+                                                            <label for="yes3">&nbsp;</label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <a class="delete_product_image pull-right btn vd_btn vd_bg-yellow btn-sm"
+                                                            href="#">
+                                                            <i class="icon-trash append-icon"></i>
+                                                            Delete this image
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr id="4">
+                                                    <td>
+                                                        <i class="fa fa-arrows vd_soft-grey"></i>
+                                                    </td>
+                                                    <td>
+                                                        <a data-rel="prettyPhoto" href="img/products/04.jpg">
+                                                            <img src="img/products/04.jpg" style="width: 60px"
+                                                                alt="product image" />
+                                                        </a>
+                                                    </td>
+                                                    <td>Galaxy Note 8</td>
+                                                    <td class="pointer text-center" id="td_4">
+                                                        4
+                                                    </td>
+                                                    <td class="cover">
+                                                        <div class="vd_radio radio-success">
+                                                            <input type="radio" id="yes4" name="optionyes" value="3" />
+                                                            <label for="yes4">&nbsp;</label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <a class="delete_product_image pull-right btn vd_btn vd_bg-yellow btn-sm"
+                                                            href="#">
+                                                            <i class="icon-trash append-icon"></i>
+                                                            Delete this image
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </form>
+                                </div>
+                                <!-- tab-pane -->
+                            </div>
+                            <!-- tab-content -->
+                        </div>
+                        <!-- panel-body -->
+
+                        <!-- form-horizontal -->
+                    </div>
+                    <!-- Panel Widget -->
+                </div>
+                <!-- col-sm-12-->
+            </div>
+            <!-- row -->
+        </div>
+        <!-- .vd_content-section -->
+    </div>
+    <!-- .vd_content -->
+    </div>
+    <!-- .vd_container -->
+
+    <!-- vendroid imported ends -->
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCn8TFXGg17HAUcNpkwtxxyT9Io9B_NcM" defer></script>
+    <script src="../assets/plugins/jquery/jquery.min.js"></script>
+    <script src="../assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/plugins/toaster/toastr.min.js"></script>
+    <script src="../assets/plugins/slimscrollbar/jquery.slimscroll.min.js"></script>
+    <script src="../assets/plugins/charts/Chart.min.js"></script>
+    <script src="../assets/plugins/ladda/spin.min.js"></script>
+    <script src="../assets/plugins/ladda/ladda.min.js"></script>
+    <script src="../assets/plugins/jquery-mask-input/jquery.mask.min.js"></script>
+    <script src="../assets/plugins/select2/js/select2.min.js"></script>
+    <script src="../assets/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
+    <script src="../assets/plugins/jvectormap/jquery-jvectormap-world-mill.js"></script>
+    <script src="../assets/plugins/daterangepicker/moment.min.js"></script>
+    <script src="../assets/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="../assets/plugins/jekyll-search.min.js"></script>
+    <script src="../assets/js/sleek.js"></script>
+    <script src="../assets/js/chart.js"></script>
+    <script src="../assets/js/date-range.js"></script>
+    <script src="../assets/js/map.js"></script>
+    <script src="../assets/js/custom.js"></script>
+
+    <script>
+        jQuery(document).ready(function () {
+            jQuery('#responsive-data-table').DataTable({
+                "aLengthMenu": [[20, 30, 50, 75, -1], [20, 30, 50, 75, "All"]],
+                "pageLength": 20,
+                "dom": '<"row justify-content-between top-information"lf>rt<"row justify-content-between bottom-information"ip><"clear">'
+            });
+        });
+    </script>
+
+    <script>
+        function viewImage(event){
+            document.getElementById('editImg').src=URL.createObjectURL(event.target.files[0])
+        }
+    </script>
+
+
+</body>
+
+</html>

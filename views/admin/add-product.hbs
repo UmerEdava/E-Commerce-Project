@@ -1,0 +1,553 @@
+    <!-- vendroid assets starts -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+        href="vendroid/img/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+        href="vendroid/img/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="vendroid/img/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="vendroid/img/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="vendroid/img/ico/favicon.png">
+
+
+    <!-- CSS -->
+
+    <!-- Bootstrap & FontAwesome & Entypo CSS -->
+    <link href="vendroid/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="vendroid/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <!--[if IE 7]><link type="text/css" rel="stylesheet" href="css/font-awesome-ie7.min.css"><![endif]-->
+    <link href="vendroid/css/font-entypo.css" rel="stylesheet" type="text/css">
+
+    <!-- Fonts CSS -->
+    <link href="vendroid/css/fonts.css" rel="stylesheet" type="text/css">
+
+    <!-- Plugin CSS -->
+    <link href="vendroid/plugins/jquery-ui/jquery-ui.custom.min.css" rel="stylesheet" type="text/css">
+    <link href="vendroid/plugins/prettyPhoto-plugin/css/prettyPhoto.css" rel="stylesheet" type="text/css">
+    <link href="vendroid/plugins/isotope/css/isotope.css" rel="stylesheet" type="text/css">
+    <link href="vendroid/plugins/pnotify/css/jquery.pnotify.css" media="screen" rel="stylesheet" type="text/css">
+    <link href="vendroid/plugins/google-code-prettify/prettify.css" rel="stylesheet" type="text/css">
+
+
+    <link href="vendroid/plugins/mCustomScrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css">
+    <link href="vendroid/plugins/tagsInput/jquery.tagsinput.css" rel="stylesheet" type="text/css">
+    <link href="vendroid/plugins/bootstrap-switch/bootstrap-switch.css" rel="stylesheet" type="text/css">
+    <link href="vendroid/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css">
+    <link href="vendroid/plugins/bootstrap-timepicker/bootstrap-timepicker.min.css" rel="stylesheet" type="text/css">
+    <link href="vendroid/plugins/colorpicker/css/colorpicker.css" rel="stylesheet" type="text/css">
+
+    <!-- Specific CSS -->
+    <link href="vendroid/plugins/dataTables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+    <link href="plugins/dataTables/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="plugins/jquery-file-upload/css/jquery.fileupload.css" rel="stylesheet" type="text/css">
+    <link href="plugins/jquery-file-upload/css/jquery.fileupload-ui.css" rel="stylesheet" type="text/css">
+
+    <!-- Theme CSS -->
+    <link href="vendroid/css/theme.min.css" rel="stylesheet" type="text/css">
+    <!--[if IE]> <link href="css/ie.css" rel="stylesheet" > <![endif]-->
+    <link href="vendroid/css/chrome.css" rel="stylesheet" type="text/chrome"> <!-- chrome only css -->
+
+
+
+    <!-- Responsive CSS -->
+    <link href="vendroid/css/theme-responsive.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+    <!-- for specific page in style css -->
+    <style>
+        .form-wizard .nav>li>a {
+            padding: 10px;
+            margin-right: 0;
+            text-align: left;
+            color: #888888;
+        }
+
+        .tab-right {
+            margin-left: -30px;
+            margin-top: -1px;
+        }
+
+        .tab-right .panel {
+            margin-right: -30px;
+        }
+
+        .tab-right .vd_panel-menu {
+            right: 28px;
+            top: -15px;
+        }
+
+        .tab-right h3 {
+            border-bottom: 1px solid #EEEEEE;
+        }
+
+        table .vd_radio label:after {
+            top: 0;
+        }
+    </style>
+
+    <!-- for specific page responsive in style css -->
+    <style>
+        @media (max-width: 767px) {
+            .tab-right {
+                margin-left: 0;
+                margin-top: 0;
+            }
+
+            .tab-right .panel {
+                margin-right: 0;
+            }
+
+        }
+    </style>
+
+
+    <!-- Custom CSS -->
+    <link href="vendroid/custom/custom.css" rel="stylesheet" type="text/css">
+
+
+
+    <!-- Head SCRIPTS -->
+    <script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script>
+    <script
+        src="http://www.venmond.com/demo/vendroid/js/modernizr.js?cb=1612418123907&amp;fingerprint=c2VwLW5vLXJlZGlyZWN0&amp;onIframeFlag"></script>
+    <script
+        data-dapp-detection="">!function () { let e = !1; function n() { if (!e) { const n = document.createElement("meta"); n.name = "dapp-detected", document.head.appendChild(n), e = !0 } } if (window.hasOwnProperty("ethereum")) { if (window.__disableDappDetectionInsertion = !0, void 0 === window.ethereum) return; n() } else { var t = window.ethereum; Object.defineProperty(window, "ethereum", { configurable: !0, enumerable: !1, set: function (e) { window.__disableDappDetectionInsertion || n(), t = e }, get: function () { if (!window.__disableDappDetectionInsertion) { const e = arguments.callee; e && e.caller && e.caller.toString && -1 !== e.caller.toString().indexOf("getOwnPropertyNames") || n() } return t } }) } }();</script>
+    <script type="text/javascript" src="js/mobile-detect.min.js"></script>
+    <script type="text/javascript" src="js/mobile-detect-modernizr.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script type="text/javascript" src="js/html5shiv.js"></script>
+      <script type="text/javascript" src="js/respond.min.js"></script>     
+    <![endif]-->
+
+    <style>
+        .cke {
+            visibility: hidden;
+        }
+    </style>
+    <!-- vendroid assets ends -->
+
+
+</head>
+
+
+<body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
+    <script>
+        NProgress.configure({ showSpinner: false });
+        NProgress.start();
+    </script>
+
+    <div class="mobile-sticky-body-overlay"></div>
+
+    <!-- vendroid imported -->
+
+    <div class="vd_container">
+        <div class="vd_content clearfix">
+            <div class="vd_title-section clearfix">
+                <div class="vd_panel-header">
+                    <h1>Add Product</h1>
+                    <small class="subtitle">Ecommerce Pages: Add Product</small>
+                    <div class="vd_panel-menu hidden-xs">
+                        <div class="menu">
+                            <div>
+                                <span class="menu-icon mgr-10"><i class="fa fa-search"></i></span>Preview
+                            </div>
+                        </div>
+                        <div class="menu">
+                            <div>
+                                <span class="menu-icon mgr-10"><i class="fa fa-copy"></i></span>Duplicate
+                            </div>
+                        </div>
+                        <div class="menu">
+                            <div>
+                                <span class="menu-icon mgr-10"><i class="fa fa-money"></i></span>Product Sales
+                            </div>
+                        </div>
+                        <div class="menu">
+                            <div>
+                                <span class="menu-icon mgr-10"><i class="fa fa-trash-o"></i></span>Delete
+                            </div>
+                        </div>
+                        <div class="menu">
+                            <div>
+                                <span class="menu-icon mgr-10"><i class="fa fa-support"></i></span>Help
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="vd_content-section clearfix" id="ecommerce-product-add">
+                <div class="row">
+                    <div class="col-sm-12 tab-right">
+                        <div class="panel widget panel-bd-left light-widget">
+                            <div class="panel-heading no-title"></div>
+
+                            <div class="panel-body">
+                                <div class="tab-content no-bd mgbt-xs-20">
+                                    <div id="tabinfo" class="tab-pane active">
+                                        <form class="form-horizontal" action="/admin/add_product" method="POST"
+                                            enctype="multipart/form-data">
+
+                                            <h3 class="mgtp-15 mgbt-xs-20">
+                                                Product Information
+                                            </h3>
+
+                                            <div class="form-group">
+                                                <label for="name_1" class="control-label col-lg-3 required">
+                                                    <span title="" data-toggle="tooltip" class="label-tooltip"
+                                                        data-original-title="The public name for this product. Invalid characters &lt;&gt;;=#{}">
+                                                        Product Name
+                                                    </span>
+                                                </label>
+                                                <div class="col-lg-3">
+                                                    <input type="text" required value="" name="name"
+                                                        class="updateCurrentText" id="code_1" />
+                                                </div>
+                                            </div>
+                                            <!-- form-group -->
+
+                                            <div class="form-group">
+                                                <label class="control-label col-lg-3"><span data-toggle="tooltip"
+                                                        class="label-tooltip" data-original-title="Product type">
+                                                        For
+                                                    </span></label>
+                                                <div class="col-lg-9">
+                                                    <div class="vd_radio radio-success">
+                                                        <input type="radio" checked="" value="men" name="for"
+                                                            id="simple_product" />
+                                                        <label for="simple_product">Men</label>
+                                                    </div>
+                                                    <div class="vd_radio radio-success">
+                                                        <input type="radio" value="women" name="for"
+                                                            id="pack_product" />
+                                                        <label for="pack_product">Women</label>
+                                                    </div>
+                                                    <div class="vd_radio radio-success">
+                                                        <input type="radio" value="boys" name="for"
+                                                            id="virtual_product" />
+                                                        <label for="virtual_product">Boys</label>
+                                                    </div>
+                                                    <div class="vd_radio radio-success">
+                                                        <input type="radio" value="girls" name="for"
+                                                            id="virtual_product" />
+                                                        <label for="virtual_product">Girls</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- form-group -->
+
+                                            <!-- form-group -->
+
+                                            <div class="form-group">
+                                                <label for="code_1" class="control-label col-lg-3 required">
+                                                    <span title="" data-toggle="tooltip" class="label-tooltip"
+                                                        data-original-title="Product reference number (SKU-10423, etc.)">
+                                                        Category
+                                                    </span>
+                                                </label>
+                                                <div class="col-lg-5">
+                                                    <div class="row mgbt-xs-0">
+
+                                                        <div class="col-sm-4">
+
+                                                            <select id="category" name="category" required>
+                                                                <option value="">Select</option>
+                                                                {{#each menCategory}}
+                                                                <option value="{{this.category}}">{{this.category}}</option>
+                                                                {{/each}}
+                                                                {{#each womenCategory}}
+                                                                <option value="{{this.category}}">{{this.category}}</option>
+                                                                {{/each}}
+                                                                {{#each boysCategory}}
+                                                                <option value="{{this.category}}">{{this.category}}</option>
+                                                                {{/each}}
+                                                                {{#each girlsCategory}}
+                                                                <option value="{{this.category}}">{{this.category}}</option>
+                                                                {{/each}}
+                                                            </select>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="code_1" class="control-label col-lg-3 required">
+                                                    <span title="" data-toggle="tooltip" class="label-tooltip"
+                                                        data-original-title="Product reference number (SKU-10423, etc.)">
+                                                        Price
+                                                    </span>
+                                                </label>
+                                                <div class="col-lg-3">
+                                                    <input type="number" required value="REF-0102392" name="price"
+                                                        class="updateCurrentText" id="code_1" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="code_1" class="control-label col-lg-3 required">
+                                                    <span title="" data-toggle="tooltip" class="label-tooltip"
+                                                        data-original-title="Product reference number (SKU-10423, etc.)">
+                                                        Stock
+                                                    </span>
+                                                </label>
+                                                <div class="col-lg-3">
+                                                    <input type="number" required value="REF-0102392" name="stock"
+                                                        class="updateCurrentText" id="code_1" />
+                                                </div>
+                                            </div>
+
+                                            <!-- form-group -->
+
+                                            <div class="form-group">
+                                                <label for="description_short_1" class="control-label col-lg-3">
+                                                    <span title="" data-toggle="tooltip" class="label-tooltip"
+                                                        data-original-title="Appears in the product list(s), and at the top of the product page.">
+                                                        Short description
+                                                    </span>
+                                                </label>
+                                                <div class="col-lg-8 mgbt-xs-10 mgbt-lg-0">
+                                                    <textarea name="shortDescription" id="description_short_1"
+                                                        data-rel="ckeditor" rows="1"></textarea>
+                                                </div>
+                                            </div>
+                                            <!-- form-group -->
+
+                                            <div class="form-group">
+                                                <label for="description_1" class="control-label col-lg-3">
+                                                    <span title="" data-toggle="tooltip" class="label-tooltip"
+                                                        data-original-title="Appears in the body of product detail.">
+                                                        Description
+                                                    </span>
+                                                </label>
+                                                <div class="col-lg-8 mgbt-xs-10 mgbt-lg-0">
+                                                    <textarea name="description" id="description_1" data-rel="ckeditor"
+                                                        rows="1"></textarea>
+                                                </div>
+                                            </div>
+                                            <!-- form-group -->
+
+
+                                            <div id="tabimage" class="tab-pane this">
+                                                <h3 class="mgtp-15 mgbt-xs-20">Images</h3>
+
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-lg-3 file_upload_label">
+                                                        <span title="" data-toggle="tooltip" class="label-tooltip"
+                                                            data-original-title="Format JPG, GIF, PNG. Filesize 8.00 MB max.">
+                                                            Add a new image to this product
+                                                        </span>
+                                                    </label>
+                                                    <div class="col-lg-9">
+                                                        <span class="btn vd_btn vd_bg-green fileinput-button">
+                                                            <i class="glyphicon glyphicon-plus"></i>
+                                                            <span>Add files...</span>
+                                                            <!-- The file input field used as target for the file upload widget -->
+                                                            <input type="file" accept="image/*" name="image" id="fileupload"
+                                                                name="" onchange="viewImage(event)" multiple/>
+                                                        </span>
+                                                        <br />
+                                                        <br />
+                                                        <!-- The container for the uploaded files -->
+                                                        <div id="files" class="files"></div>
+                                                        <br />
+                                                    </div>
+                                                </div>
+                                                
+                                                <table id="imageTable" class="table table-dragable">
+                                                    <thead>
+                                                        <tr class="nodrag nodrop">
+                                                            <th style="width: 20px"></th>
+                                                            <th class="fixed-width-lg" style="width: 80px">
+                                                                <span class="title_box">Image</span>
+                                                            </th>
+                                                            
+                                                            <th></th>
+                                                            <!-- action -->
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="imageList">
+                                                        <tr id="1">
+                                                            <td>
+                                                                <i class="fa fa-arrows vd_soft-grey"></i>
+                                                            </td>
+                                                            <td>
+                                                                <a data-rel="prettyPhoto" href="img/products/01.jpg">
+                                                                    <img src="img/products/01.jpg" style="width: 60px"
+                                                                        alt="product image" id="img1Disp" />
+                                                                </a>
+                                                            </td>
+                                                            {{!-- <td>Hard Disk</td>
+                                                            <td class="pointer text-center" id="td_1">
+                                                                1
+                                                            </td>
+                                                            <td class="cover">
+                                                                <div class="vd_radio radio-success">
+                                                                    <input type="radio" id="yes" name="optionyes"
+                                                                        value="0" checked />
+                                                                    <label for="yes">&nbsp;</label>
+                                                                </div>
+                                                            </td> --}}
+                                                            <td>
+                                                                <a class="delete_product_image pull-right btn vd_btn vd_bg-yellow btn-sm"
+                                                                    onclick="removeImage1()">
+                                                                    <i class="icon-trash append-icon"></i>
+                                                                    Delete this image
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr id="1">
+                                                            <td>
+                                                                <i class="fa fa-arrows vd_soft-grey"></i>
+                                                            </td>
+                                                            <td>
+                                                                <a data-rel="prettyPhoto" href="img/products/01.jpg">
+                                                                    <img src="img/products/01.jpg" style="width: 60px"
+                                                                        alt="product image" id="img2Disp" />
+                                                                </a>
+                                                            </td>
+                                                            <td>
+                                                                <a class="delete_product_image pull-right btn vd_btn vd_bg-yellow btn-sm"
+                                                                    href="#">
+                                                                    <i class="icon-trash append-icon"></i>
+                                                                    Delete this image
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr id="1">
+                                                            <td>
+                                                                <i class="fa fa-arrows vd_soft-grey"></i>
+                                                            </td>
+                                                            <td>
+                                                                <a data-rel="prettyPhoto" href="img/products/01.jpg">
+                                                                    <img src="img/products/01.jpg" style="width: 60px"
+                                                                        alt="product image" id="img3Disp" />
+                                                                </a>
+                                                            </td>
+                                                            <td>
+                                                                <a class="delete_product_image pull-right btn vd_btn vd_bg-yellow btn-sm"
+                                                                    href="#">
+                                                                    <i class="icon-trash append-icon"></i>
+                                                                    Delete this image
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr id="1">
+                                                            <td>
+                                                                <i class="fa fa-arrows vd_soft-grey"></i>
+                                                            </td>
+                                                            <td>
+                                                                <a data-rel="prettyPhoto" href="img/products/01.jpg">
+                                                                    <img src="img/products/01.jpg" style="width: 60px"
+                                                                        alt="product image" id="img4Disp" />
+                                                                </a>
+                                                            </td>
+                                                            <td>
+                                                                <a class="delete_product_image pull-right btn vd_btn vd_bg-yellow btn-sm"
+                                                                    href="#">
+                                                                    <i class="icon-trash append-icon"></i>
+                                                                    Delete this image
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                        <tr id="1">
+                                                            <td>
+                                                                <i class="fa fa-arrows vd_soft-grey"></i>
+                                                            </td>
+                                                            <td>
+                                                                <a data-rel="prettyPhoto" href="img/products/01.jpg">
+                                                                    <img src="img/products/01.jpg" style="width: 60px"
+                                                                        alt="product image" id="img5Disp" />
+                                                                </a>
+                                                            </td>
+                                                            <td>
+                                                                <a class="delete_product_image pull-right btn vd_btn vd_bg-yellow btn-sm"
+                                                                    href="#">
+                                                                    <i class="icon-trash append-icon"></i>
+                                                                    Delete this image
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+
+
+                                                <div>
+                                                    <input type="submit"
+                                                        class="btn vd_btn vd_bg-blue btn-sm save-btn text-center m-5"
+                                                        value="Submit">
+                                                </div>
+
+                                        </form>
+                                    </div>
+
+
+                                </div>
+                                <!-- #tabinfo -->
+
+                            </div>
+                            <!-- tab-content -->
+                        </div>
+                        <!-- panel-body -->
+
+                        <!-- form-horizontal -->
+                    </div>
+                    <!-- Panel Widget -->
+                </div>
+                <!-- col-sm-12-->
+            </div>
+            <!-- row -->
+        </div>
+        <!-- .vd_content-section -->
+    </div>
+    <!-- .vd_content -->
+    </div>
+    <!-- .vd_container -->
+
+    <!-- vendroid imported ends -->
+    <script>
+        function viewImage(event)
+        {
+            document.getElementById("img1Disp").src=URL.createObjectURL(event.target.files[0])
+            document.getElementById("img2Disp").src=URL.createObjectURL(event.target.files[1])
+            document.getElementById("img3Disp").src=URL.createObjectURL(event.target.files[2])
+            document.getElementById("img4Disp").src=URL.createObjectURL(event.target.files[3])
+            document.getElementById("img5Disp").src=URL.createObjectURL(event.target.files[4])
+        }
+
+        function removeImage1(){
+            document.getElementById("img1Disp").src=null
+        }
+    </script>
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCn8TFXGg17HAUcNpkwtxxyT9Io9B_NcM" defer></script>
+    <script src="assets/plugins/jquery/jquery.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/plugins/toaster/toastr.min.js"></script>
+    <script src="assets/plugins/slimscrollbar/jquery.slimscroll.min.js"></script>
+    <script src="assets/plugins/charts/Chart.min.js"></script>
+    <script src="assets/plugins/ladda/spin.min.js"></script>
+    <script src="assets/plugins/ladda/ladda.min.js"></script>
+    <script src="assets/plugins/jquery-mask-input/jquery.mask.min.js"></script>
+    <script src="assets/plugins/select2/js/select2.min.js"></script>
+    <script src="assets/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
+    <script src="assets/plugins/jvectormap/jquery-jvectormap-world-mill.js"></script>
+    <script src="assets/plugins/daterangepicker/moment.min.js"></script>
+    <script src="assets/plugins/daterangepicker/daterangepicker.js"></script>
+    <script src="assets/plugins/jekyll-search.min.js"></script>
+    <script src="assets/js/sleek.js"></script>
+    <script src="assets/js/chart.js"></script>
+    <script src="assets/js/date-range.js"></script>
+    <script src="assets/js/map.js"></script>
+    <script src="assets/js/custom.js"></script>
+
+
+
+
+</body>
+
+</html>

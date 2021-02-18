@@ -1,0 +1,101 @@
+<!-- Web Fonts
+========================= -->
+<link rel="stylesheet" href="/stylesheets/login/css" type="text/css">
+
+<!-- Stylesheet
+========================= -->
+<link rel="stylesheet" type="text/css" href="/stylesheets/login/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/login/all.min.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/login/stylesheet.css">
+<!-- Colors Css -->
+
+</head>
+<body>
+
+<!-- Preloader -->
+<div class="preloader" style="display: none;">
+  <div class="lds-ellipsis" style="display: none;">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+<!-- Preloader End -->
+
+<div id="main-wrapper" class="oxyy-login-register">
+  <div class="hero-wrap d-flex align-items-center h-100">
+    <div class="hero-mask opacity-4 bg-secondary"></div>
+    <div class="hero-bg hero-bg-scroll" style="background-image:url(/images/wallpapers/otp-login-wallpaper);"></div>
+    <div class="hero-content mx-auto w-100 h-100">
+      <div class="container">
+        <div class="row no-gutters min-vh-100"> 
+          <!-- Welcome Text
+		  ========================= -->
+          <div class="col-md-6 d-flex flex-column">
+            <div class="row no-gutters my-auto">
+              <div class="col-10 col-lg-9 mx-auto text-center">
+                <div class="logo mt-5 mb-3"> <a href="http://demo.harnishdesign.net/html/oxyy/index.html" title="Oxyy"><img src="./Oxyy - Login and Register Form Html Template_files/logo-lg-light.png" alt="Oxyy"></a> </div>
+                <h1 class="text-5 font-weight-400 text-white mb-5">We are glad to see you again!</h1>
+                <p><img src="./Oxyy - Login and Register Form Html Template_files/qr-code.jpg" class="shadow-lg" alt="qr code"></p>
+                <p class="text-white mb-0">Log In with QR Code</p>
+                <p class="text-light text-2 mx-lg-5">Scan this with your camera or our mobile app to login instantly.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Welcome Text End --> 
+          
+          <!-- Login Form
+		  ========================= -->
+          <div class="col-md-6 d-flex align-items-center py-5">
+            <div class="container my-auto py-4 shadow-lg bg-white">
+              <div class="row">
+                <div class="col-11 col-lg-11 mx-auto">
+                  <h3 class="font-weight-600 text-center mt-2 mb-3" style="font-size: 36px;">OTP Login</h3>
+                  <p class="text-muted text-center mb-4">Enter the mobile number associated with your account.</p>
+                  <form id="forgotForm" method="POST" action="/OTP_login">
+                    <div class="form-group">
+                      <label class="text-dark font-weight-600" for="mobileNumber">Mobile Number</label>
+                      <input type="text" name="mobileNumber" class="form-control rounded-0" id="mobileNumber" required="" placeholder="Enter Mobile Number">
+                    </div>
+                    <p style="color: red;">{{#if notUser}}
+                      {{notUser}}
+                      {{/if}}
+                    </p>
+                    <button class="btn btn-dark btn-block rounded-0 my-4" type="submit">Continue</button>
+                  </form>
+                  <div class="d-flex align-items-center my-3">
+                    <hr class="flex-grow-1">
+                    <span class="mx-2 text-2 text-muted">Or sign in with</span>
+                    <hr class="flex-grow-1">
+                  </div>
+                  <div class="form-row mb-3">
+                    <div class="col-4">
+                      <button type="button" class="btn btn-outline-facebook btn-sm btn-block border-2 rounded-0 shadow-none"><span class="mr-2"><i class="fab fa-facebook-f"></i></span>Facebook</button>
+                    </div>
+                    <div class="col-4">
+                      <button type="button" class="btn btn-outline-google btn-sm btn-block border-2 rounded-0 shadow-none"><span class="mr-2"><i class="fab fa-google"></i></span>Google</button>
+                    </div>
+                    <div class="col-4">
+                      <button type="button" class="btn btn-outline-twitter btn-sm btn-block border-2 rounded-0 shadow-none"><span class="mr-2"><i class="fab fa-twitter"></i></span>twitter</button>
+                    </div>
+                  </div>
+                  <p class="text-center">Return to <a class="btn-link" href="http://demo.harnishdesign.net/html/oxyy/login-5.html"><u>Sing In</u></a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Login Form End --> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Script --> 
+<script src="/javascripts/jquery.min.js.download"></script> 
+<script src="/javascripts/bootstrap.bundle.min.js.download"></script> 
+<!-- Style Switcher --> 
+<script src="/javascripts/switcher.min.js.download"></script> 
+<script src="/javascripts/theme.js.download"></script>

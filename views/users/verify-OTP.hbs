@@ -1,0 +1,130 @@
+<html lang="en"><!-- Mirrored from demo.harnishdesign.net/html/oxyy/otp-5.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 09 Feb 2021 07:04:50 GMT --><head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+<link href="http://demo.harnishdesign.net/html/oxyy/images/favicon.png" rel="icon">
+<title>Oxyy - Login and Register Form Html Template</title>
+<meta name="description" content="Login and Register Form Html Template">
+<meta name="author" content="harnishdesign.net">
+
+<!-- Web Fonts
+========================= -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900" type="text/css">
+
+<!-- Stylesheet
+========================= -->
+<link rel="stylesheet" type="text/css" href="http://demo.harnishdesign.net/html/oxyy/vendor/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="http://demo.harnishdesign.net/html/oxyy/vendor/font-awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="http://demo.harnishdesign.net/html/oxyy/css/stylesheet.css">
+<!-- Colors Css -->
+<link id="color-switcher" type="text/css" rel="stylesheet" href="#">
+</head>
+<body>
+
+<!-- Preloader -->
+<div class="preloader" style="display: none;">
+  <div class="lds-ellipsis" style="display: none;">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+<!-- Preloader End -->
+
+<div id="main-wrapper" class="oxyy-login-register">
+  <div class="hero-wrap d-flex align-items-center h-100">
+    <div class="hero-mask opacity-4 bg-secondary"></div>
+    <div class="hero-bg hero-bg-scroll" style="background-image:url('http://demo.harnishdesign.net/html/oxyy/images/login-bg-3.jpg');"></div>
+    <div class="hero-content mx-auto w-100 h-100">
+      <div class="container">
+        <div class="row no-gutters min-vh-100"> 
+          <!-- Welcome Text
+		  ========================= -->
+          <div class="col-md-6 d-flex flex-column">
+            <div class="row no-gutters my-auto">
+              <div class="col-10 col-lg-9 mx-auto text-center">
+                <div class="logo mt-5 mb-3"> <a href="http://demo.harnishdesign.net/html/oxyy/index.html" title="Oxyy"><img src="http://demo.harnishdesign.net/html/oxyy/images/logo-lg-light.png" alt="Oxyy"></a> </div>
+                <h1 class="text-5 font-weight-400 text-white mb-5">We are glad to see you again!</h1>
+                <p><img src="http://demo.harnishdesign.net/html/oxyy/images/qr-code.jpg" class="shadow-lg" alt="qr code"></p>
+                <p class="text-white mb-0">Log In with QR Code</p>
+                <p class="text-light text-2 mx-lg-5">Scan this with your camera or our mobile app to login instantly.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Welcome Text End --> 
+          
+          <!-- OTP Form
+		  ========================= -->
+          <div class="col-md-6 d-flex align-items-center py-5">
+            <div class="container my-auto py-4 shadow-lg bg-white">
+              <div class="row">
+                <div class="col-11 col-lg-11 mx-auto">
+                  <h3 class="text-9 font-weight-600 text-center mt-2 mb-4">Validate OTP</h3>
+                  <p class="text-center"><img class="img-fluid" src="http://demo.harnishdesign.net/html/oxyy/images/otp-icon.png" alt="verification"></p>
+                  <p class="text-muted text-center mb-4">Please enter the OTP (one time password) to verify your account. A code has been sent to <span class="text-dark text-4">+1*******179</span></p>
+                  <p class="text-dark text-center font-weight-600 mb-3">Enter 4 digit code</p>
+                  <form id="otp-screen" method="POST" action="/OTP_verification">
+                    {{!-- <input type="text" name="{{mobileNumber}}"> --}}
+                    <input type="number" name="code" placeholder="code">
+                    <input type="text" name="mobileNumber" value="{{mobileNumber}}">
+
+                    <div class="form-row">
+                      <div class="col form-group">
+                        <input type="text" class="form-control rounded-0 text-center text-6 py-2" maxlength="1" required="" autocomplete="off" name="code1">
+                      </div>
+                      <div class="col form-group">
+                        <input type="text" class="form-control rounded-0 text-center text-6 py-2" maxlength="1" required="" autocomplete="off" name="code2">
+                      </div>
+                      <div class="col form-group">
+                        <input type="text" class="form-control rounded-0 text-center text-6 py-2" maxlength="1" required="" autocomplete="off" name="code3">
+                      </div>
+                      <div class="col form-group">
+                        <input type="text" class="form-control rounded-0 text-center text-6 py-2" maxlength="1" required="" autocomplete="off" name="code4">
+                      </div>
+                    </div>
+                    <button class="btn btn-dark btn-block rounded-0 my-3" type="submit">Verify</button>
+                  </form>
+                  <p class="text-center">Not received your code? <a class="btn-link" href="/OTP_login"><u>Resend code</u></a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- OTP Form End --> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Styles Switcher -->
+<div id="styles-switcher" class="left">
+  <h5>Color Switcher</h5>
+  <hr>
+  <ul class="mb-0">
+    <li class="blue" data-toggle="tooltip" title="" data-path="#" data-original-title="Blue"></li>
+    <li class="indigo" data-toggle="tooltip" title="" data-path="http://demo.harnishdesign.net/html/oxyy/css/color-indigo.css" data-original-title="Indigo"></li>
+    <li class="purple" data-toggle="tooltip" title="" data-path="http://demo.harnishdesign.net/html/oxyy/css/color-purple.css" data-original-title="Purple"></li>
+    <li class="pink" data-toggle="tooltip" title="" data-path="http://demo.harnishdesign.net/html/oxyy/css/color-pink.css" data-original-title="Pink"></li>
+    <li class="red" data-toggle="tooltip" title="" data-path="http://demo.harnishdesign.net/html/oxyy/css/color-red.css" data-original-title="Red"></li>
+    <li class="orange" data-toggle="tooltip" title="" data-path="http://demo.harnishdesign.net/html/oxyy/css/color-orange.css" data-original-title="Orange"></li>
+    <li class="yellow" data-toggle="tooltip" title="" data-path="http://demo.harnishdesign.net/html/oxyy/css/color-yellow.css" data-original-title="Yellow"></li>
+    <li class="teal" data-toggle="tooltip" title="" data-path="http://demo.harnishdesign.net/html/oxyy/css/color-teal.css" data-original-title="Teal"></li>
+    <li class="green" data-toggle="tooltip" title="" data-path="http://demo.harnishdesign.net/html/oxyy/css/color-green.css" data-original-title="Green"></li>
+    <li class="cyan" data-toggle="tooltip" title="" data-path="http://demo.harnishdesign.net/html/oxyy/css/color-cyan.css" data-original-title="Cyan"></li>
+    <li class="brown" data-toggle="tooltip" title="" data-path="http://demo.harnishdesign.net/html/oxyy/css/color-brown.css" data-original-title="Brown"></li>
+  </ul>
+  <button class="btn switcher-toggle"><i class="fas fa-cog"></i></button>
+</div>
+<!-- Styles Switcher End --> 
+
+<!-- Script --> 
+<script src="http://demo.harnishdesign.net/html/oxyy/vendor/jquery/jquery.min.js"></script> 
+<script src="http://demo.harnishdesign.net/html/oxyy/vendor/bootstrap/js/bootstrap.bundle.min.js"></script> 
+<!-- Style Switcher --> 
+<script src="http://demo.harnishdesign.net/html/oxyy/js/switcher.min.js"></script> 
+<script src="http://demo.harnishdesign.net/html/oxyy/js/theme.js"></script>
+
+
+<!-- Mirrored from demo.harnishdesign.net/html/oxyy/otp-5.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 09 Feb 2021 07:04:50 GMT -->
+</body></html>

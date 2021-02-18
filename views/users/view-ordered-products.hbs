@@ -1,0 +1,45 @@
+<link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&amp;display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/themify-icons.css" type="text/css">
+    <link rel="stylesheet" href="../css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
+
+
+<section id="importedProducts">
+    <div class="demo" style="padding: 20px 0 30px;background: #fff;}">
+        <div class="container">
+            <div class="row">
+                {{#each products}}
+                <div class="col-md-3 col-sm-6 mt-4">
+                    <div class="product-grid">
+                        <div class="product-image">
+                            <a href="/view_product/{{this.product._id}}1" class="image">
+                                <img class="pic-1" src="/images/product-images/{{this.product._id}}1.jpg">
+                                <img class="pic-2" src="/images/product-images/{{this.product._id}}2.jpg">
+                            </a>
+                        </div>
+                        <div class="product-content">
+                            <h3 class="title"><a href="#">{{this.product.name}}</a></h3>
+                            <div class="price">&#8377; {{this.product.price}}</div>
+                            <ul class="rating">
+                                <li class="fas fa-star"></li>
+                                <li class="fas fa-star"></li>
+                                <li class="fas fa-star"></li>
+                                <li class="fas fa-star"></li>
+                                <li class="far fa-star"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</section>

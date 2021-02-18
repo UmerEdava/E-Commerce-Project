@@ -1,0 +1,74 @@
+<body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
+    <script>
+        NProgress.configure({ showSpinner: false });
+        NProgress.start();
+    </script>
+
+    <div class="mobile-sticky-body-overlay"></div>
+
+    <div class="wrapper">
+
+        <!--
+          ====================================
+          ——— LEFT SIDEBAR WITH FOOTER
+          =====================================
+        -->
+
+
+
+
+        <div class="page-wrapper" style="padding-top: 2.875rem;">
+            <div class="content-wrapper">
+                <div class="content">
+                    <a href="/admin/clear_men_collection" class="btn btn-danger float-right"  onclick="confirm('Are you sure to clear this collection')">Clear this collection</a>
+                    <h2 style="margin-bottom: 2rem;">Men's Collections</h2>
+                    
+                    <section id="importedProducts">
+
+                        <div class="demo" style="padding: 20px 0 30px;background: #fff;}">
+                            <div class="container">
+                                <div class="row">
+                                    {{#each men}}
+                                    <div class="col-md-3 col-sm-6 mt-4">
+                                        <div class="product-grid">
+                                            <div class="product-image">
+                                                <a href="/view_product/{{this._id}}" class="image">
+                                                    <img class="pic-1" src="/images/product-images/{{this._id}}1.jpg">
+                                                    <img class="pic-2" src="/images/product-images/{{this._id}}2.jpg">
+                                                </a>
+                                                <span class="product-discount-label">sale</span>
+                                                <ul class="product-links">
+                                                    <li>
+                                                        <button style="color: #777;background: #fff;border-radius:0%"
+                                                            class="btn" onclick="addToCart('{{this._id}}')"><i
+                                                                class="fa fa-shopping-cart"></i></button>
+                                                    </li>
+                                                    <li><a href="#"><i class="far fa-heart"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-random"></i></a></li>
+                                                    <li><a href="#"><i class="fa fa-search"></i></a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="product-content">
+                                                <h3 class="title"><a href="#">{{this.name}}</a></h3>
+                                                <div class="price">&#8377; {{this.price}}</div>
+                                                <ul class="rating">
+                                                    <li class="fas fa-star"></li>
+                                                    <li class="fas fa-star"></li>
+                                                    <li class="fas fa-star"></li>
+                                                    <li class="fas fa-star"></li>
+                                                    <li class="far fa-star"></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{/each}}
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
