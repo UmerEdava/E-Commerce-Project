@@ -343,10 +343,10 @@ router.get('/add_product_offer/:id', verifyLogin, (req, res) => {
 })
 
 router.post('/add_product_offer', (req,res)=>{
-  console.log('product id',req.bod)
+  console.log('offer details',req.body)
 
   adminHelpers.addOfferForProduct(req.body).then(()=>{
-    req.json({status:true})
+    res.json({status:true})
   }) 
   
 })

@@ -17,7 +17,7 @@
                         <div class="card card-default">
                             <div class="card-body">
                                 <p class="mb-5">Add a seasonal offer for the product by percentage or offer.</p>
-                                <form>
+                                <form id="addOffer">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label class="text-dark font-weight-medium" for="">Offer Percentage</label>
@@ -25,7 +25,7 @@
 												<div class="input-group-prepend">
 													<span class="input-group-text" id="inputGroupPrepend2">%</span>
 												</div>
-												<input type="text" class="form-control" id="offerPercentage" placeholder="Enter percentage" aria-describedby="inputGroupPrepend2" required="">
+												<input type="text" class="form-control" name="offerPercentage" id="offerPercentage" placeholder="Enter percentage" aria-describedby="inputGroupPrepend2" required="">
 											</div>
                                         </div>
                                     </div>
@@ -39,7 +39,7 @@
                                                         <i class="mdi mdi-calendar-range"></i>
                                                     </span>
                                                 </div>
-                                                <input type="date" id="startDate" class="form-control" data-mask="00/00/0000"
+                                                <input type="date" id="startDate" name="startDate" class="form-control"
                                                     placeholder="" aria-label="" autocomplete="off" maxlength="10">
                                             </div>
                                         </div>
@@ -52,7 +52,7 @@
                                                         <i class="mdi mdi-calendar-range"></i>
                                                     </span>
                                                 </div>
-                                                <input type="date" id="lastDate" class="form-control" data-mask="00/00/0000"
+                                                <input type="date" id="lastDate" name="lastDate" class="form-control" 
                                                     placeholder="" aria-label="" autocomplete="off" maxlength="10">
                                             </div>
                                         </div>
@@ -60,11 +60,13 @@
 
                                     <input type="text" name="proId" id="proId" value="{{proId}}" hidden>
 
-                                    <button class="ladda-button btn btn-success btn-square btn-ladda mt-5" data-style="contract" id="addOffer">
+                                    <button type="submit" class="mb-1 btn btn-info" id="">Info</button>
+
+                                    {{!-- <button type="submit" class="ladda-button btn btn-success btn-square btn-ladda mt-5" data-style="contract" id="addOffer">
 										<span class="ladda-label">Submit!</span>
 											
 										<span class="ladda-spinner"></span>
-                                    </button>
+                                    </button> --}}
 
                                     {{!-- <button class="ladda-button btn btn-success btn-square btn-ladda" data-style="contract-overlay">
 											<span class="ladda-label">Submit!</span>
@@ -96,23 +98,15 @@
     </div>
 
 <script>
-    $('#addOffer').click((e) => {
+    $('#addOffer').submit((e) => {
         e.preventDefault()
-        let startDate = $('#startDate').val()
-        let lastDate = $('#lastDate').val()
-        let offerPercentage = $('#offerPercentage').val()
-        let proId = $('#proId')
+        console.log('offer button clicked')
         $.ajax({
-            url: '/add_product_offer',
+            url: '/admin/add_product_offer',
             method: 'post',
-            data: {
-                startDate,
-                lastDate,
-                offerPercentage,
-                proId
-            },
+            data: $('#addOffer').serialize(),
             success: (response) => {
-                window.location.href="/products_for_offer"                 
+                window.location.href="/admin/products_for_offer"                 
             }
         })
     })

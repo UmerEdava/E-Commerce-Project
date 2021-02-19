@@ -140,6 +140,7 @@
                         </div>
                         <div class="product-content">
                             <h3 class="title"><a href="#">{{this.name}}</a></h3>
+                            {{#if this.actualPrice}}<p style="margin-bottom: 11px;font-size: 1.4rem;"><s>&#8377; {{this.actualPrice}}</s></p>{{/if}}
                             <div class="price">&#8377; {{this.price}}</div>
                             <ul class="rating">
                                 <li class="fas fa-star"></li>
