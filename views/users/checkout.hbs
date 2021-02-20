@@ -71,9 +71,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="checkout-content">
-                        <input type="text" placeholder="Enter Your Coupon Code">
-                    </div>
+                    
                     <div class="place-order">
                         <h4>Your Order</h4>
                         <div class="order-total">
@@ -111,13 +109,21 @@
                 </div>
             </div>
         </form>
+
+        <h6>Discount Codes</h6>
+
+        <input type="text" placeholder="Enter your codes" class="form-control" id="couponCode">
+        <button type="submit" class="site-btn place-btn" onclick="verifyCoupon()">Apply</button>
+
     </div>
 </section>
 
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
-<script src="https://www.paypal.com/sdk/js?client-id=AaMe_nfrAkCyqpIwm2kbokqaA8c3yx0oUdoRnqxgF6qfegourFbXA9PGKtTwpIpOVEc8f_FRa3C3uEz6&disable-funding=credit,card"></script>
-{{!-- <script>paypal.Buttons().render('body');</script> --}}
+<script
+    src="https://www.paypal.com/sdk/js?client-id=AaMe_nfrAkCyqpIwm2kbokqaA8c3yx0oUdoRnqxgF6qfegourFbXA9PGKtTwpIpOVEc8f_FRa3C3uEz6&disable-funding=credit,card"></script>
+{{!--
+<script>paypal.Buttons().render('body');</script> --}}
 
 <script>
     $('#shippingForm').submit((e) => {
@@ -131,8 +137,8 @@
                 alert(response)
                 if (response.codSuccess == 'COD') {
                     location.href = '/order_success'
-                } else if(response.paypal) {
-                    console.log('returned to paypal ajax',response)
+                } else if (response.paypal) {
+                    console.log('returned to paypal ajax', response)
                     paypal.Buttons({
                         createOrder: function (data, actions) {
                             return actions.order.create({
@@ -143,8 +149,8 @@
                                 }]
                             })
                         },
-                        onApprove: function (data, actions){
-                            return actions.order.capture().then((details)=>{
+                        onApprove: function (data, actions) {
+                            return actions.order.capture().then((details) => {
                                 alert('Transaction of' + details.payer.name.given_name)
                                 location.href = '/order_success'
                             })
@@ -193,11 +199,33 @@
                 order
             },
             method: 'post',
-            success:(response)=>{
-                if(response.status){
+            success: (response) => {
+                if (response.status) {
                     location.href = '/order_success'
-                }else{
+                } else {
                     alert('payment failed')
+                }
+            }
+        })
+    }
+
+</script>
+
+<script>
+    function verifyCoupon() {
+        var couponCode = $("#couponCode").val();
+        console.log('functionil',couponCode)
+        $.ajax({
+            url: '/admin/verify_coupon',
+            data: {
+                couponCode
+            },
+            method: 'post',
+            success: (response) => {
+                if (response) {
+                    res.send('valid')
+                } else {
+                    res.send('invalid')
                 }
             }
         })

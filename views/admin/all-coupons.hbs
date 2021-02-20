@@ -1,0 +1,40 @@
+<div class="mobile-sticky-body-overlay"></div>
+
+<div class="wrapper">
+    <div class="page-wrapper">
+        <div class="content-wrapper">
+            <div class="content">
+                    <div class="card card-default">
+                        <div class="card-header card-header-border-bottom">
+                            <h2>All Coupons</h2>
+                        </div>
+                        <div class="card-body">
+                            <p class="mb-5">Details of all vouchers which have generated</p>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Code</th>
+                                        <th scope="col">Start Date</th>
+                                        <th scope="col">Last Date</th>
+                                        <th scope="col">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each coupons}}
+                                    <tr>
+                                        <td scope="row">1</td>
+                                        <td>{{this.code}}</td>
+                                        <td>{{this.startDate}}</td>
+                                        <td>{{this.lastDate}}</td>
+                                        <td>{{this.amount}}</td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

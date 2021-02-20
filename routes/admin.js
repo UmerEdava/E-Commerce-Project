@@ -3,7 +3,10 @@ var router = express.Router();
 const userHelpers = require('../helpers/user-helpers')
 const productHelpers = require('../helpers/product-helpers')
 const adminHelpers = require('../helpers/admin-helpers');
-const { response } = require('express');
+var voucher_codes = require('voucher-code-generator');
+const {
+  response
+} = require('express');
 
 var verifyLogin = (req, res, next) => {
   var adminLogin = req.session.admin
@@ -74,25 +77,25 @@ router.get('/delete_user/:id', (req, res) => {
 router.get('/all_products', (req, res) => {
   let isAdmin = true
   let adminLogin = req.session.admin
-  if(adminLogin){
+  if (adminLogin) {
     productHelpers.getAllProducts().then((products) => {
       res.render('admin/all-products', {
         products,
         isAdmin
       })
     })
-  }else{
+  } else {
     res.redirect('/admin')
   }
 })
 
-router.get('/add_product',verifyLogin, async(req, res) => {
+router.get('/add_product', verifyLogin, async (req, res) => {
   isAdmin = true
-  let menCategory =await productHelpers.getMenCategoryList()
-  let womenCategory =await productHelpers.getWomenCategoryList()
-  let boysCategory =await productHelpers.getBoysCategoryList()
-  let girlsCategory =await productHelpers.getGirlsCategoryList()
-  
+  let menCategory = await productHelpers.getMenCategoryList()
+  let womenCategory = await productHelpers.getWomenCategoryList()
+  let boysCategory = await productHelpers.getBoysCategoryList()
+  let girlsCategory = await productHelpers.getGirlsCategoryList()
+
   res.render('admin/add-product', {
     menCategory,
     womenCategory,
@@ -108,9 +111,9 @@ router.post('/add_product', (req, res) => {
     let image2 = req.files.image[1]
     let image3 = req.files.image[2]
     let image4 = req.files.image[3]
-    let image5 = req.files.image[4]    
+    let image5 = req.files.image[4]
 
-    image1.mv('./public/images/product-images/' + id +'1'+'.jpg', (err, done) => {
+    image1.mv('./public/images/product-images/' + id + '1' + '.jpg', (err, done) => {
       if (!err) {
         res.redirect('/admin/all_products')
       } else {
@@ -118,7 +121,7 @@ router.post('/add_product', (req, res) => {
       }
     })
 
-    image2.mv('./public/images/product-images/' + id +'2'+'.jpg', (err, done) => {
+    image2.mv('./public/images/product-images/' + id + '2' + '.jpg', (err, done) => {
       if (!err) {
         res.redirect('/admin/all_products')
       } else {
@@ -126,7 +129,7 @@ router.post('/add_product', (req, res) => {
       }
     })
 
-    image3.mv('./public/images/product-images/' + id +'3'+'.jpg', (err, done) => {
+    image3.mv('./public/images/product-images/' + id + '3' + '.jpg', (err, done) => {
       if (!err) {
         res.redirect('/admin/all_products')
       } else {
@@ -134,7 +137,7 @@ router.post('/add_product', (req, res) => {
       }
     })
 
-    image4.mv('./public/images/product-images/' + id +'4'+'.jpg', (err, done) => {
+    image4.mv('./public/images/product-images/' + id + '4' + '.jpg', (err, done) => {
       if (!err) {
         res.redirect('/admin/all_products')
       } else {
@@ -142,7 +145,7 @@ router.post('/add_product', (req, res) => {
       }
     })
 
-    image5.mv('./public/images/product-images/' + id +'5'+'.jpg', (err, done) => {
+    image5.mv('./public/images/product-images/' + id + '5' + '.jpg', (err, done) => {
       if (!err) {
         res.redirect('/admin/all_products')
       } else {
@@ -177,7 +180,7 @@ router.post('/edit_product/:id', (req, res) => {
     res.redirect('/admin/all_products')
     if (req.files.image) {
       let image = req.files.image
-      image.mv('./public/images/product-images/' +req.params.id+ '.jpg')
+      image.mv('./public/images/product-images/' + req.params.id + '.jpg')
     }
   })
 })
@@ -210,7 +213,7 @@ router.get('/add_user', verifyLogin, (req, res) => {
 })
 
 router.post('/add_user', (req, res) => {
-    userHelpers.doRegister(req.body).then((response) => {
+  userHelpers.doRegister(req.body).then((response) => {
     res.redirect('/admin/all_users')
   }).catch(() => {
     req.session.addUserError = '*User Already Exists'
@@ -225,91 +228,117 @@ router.get('/admin_logout', (req, res) => {
   res.redirect('/admin/admin_login')
 })
 
-router.get('/all_categories', async(req,res) => {
-  isAdmin=true
-  let menCategory =await productHelpers.getMenCategoryList()
-  let womenCategory =await productHelpers.getWomenCategoryList()
-  let boysCategory =await productHelpers.getBoysCategoryList()
-  let girlsCategory =await productHelpers.getGirlsCategoryList()
+router.get('/all_categories', async (req, res) => {
+  isAdmin = true
+  let menCategory = await productHelpers.getMenCategoryList()
+  let womenCategory = await productHelpers.getWomenCategoryList()
+  let boysCategory = await productHelpers.getBoysCategoryList()
+  let girlsCategory = await productHelpers.getGirlsCategoryList()
 
-  res.render('admin/all-categories',{isAdmin,menCategory,womenCategory,boysCategory,girlsCategory})
+  res.render('admin/all-categories', {
+    isAdmin,
+    menCategory,
+    womenCategory,
+    boysCategory,
+    girlsCategory
+  })
 })
 
-router.get('/category_men', (req,res)=>{
+router.get('/category_men', (req, res) => {
   let isAdmin = true
   let menCategories = productHelpers.getMenCategoryProducts()
-    res.render('admin/category-men', {
+  res.render('admin/category-men', {
     menCategories,
     isAdmin
+  })
+})
+
+router.post('/add_men_category', (req, res) => {
+  console.log(req.body);
+  productHelpers.addMenCategory(req.body).then(() => {
+    res.json({
+      status: true
     })
-})
-
-router.post('/add_men_category', (req,res)=>{
-  console.log(req.body);
-  productHelpers.addMenCategory(req.body).then(()=>{
-    res.json({status:true})
   })
 })
 
-router.post('/add_women_category', (req,res)=>{
+router.post('/add_women_category', (req, res) => {
   console.log(req.body);
-  productHelpers.addWomenCategory(req.body).then(()=>{
-    res.json({status:true})
+  productHelpers.addWomenCategory(req.body).then(() => {
+    res.json({
+      status: true
+    })
   })
 })
 
-router.post('/add_boys_category', (req,res)=>{
+router.post('/add_boys_category', (req, res) => {
   console.log(req.body);
-  productHelpers.addBoysCategory(req.body).then(()=>{
-    res.json({status:true})
+  productHelpers.addBoysCategory(req.body).then(() => {
+    res.json({
+      status: true
+    })
   })
 })
 
-router.post('/add_girls_category', (req,res)=>{
+router.post('/add_girls_category', (req, res) => {
   console.log(req.body);
-  productHelpers.addGirlsCategory(req.body).then(()=>{
-    res.json({status:true})
+  productHelpers.addGirlsCategory(req.body).then(() => {
+    res.json({
+      status: true
+    })
   })
 })
 
-router.get('/men_collection',verifyLogin, (req,res)=>{
-  productHelpers.getMenCollection().then((men)=>{
+router.get('/men_collection', verifyLogin, (req, res) => {
+  productHelpers.getMenCollection().then((men) => {
     console.log(men);
     isAdmin = true
-    res.render('admin/men-collection',{men,isAdmin})
+    res.render('admin/men-collection', {
+      men,
+      isAdmin
+    })
   })
 })
 
-router.get('/women_collection',verifyLogin, (req,res)=>{
-  productHelpers.getWomenCollection().then((women)=>{
+router.get('/women_collection', verifyLogin, (req, res) => {
+  productHelpers.getWomenCollection().then((women) => {
     console.log(women);
     isAdmin = true
-    res.render('admin/women-collection',{women,isAdmin})
+    res.render('admin/women-collection', {
+      women,
+      isAdmin
+    })
   })
 })
 
-router.get('/boys_collection',verifyLogin, (req,res)=>{
-  productHelpers.getBoysCollection().then((boys)=>{
+router.get('/boys_collection', verifyLogin, (req, res) => {
+  productHelpers.getBoysCollection().then((boys) => {
     console.log(boys);
     isAdmin = true
-    res.render('admin/boys-collection',{boys,isAdmin})
+    res.render('admin/boys-collection', {
+      boys,
+      isAdmin
+    })
   })
 })
 
-router.get('/girls_collection',verifyLogin, (req,res)=>{
-  productHelpers.getGirlsCollection().then((girls)=>{
+router.get('/girls_collection', verifyLogin, (req, res) => {
+  productHelpers.getGirlsCollection().then((girls) => {
     console.log(girls);
     isAdmin = true
-    res.render('admin/girls-collection',{girls,isAdmin})
+    res.render('admin/girls-collection', {
+      girls,
+      isAdmin
+    })
   })
 })
 
-router.get('/clear_men_collection', (req,res)=>{
+router.get('/clear_men_collection', (req, res) => {
   productHelpers.clearMenCollection()
   res.redirect('/men_collection')
 })
 
-router.get('/products_for_offer',verifyLogin, (req,res)=>{
+router.get('/products_for_offer', verifyLogin, (req, res) => {
   isAdmin = true
   productHelpers.getAllProducts().then((products) => {
     res.render('admin/products-for-offer', {
@@ -323,7 +352,7 @@ router.get('/products_for_offer',verifyLogin, (req,res)=>{
 //   let proId = req.params.id
 //   isAdmin = true
 //   console.log('id arrived in add page',proId);
-  
+
 //   res.render('admin/add-product-offer',{proId,isAdmin})
 
 //   res.json({response:true})
@@ -342,43 +371,95 @@ router.get('/add_product_offer/:id', verifyLogin, (req, res) => {
   })
 })
 
-router.post('/add_product_offer', (req,res)=>{
-  console.log('offer details',req.body)
+router.post('/add_product_offer', (req, res) => {
+  console.log('offer details', req.body)
 
-  adminHelpers.addOfferForProduct(req.body).then(()=>{
-    res.json({status:true})
-  }) 
+  adminHelpers.addOfferForProduct(req.body).then(() => {
+    res.json({
+      status: true
+    })
+  })
 })
 
 router.post('/remove_product_offer', (req, res) => {
   console.log(req.body.proId, 'remove id routeril vanne');
 
-  adminHelpers.removeOfferForProduct(req.body.proId).then(()=>{
-    res.json(response)
-  })  
-})
-
-router.get('/edit_product_offer/:id', (req,res) => {
-  console.log('angottu poi..',req.params.id);
-  isAdmin = true
-  isSubrouter = true
-  productHelpers.getProductDetails(req.params.id).then((product)=>{
-    console.log('thirichu vanne',product);
-    res.render('admin/edit-product-offer',{product,isAdmin,isSubrouter})
-  })
-})
-
-router.post('/edit_product_offer', (req,res)=>{
-  console.log('poyittunde..',req.body);
-  adminHelpers.editOfferForProduct(req.body).then(()=>{
+  adminHelpers.removeOfferForProduct(req.body.proId).then(() => {
     res.json(response)
   })
 })
 
-router.get('/categories_for_offer', (req,res)=>{
+router.get('/edit_product_offer/:id', (req, res) => {
+  console.log('angottu poi..', req.params.id);
   isAdmin = true
   isSubrouter = true
-  res.render('admin/categories-for-offer',{isAdmin,isSubrouter})
+  productHelpers.getProductDetails(req.params.id).then((product) => {
+    console.log('thirichu vanne', product);
+    res.render('admin/edit-product-offer', {
+      product,
+      isAdmin,
+      isSubrouter
+    })
+  })
+})
+
+router.post('/edit_product_offer', (req, res) => {
+  console.log('poyittunde..', req.body);
+  adminHelpers.editOfferForProduct(req.body).then(() => {
+    res.json(response)
+  })
+})
+
+router.get('/categories_for_offer', (req, res) => {
+  isAdmin = true
+  isSubrouter = true
+  res.render('admin/categories-for-offer', {
+    isAdmin,
+    isSubrouter
+  })
+})
+
+router.get('/add_category_offer', (req, res) => {
+  console.log('category arrived in router');
+  adminHelpers.addOfferForCategory(req.body).then(() => {
+    res.redirect('/admin/categories_for_offer')
+  })
+})
+
+router.get('/generate_coupon', (req, res) => {
+  let isAdmin = true
+  let isSubrouter = true
+  res.render('admin/generate-coupon',{isAdmin})
+})
+
+router.post('/generate_coupon', (req, res) => {
+  console.log(req.body);
+
+  let couponCode = voucher_codes.generate({
+    length: 8,
+    count: 1
+  });
+
+  let coupon = couponCode[0]
+  
+  adminHelpers.saveCoupon(req.body,coupon)
+  res.redirect('/admin/all_coupons')
+})
+
+router.get('/all_coupons', (req, res) => {
+  adminHelpers.getAllCoupons().then((coupons)=>{
+    isAdmin = true
+    isSubrouter = true
+    res.render('admin/all-coupons',{coupons,isAdmin})
+  })
+})
+
+router.post('/verify_coupon', (req,res) => {
+  console.log('coupon routeril vannu',req.body);
+  console.log(req.body);
+  adminHelpers.verifyCoupon(req.body).then(()=>{
+    console.log('hahah');
+  })
 })
 
 module.exports = router;

@@ -159,6 +159,13 @@
   {{>sidebar}}
   {{/unless}} --}}
 <link id="sleek-css" rel="stylesheet" href="assets/css/sleek.css" />
+{{#if isAdmin}}
+<body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
+    <script>
+        NProgress.configure({ showSpinner: false });
+        NProgress.start();
+    </script>
+    {{/if}}
   {{{body}}}
 
   

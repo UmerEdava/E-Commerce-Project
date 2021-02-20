@@ -1,0 +1,39 @@
+<div class="mobile-sticky-body-overlay"></div>
+
+<div class="wrapper">
+    <div class="page-wrapper">
+        <div class="content-wrapper">
+            <div class="content">
+                <h2>Generate coupon</h2>
+                <form action="/admin/generate_coupon" method="POST" class="form-pill">
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="">Starting date</label>
+                            <input type="date" name="startDate" class="form-control" id="exampleFormControlInput3"
+                                placeholder="Enter offer starting date">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="">Last date</label>
+                            <input type="date" name="lastDate" class="form-control" id="exampleFormControlInput3"
+                                placeholder="Enter the validity date of offer">
+                        </div>
+                    </div>
+
+                    <div class="input-group mb-2 mt-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="mdi mdi-currency-inr"></i>
+                            </span>
+                        </div>
+                        <input type="number" class="form-control" placeholder="Enter Offer Amount" aria-label=""
+                            autocomplete="off" name="amount" maxlength="10">
+                    </div>
+
+                    <input type="submit" class="mb-1 btn btn-info mt-4" value="Generate" style="border-radius:23px;">
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -24,95 +24,96 @@
                         </div>
                     </div> --}}
 
+                    <form id="categoryOfferForm" action="/add_category_offer" method="POST">
+                        <table id="responsive-data-table" class="table dt-responsive nowrap mt-5" style="width:100%">
+                            <thead>
 
-                    <table id="responsive-data-table" class="table dt-responsive nowrap mt-5" style="width:100%">
-                        <thead>
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Offer Percentage</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
 
-                            <tr>
-                                <th>Category</th>
-                                <th>Offer Percentage</th>
-                                <th></th>
-                            </tr>
-                        </thead>
+                            <tbody>
 
-                        <tbody>
+                                <tr>
+                                    <td>Men</td>
+                                    <td><input type="text" name="menPercentage" value="0" id="menPercentage">
+                                    </td>
+                                    <td>
+                                        <ul class="list-inline m-0">
+                                            <li class="list-inline-item">
+                                                <button class="btn btn-primary btn-sm rounded-0" type="button"
+                                                    data-toggle="tooltip" id="menButton" data-placement="top" title="Edit Offer"><i
+                                                        class="fa fa-edit"></i>Edit
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
 
-                            <tr>
-                                <td>Men</td>
-                                <td><input type="text" value="0" id="menField" disabled></td>
-                                <td>
-                                    <ul class="list-inline m-0">
-                                        <li class="list-inline-item">
-                                            <button class="btn btn-primary btn-sm rounded-0" type="button"
-                                                data-toggle="tooltip" data-placement="top" title="Edit Offer"><i
-                                                    class="fa fa-edit" onclick="enableField('men')"></i>Edit
-                                            </button>
-                                        </li>
-                                    </ul>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Women</td>
-                                <td><input type="text" value="0" id="womenField" disabled></td>
-                                <td>
-                                    <ul class="list-inline m-0">
-                                        <li class="list-inline-item">
-                                            <button class="btn btn-primary btn-sm rounded-0" type="button"
-                                                data-toggle="tooltip" data-placement="top" title="Edit Offer"> <i
-                                                    class="fa fa-edit" onclick="enableField('women')"></i>Edit
-                                            </button>
-                                        </li>
-                                    </ul>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>Boys</td>
-                                <td><input type="text" value="0" disabled></td>
-                                <td>
-                                    <ul class="list-inline m-0">
-                                        <li class="list-inline-item">
-                                            <a href="/admin/edit_product_offer/{{this._id}}"><button
-                                                    class="btn btn-primary btn-sm rounded-0" type="button"
+                                <tr>
+                                    <td>Women</td>
+                                    <td><input type="text" name="womenPercentage" value="0" id="womenField">
+                                    </td>
+                                    <td>
+                                        <ul class="list-inline m-0">
+                                            <li class="list-inline-item">
+                                                <button class="btn btn-primary btn-sm rounded-0" type="button"
                                                     data-toggle="tooltip" data-placement="top" title="Edit Offer"> <i
-                                                        class="fa fa-edit"></i>Edit</button>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </td>
-                            </tr>
+                                                        class="fa fa-edit"></i>Edit
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
 
-                            <tr>
-                                <td>Girls</td>
-                                <td><input type="text" value="0" disabled></td>
-                                <td>
-                                    <ul class="list-inline m-0">
-                                        <li class="list-inline-item">
-                                            <a href="/admin/edit_product_offer/{{this._id}}"><button
-                                                    class="btn btn-primary btn-sm rounded-0" type="button"
-                                                    data-toggle="tooltip" data-placement="top" title="Edit Offer"> <i
-                                                        class="fa fa-edit"></i>Edit</button>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                <tr>
+                                    <td>Boys</td>
+                                    <td><input type="text" name="boysPercentage" value="0"></td>
+                                    <td>
+                                        <ul class="list-inline m-0">
+                                            <li class="list-inline-item">
+                                                <a href="/admin/edit_product_offer/{{this._id}}"><button
+                                                        class="btn btn-primary btn-sm rounded-0" type="button"
+                                                        data-toggle="tooltip" data-placement="top" title="Edit Offer">
+                                                        <i class="fa fa-edit"></i>Edit</button>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Girls</td>
+                                    <td><input type="text" name="girlsPercentage" value="0"></td>
+                                    <td>
+                                        <ul class="list-inline m-0">
+                                            <li class="list-inline-item">
+                                                <a href="/admin/edit_product_offer/{{this._id}}"><button
+                                                        class="btn btn-primary btn-sm rounded-0" type="button"
+                                                        data-toggle="tooltip" data-placement="top" title="Edit Offer">
+                                                        <i class="fa fa-edit"></i>Edit</button>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        function enableField(category) {
-            console.log(category)
-            if (category == 'men') {
-                $('#menField').prop('disabled', true\false);
-            } else if (category == 'women') {
-                $('#womenField').prop('disabled', true\false);
-            }
-        }
+        $('#menButton').click(function () {
+            console.log('clicked')
+            $('#menPercentage').attr('disabled', 'disabled'\'');
+        });
     </script>
 </body>

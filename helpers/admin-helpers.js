@@ -3,6 +3,7 @@ var collection = require('../config/collections');
 var objectId = require('mongodb').ObjectID;
 var moment = require('moment');
 const collections = require('../config/collections');
+var voucher_codes = require('voucher-code-generator');
 
 module.exports = {
     doLogin: (adminData) => {
@@ -143,13 +144,68 @@ module.exports = {
         })
 
     },
-    addOfferForCategory: (category) => {
-        db.get().collection(collection.PRODUCT_COLLECTION).find({for:category})
+    addOfferForCategory: (allCategories) => {
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.PRODUCT_COLLECTION).find({
+                for: 'men'
+            }).then((men) => {
+                console.log(men);
+            })
+
+            db.get().collection(collection.PRODUCT_COLLECTION).find({
+                for: 'women'
+            }).then((women) => {
+                console.log(women);
+            })
+
+            db.get().collection(collection.PRODUCT_COLLECTION).find({
+                for: 'boys'
+            }).then((boys) => {
+                console.log(boys);
+            })
+
+            db.get().collection(collection.PRODUCT_COLLECTION).find({
+                for: 'girls'
+            }).then((girls) => {
+                console.log(girls);
+            })
+
+            resolve()
+        })
     },
     removeOfferForCategory: () => {
 
     },
     editOfferForCategory: () => {
 
+    },
+    saveCoupon: (couponDetails, couponCode) => {
+        console.log(couponDetails);
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.COUPON_COLLECTION).insertOne({
+                startDate: couponDetails.startDate,
+                lastDate: couponDetails.lastDate,
+                amount: couponDetails.amount,
+                code: couponCode
+            })
+        })
+    },
+    getAllCoupons: () => {
+        return new Promise((resolve, reject) => {
+            let coupons = db.get().collection(collection.COUPON_COLLECTION).find().toArray()
+
+            resolve(coupons)
+
+        })
+    },
+    verifyCoupon: (enteredValue) => {
+        return new Promise(async(resolve, reject) => {
+            console.log("function 1",enteredValue);
+            var orderTotal
+            var discountAmount
+            let coupon =await db.get().collection(collection.COUPON_COLLECTION).findOne({code: enteredValue})
+            console.log(coupon);
+            
+        })
     }
 }

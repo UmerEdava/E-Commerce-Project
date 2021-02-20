@@ -6,5 +6,6 @@ module.exports={
     WOMEN_COLLECTION:'women',
     BOYS_COLLECTION:'boys',
     GIRLS_COLLECTION:'girls',
-    ORDER_COLLECTION:'order'
+    ORDER_COLLECTION:'order',
+    COUPON_COLLECTION:'coupon'
 }
