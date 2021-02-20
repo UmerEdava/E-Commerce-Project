@@ -33,25 +33,35 @@
                                 <td>{{this.name}}</td>
                                 <td>{{this.for}}</td>
                                 <td>{{this.category}}</td>
-                                <td>{{this.price}}</td>
-                                <td>999</td>
+                                <td>{{#if actualPrice}}{{this.actualPrice}}{{else}}{{this.price}}{{/if}}</td>
+                                <td>{{#if actualPrice}}{{this.price}}{{else}}---{{/if}}</td>
                                 <td>
                                     <ul class="list-inline m-0">
+                                        {{#unless this.actualPrice}}
                                         <li class="list-inline-item">
                                             <a href="/admin/add_product_offer/{{this._id}}"><button class="btn btn-primary btn-sm rounded-0"
                                                  type="button" data-toggle="tooltip"
-                                                data-placement="top" title="Add Offer"> <i class="fa fa-plus"></i> </button></a>
+                                                data-placement="top" title="Add Offer"> <i class="fa fa-plus"></i> Add Offer</button></a>
                                         </li>
+                                        {{/unless}}
+                                        {{#if this.actualPrice}}
                                         <li class="list-inline-item">
-                                            <button class="btn btn-success btn-sm rounded-0" type="button"
-                                                data-toggle="tooltip" data-placement="top" title="Edit Offer" disabled><i
-                                                    class="fa fa-edit"></i></button>
+                                            {{!-- <button class="btn btn-success btn-sm rounded-0" type="button" id=""
+                                                onclick="editOffer('{{this._id}}')" data-toggle="tooltip" data-placement="top" title="Edit Offer"><i
+                                                    class="fa fa-edit"></i></button> --}}
+
+                                            <a href="/admin/edit_product_offer/{{this._id}}"><button class="btn btn-primary btn-sm rounded-0"
+                                                 type="button" data-toggle="tooltip"
+                                                data-placement="top" title="Edit Offer"> <i class="fa fa-edit"></i></button>
+                                            </a>
                                         </li>
+                                        
                                         <li class="list-inline-item">
-                                            <button class="btn btn-danger btn-sm rounded-0" type="button"
-                                                data-toggle="tooltip" data-placement="top" title="Delete Offer" disabled><i
+                                            <button class="btn btn-danger btn-sm rounded-0" type="submit" id="removeButton"
+                                                data-toggle="tooltip" onclick="if(confirm('Are you sure to remove this offer?')) removeOffer('{{this._id}}')" data-placement="top" title="Delete Offer"><i
                                                     class="fa fa-trash"></i></button>
                                         </li>
+                                        {{/if}}
                                     </ul>
                                 </td>
                             </tr>
@@ -263,8 +273,37 @@
                 },
                 method:'post',
                 success:(response)=>{
-                    
+                                 
                 }
+            })
+        }
+
+        function removeOffer(proId){
+            console.log('remove vannu')
+            $.ajax({
+                url:'/admin/remove_product_offer',
+                data:{
+                    proId:proId
+                },
+                method:'post',
+                success:(response)=>{
+                    if(response){
+                        alert('Offer removed')
+                        location.reload()
+                    }
+                 }
+            })
+        }
+
+        function editOffer(proId){
+            console.log('edit vanne')
+            $.ajax({
+                url:'/admin/edit_product_offer',
+                data:{
+                    proId:proId
+                },
+                method:'post'
+                
             })
         }
     </script>

@@ -12,12 +12,12 @@
                 <div class="content">
                     <div class="card card-default">
                         <div class="card-header card-header-border-bottom">
-                            <h2>ADD OFFER TO THE PRODUCT</h2>
+                            <h2>EDIT OFFER</h2>
                         </div>
                         <div class="card card-default">
                             <div class="card-body">
-                                <p class="mb-5">Add a seasonal offer for the product by percentage or offer.</p>
-                                <form id="addOffer">
+                                <p class="mb-5">Edit the offer details of the product</p>
+                                <form id="editOffer">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label class="text-dark font-weight-medium" for="">Offer Percentage</label>
@@ -25,7 +25,7 @@
 												<div class="input-group-prepend">
 													<span class="input-group-text" id="inputGroupPrepend2">%</span>
 												</div>
-												<input type="text" class="form-control" name="offerPercentage" id="offerPercentage" placeholder="Enter percentage" aria-describedby="inputGroupPrepend2" required="">
+												<input type="text" class="form-control" name="offerPercentage" id="offerPercentage" value="{{product.offerPercentage}}" aria-describedby="inputGroupPrepend2" required="">
 											</div>
                                         </div>
                                     </div>
@@ -40,7 +40,7 @@
                                                     </span>
                                                 </div>
                                                 <input type="date" id="startDate" name="startDate" class="form-control"
-                                                    placeholder="" aria-label="" autocomplete="off" maxlength="10">
+                                                    value="{{product.startDate}}" aria-label="" autocomplete="off" maxlength="10">
                                             </div>
                                         </div>
 
@@ -53,14 +53,14 @@
                                                     </span>
                                                 </div>
                                                 <input type="date" id="lastDate" name="lastDate" class="form-control" 
-                                                    placeholder="" aria-label="" autocomplete="off" maxlength="10">
+                                                    value="{{product.lastDate}}" aria-label="" autocomplete="off" maxlength="10">
                                             </div>
                                         </div>
                                     </div>
 
-                                    <input type="text" name="proId" id="proId" value="{{proId}}" hidden>
+                                    <input type="text" name="proId" id="proId" value="{{product._id}}" hidden>
 
-                                    <button type="submit" class="mb-1 btn btn-info" id="">Submit</button>
+                                    <button type="submit" class="mb-1 btn btn-info" id="">Update Offer</button>
 
                                     {{!-- <button type="submit" class="ladda-button btn btn-success btn-square btn-ladda mt-5" data-style="contract" id="addOffer">
 										<span class="ladda-label">Submit!</span>
@@ -97,16 +97,19 @@
         </div>
     </div>
 
-<script>
-    $('#addOffer').submit((e) => {
+    <script>
+    $('#editOffer').submit((e) => {
         e.preventDefault()
         console.log('offer button clicked')
         $.ajax({
-            url: '/admin/add_product_offer',
+            url: '/admin/edit_product_offer',
             method: 'post',
-            data: $('#addOffer').serialize(),
+            data: $('#editOffer').serialize(),
             success: (response) => {
-                window.location.href="/admin/products_for_offer"                 
+                if(response){
+                    window.location.href="/admin/products_for_offer" 
+                }
+                               
             }
         })
     })

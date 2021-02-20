@@ -309,7 +309,7 @@ router.get('/clear_men_collection', (req,res)=>{
   res.redirect('/men_collection')
 })
 
-router.get('/products_for_offer', (req,res)=>{
+router.get('/products_for_offer',verifyLogin, (req,res)=>{
   isAdmin = true
   productHelpers.getAllProducts().then((products) => {
     res.render('admin/products-for-offer', {
@@ -348,7 +348,37 @@ router.post('/add_product_offer', (req,res)=>{
   adminHelpers.addOfferForProduct(req.body).then(()=>{
     res.json({status:true})
   }) 
-  
+})
+
+router.post('/remove_product_offer', (req, res) => {
+  console.log(req.body.proId, 'remove id routeril vanne');
+
+  adminHelpers.removeOfferForProduct(req.body.proId).then(()=>{
+    res.json(response)
+  })  
+})
+
+router.get('/edit_product_offer/:id', (req,res) => {
+  console.log('angottu poi..',req.params.id);
+  isAdmin = true
+  isSubrouter = true
+  productHelpers.getProductDetails(req.params.id).then((product)=>{
+    console.log('thirichu vanne',product);
+    res.render('admin/edit-product-offer',{product,isAdmin,isSubrouter})
+  })
+})
+
+router.post('/edit_product_offer', (req,res)=>{
+  console.log('poyittunde..',req.body);
+  adminHelpers.editOfferForProduct(req.body).then(()=>{
+    res.json(response)
+  })
+})
+
+router.get('/categories_for_offer', (req,res)=>{
+  isAdmin = true
+  isSubrouter = true
+  res.render('admin/categories-for-offer',{isAdmin,isSubrouter})
 })
 
 module.exports = router;
