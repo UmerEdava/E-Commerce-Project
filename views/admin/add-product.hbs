@@ -129,6 +129,32 @@
 </style>
 <!-- vendroid assets ends -->
 
+<script>
+    cropper = jsCrop.initialise(document.getElementById("cropTest"), {
+        "outputCanvas": document.getElementById("crop-result")
+    });
+
+    cropper = jsCrop.initialise(document.getElementById("imageToCrop"), {
+        "outputCanvas": document.getElementById("crop-result"),
+        "startInCropMode": false
+    });
+
+    cropper.enableCropMode(ELEMENT.classList.toggle("pressed"));
+
+    cropper.setCropRegion(10, 10, 150, 250);
+
+    cropper.setOutputCanvas(canvasElement);
+
+    cropper.drawCroppedImage();
+
+    cropper.destroy();
+
+
+</script>
+
+<link href="stylesheets/cropper.min.css" rel="stylesheet">
+<script src="javascripts/cropper.min.js"></script>
+
 
 </head>
 
@@ -367,6 +393,10 @@
                                                     <img id="cropTest" src="img1.jpg" alt="Image" />
                                                 </div>
 
+                                                <div>
+                                                    <img id="imageToCrop" src="imageToCrop.jpg">
+                                                </div>
+
                                                 <div class="canvas-container">
                                                     <canvas id="crop-result" width="200" height="300"></canvas>
                                                 </div>
@@ -523,8 +553,202 @@
 
     <!-- vendroid imported ends -->
     <script>
+        var image = document.getElementById('imageToCrop');
+        var myCropper = new Cropper(image, {
+            // options here
+            var myCropper = new Cropper(image, {
+
+                // The view mode of the cropper
+                viewMode: 0, // 0, 1, 2, 3
+
+                // The dragging mode of the cropper
+                dragMode: DRAG_MODE_CROP, // 'crop', 'move' or 'none'
+
+                // The initial aspect ratio of the crop box
+                initialAspectRatio: NaN,
+
+                // The aspect ratio of the crop box
+                aspectRatio: NaN,
+
+                // An object with the previous cropping result data
+                data: null,
+
+                // A selector for adding extra containers to preview
+                preview: '',
+
+                // Re-render the cropper when resize the window
+                responsive: true,
+
+                // Restore the cropped area after resize the window
+                restore: true,
+
+                // Check if the current image is a cross-origin image
+                checkCrossOrigin: true,
+
+                // Check the current image's Exif Orientation information
+                checkOrientation: true,
+
+                // Show the black modal
+                modal: true,
+
+                // Show the dashed lines for guiding
+                guides: true,
+
+                // Show the center indicator for guiding
+                center: true,
+
+                // Show the white modal to highlight the crop box
+                highlight: true,
+
+                // Show the grid background
+                background: true,
+
+                // Enable to crop the image automatically when initialize
+                autoCrop: true,
+
+                // Define the percentage of automatic cropping area when initializes
+                autoCropArea: 0.8,
+
+                // Enable to move the image
+                movable: true,
+
+                // Enable to rotate the image
+                rotatable: true,
+
+                // Enable to scale the image
+                scalable: true,
+
+                // Enable to zoom the image
+                zoomable: true,
+
+                // Enable to zoom the image by dragging touch
+                zoomOnTouch: true,
+
+                // Enable to zoom the image by wheeling mouse
+                zoomOnWheel: true,
+
+                // Define zoom ratio when zoom the image by wheeling mouse
+                wheelZoomRatio: 0.1,
+
+                // Enable to move the crop box
+                cropBoxMovable: true,
+
+                // Enable to resize the crop box
+                cropBoxResizable: true,
+
+                // Toggle drag mode between "crop" and "move" when click twice on the cropper
+                toggleDragModeOnDblclick: true,
+
+                // Size limitation
+                minCanvasWidth: 0,
+                minCanvasHeight: 0,
+                minCropBoxWidth: 0,
+                minCropBoxHeight: 0,
+                minContainerWidth: 200,
+                minContainerHeight: 100,
+
+                // Shortcuts of events
+                ready: null,
+                cropstart: null,
+                cropmove: null,
+                cropend: null,
+                crop: null,
+                zoom: null
+
+            }
+            });
+           }
+        });
+
+        // enables the crop box
+        myCropper.enable();
+
+        // disables the crop box
+        myCropper.disable();
+
+        // destroys the crop box
+        myCropper.destroy();
+
+        // shows the crop box
+        myCropper.crop();
+
+        // resets the cropper
+        myCropper.reset();
+
+        // clears the crop box
+        myCropper.clear();
+
+        // replaces the image source
+        myCropper.replace(url, hasSameSize);
+
+        // moves the image wrapper
+        myCropper.move(X, Y);
+
+        // moves to a specific point
+        myCropper.moveTo(X, Y);
+
+        // zooms the image
+        myCropper.zoom(ratio);
+
+        // zooms to
+        myCropper.zoomTo(ratio, pivot);
+
+        // rotates the image
+        myCropper.rotate(degree);
+
+        // rotates to
+        myCropper.rotateTo(degree);
+
+        // scales the image
+        myCropper.scale(scaleX, scaleY);
+        myCropper.scaleX(scaleX);
+        myCropper.scaleY(scaleY);
+
+        // gets the cropper data
+        myCropper.getData(rounded);
+
+        // sets the cropper data
+        myCropper.setData(data);
+
+        // gets container's data
+        myCropper.getContainerData();
+
+        // gets image data
+        myCropper.getImageData();
+
+        // gets canvas data
+        myCropper.getCanvasData();
+
+        // sets canvas data
+        myCropper.setCanvasData(data);
+
+        // gets data of crop box
+        myCropper.getCropBoxData();
+
+        // set box data;
+        myCropper.setCropBoxData(data);
+
+        /*
+          width: the destination width of the output canvas.
+          height: the destination height of the output canvas.
+          minWidth: the minimum destination width of the output canvas, the default value is 0.
+          minHeight: the minimum destination height of the output canvas, the default value is 0.
+          maxWidth: the maximum destination width of the output canvas, the default value is Infinity.
+          maxHeight: the maximum destination height of the output canvas, the default value is Infinity.
+          fillColor: a color to fill any alpha values in the output canvas, the default value is transparent.
+          imageSmoothingEnabled: set to change if images are smoothed (true, default) or not (false).
+          imageSmoothingQuality: set the quality of image smoothing, one of "low" (default), "medium", or "high".
+        */
+        myCropper.getCroppedCanvas(options);
+
+        // sets aspect ratio
+        myCropper.setAspectRatio(aspectRatio);
+
+        // sets drag mode: 'none', 'crop', 'move'
+        myCropper.setDragMode([mode])
+
         function viewImage(event) {
-            document.getElementById("cropTest").src = URL.createObjectURL(event.target.files[0])
+            document.getElementById("imageToCrop").src = URL.createObjectURL(event.target.files[0])
             document.getElementById("img2Disp").src = URL.createObjectURL(event.target.files[1])
             document.getElementById("img3Disp").src = URL.createObjectURL(event.target.files[2])
             document.getElementById("img4Disp").src = URL.createObjectURL(event.target.files[3])

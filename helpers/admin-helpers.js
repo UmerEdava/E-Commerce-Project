@@ -219,5 +219,10 @@ module.exports = {
                 resolve()
             })
         })
+    },
+    getMenOffer: () => {
+        return new Promise((resolve,reject)=>{
+            
+        })
     }
 }

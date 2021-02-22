@@ -31,6 +31,8 @@
                                 <tr>
                                     <th>Category</th>
                                     <th>Offer Percentage</th>
+                                    <th>Starts</th>
+                                    <th>Ends</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -39,15 +41,17 @@
 
                                 <tr>
                                     <td>Men</td>
-                                    <td><input type="text" name="menPercentage" value="0" id="menPercentage">
-                                    </td>
+                                    <td>{{this.offerPercentage}}0</td>
+                                    <td>{{this.startDate}}0</td>
+                                    <td>{{this.lastDate}}0</td>
                                     <td>
                                         <ul class="list-inline m-0">
                                             <li class="list-inline-item">
-                                                <button class="btn btn-primary btn-sm rounded-0" type="button"
-                                                    data-toggle="tooltip" id="menButton" data-placement="top" title="Edit Offer"><i
-                                                        class="fa fa-edit"></i>Edit
+                                                <a href="/admin/edit_men_offer"><button class="btn btn-primary btn-sm rounded-0" type="button"
+                                                    data-toggle="tooltip" id="menEditButton" data-placement="top" title="Edit Offer"><i
+                                                        class="fa fa-edit"></i>Add
                                                 </button>
+                                                </a>
                                             </li>
                                         </ul>
                                     </td>
@@ -55,15 +59,17 @@
 
                                 <tr>
                                     <td>Women</td>
-                                    <td><input type="text" name="womenPercentage" value="0" id="womenField">
-                                    </td>
+                                    <td>{{this.offerPercentage}}0</td>
+                                    <td>{{this.startDate}}0</td>
+                                    <td>{{this.lastDate}}0</td>
                                     <td>
                                         <ul class="list-inline m-0">
                                             <li class="list-inline-item">
-                                                <button class="btn btn-primary btn-sm rounded-0" type="button"
-                                                    data-toggle="tooltip" data-placement="top" title="Edit Offer"> <i
-                                                        class="fa fa-edit"></i>Edit
+                                                <a href="/admin/edit_women_offer"><button class="btn btn-primary btn-sm rounded-0" type="button"
+                                                    data-toggle="tooltip" id="womenEditButton" data-placement="top" title="Edit Offer"><i
+                                                        class="fa fa-edit"></i>Add
                                                 </button>
+                                                </a>
                                             </li>
                                         </ul>
                                     </td>
@@ -71,11 +77,13 @@
 
                                 <tr>
                                     <td>Boys</td>
-                                    <td><input type="text" name="boysPercentage" value="0"></td>
+                                    <td>{{this.offerPercentage}}0</td>
+                                    <td>{{this.startDate}}0</td>
+                                    <td>{{this.lastDate}}0</td>
                                     <td>
                                         <ul class="list-inline m-0">
                                             <li class="list-inline-item">
-                                                <a href="/admin/edit_product_offer/{{this._id}}"><button
+                                                <a href="/admin/edit_boys_offer"><button
                                                         class="btn btn-primary btn-sm rounded-0" type="button"
                                                         data-toggle="tooltip" data-placement="top" title="Edit Offer">
                                                         <i class="fa fa-edit"></i>Edit</button>
@@ -87,11 +95,13 @@
 
                                 <tr>
                                     <td>Girls</td>
-                                    <td><input type="text" name="girlsPercentage" value="0"></td>
+                                    <td>{{this.offerPercentage}}0</td>
+                                    <td>{{this.startDate}}0</td>
+                                    <td>{{this.lastDate}}0</td>
                                     <td>
                                         <ul class="list-inline m-0">
                                             <li class="list-inline-item">
-                                                <a href="/admin/edit_product_offer/{{this._id}}"><button
+                                                <a href="/admin/edit_girls_offer"><button
                                                         class="btn btn-primary btn-sm rounded-0" type="button"
                                                         data-toggle="tooltip" data-placement="top" title="Edit Offer">
                                                         <i class="fa fa-edit"></i>Edit</button>
@@ -102,7 +112,7 @@
                                 </tr>
                             </tbody>
                         </table>
-
+                        
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
                 </div>
@@ -110,10 +120,16 @@
         </div>
     </div>
 
+    {{!-- <script src="http://code.jquery.com/jquery-1.6.2.min.js"></script>
     <script>
-        $('#menButton').click(function () {
-            console.log('clicked')
-            $('#menPercentage').attr('disabled', 'disabled'\'');
+        $(document).ready(function() {
+            $("#menEditButton").click(function() {
+                $("#menPercentage").prop("disabled", false);
+            });
+            $("#btn_disable").click(function() {
+                $("#name").prop("disabled", true);
+            });
         });
-    </script>
+
+    </script> --}}
 </body>

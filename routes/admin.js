@@ -462,4 +462,10 @@ router.post('/delete_coupon', (req,res)=>{
   })
 })
 
+router.get('/edit_men_offer', (req,res)=>{
+  adminHelpers.getMenOffer().then((men)=>{
+    res.render('admin/men-offer',{men})
+  })
+})
+
 module.exports = router;
