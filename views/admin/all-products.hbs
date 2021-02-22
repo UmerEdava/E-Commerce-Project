@@ -1,79 +1,51 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+<link rel="stylesheet" type="text/css"
+    href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css"
+    href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
+<script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" charset="utf8"
+    src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/jquery.dataTables.min.js"></script>
 
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
 
-    <title>Project | users</title>
-
-    <!-- GOOGLE FONTS -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500"
-        rel="stylesheet" />
-    <link href="https://cdn.materialdesignicons.com/3.0.39/css/materialdesignicons.min.css" rel="stylesheet" />
-
-    <!-- PLUGINS CSS STYLE -->
-    <link href="assets/plugins/toaster/toastr.min.css" rel="stylesheet" />
-    <link href="assets/plugins/nprogress/nprogress.css" rel="stylesheet" />
-    <link href="assets/plugins/flag-icons/css/flag-icon.min.css" rel="stylesheet" />
-    <link href="assets/plugins/jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
-    <link href="assets/plugins/ladda/ladda.min.css" rel="stylesheet" />
-    <link href="assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
-    <link href="assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
-
-    <!-- SLEEK CSS -->
-    <link id="sleek-css" rel="stylesheet" href="assets/css/sleek.css" />
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
 
 
+<style>
+    .top-information,
+    .bottom-information {
+        padding: 0 20px;
+    }
 
-    <!-- FAVICON -->
-    <link href="assets/img/favicon.png" rel="shortcut icon" />
+    table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>td:first-child:before,
+    table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>th:first-child:before {
+        background-color: #29cc97;
+        top: 14px;
+        width: 16px;
+        height: 16px;
+        line-height: 16px;
+        border: 0;
+        font-weight: bold;
+        box-shadow: none;
+    }
 
-    <!--
-    HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
-  -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
+    table.dataTable.dtr-inline.collapsed>tbody>tr.parent>td:first-child:before,
+    table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
+        background-color: fec400;
+    }
+</style>
 
-    <style>
-        .top-information,
-        .bottom-information {
-            padding: 0 20px;
-        }
-
-        table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>td:first-child:before,
-        table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>th:first-child:before {
-            background-color: #29cc97;
-            top: 14px;
-            width: 16px;
-            height: 16px;
-            line-height: 16px;
-            border: 0;
-            font-weight: bold;
-            box-shadow: none;
-        }
-
-        table.dataTable.dtr-inline.collapsed>tbody>tr.parent>td:first-child:before,
-        table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
-            background-color: fec400;
-        }
-    </style>
-
-    <script>
-        jQuery(document).ready(function () {
-            jQuery('#responsive-data-table').DataTable({
-                "aLengthMenu": [[20, 30, 50, 75, -1], [20, 30, 50, 75, "All"]],
-                "pageLength": 20,
-                "dom": '<"row justify-content-between top-information"lf>rt<"row justify-content-between bottom-information"ip><"clear">'
-            });
+<script>
+    jQuery(document).ready(function () {
+        jQuery('#responsive-data-table').DataTable({
+            "aLengthMenu": [[20, 30, 50, 75, -1], [20, 30, 50, 75, "All"]],
+            "pageLength": 20,
+            "dom": '<"row justify-content-between top-information"lf>rt<"row justify-content-between bottom-information"ip><"clear">'
         });
-    </script>
+    });
+</script>
 
-    <script src="assets/plugins/nprogress/nprogress.js"></script>
+<script src="assets/plugins/nprogress/nprogress.js"></script>
 </head>
 
 
@@ -88,74 +60,76 @@
     <div class="wrapper">
 
         <div class="page-wrapper">
-                 
+
             <div class="row">
-                        <div class="col-12">
-                            <!-- Recent Order Table -->
-                            <div class="card card-table-border-none" id="recent-orders">
-                                <div class="card-header justify-content-between">
-                                    <h2>All Products</h2>
-                                    <div class="date-range-report ">
-                                        <span></span>
-                                    </div>
-                                </div>
-                                <div class="card-body pt-0 pb-5">
-                                    <table class="table card-table table-responsive table-responsive-large"
-                                        style="width:100%">
-                                        <thead>
-                                            <tr>
-                                                <th>Product Name</th>
-                                                <th>Description</th>
-                                                <th class="d-none d-md-table-cell">Stock</th>
-                                                <th class="d-none d-md-table-cell">For</th>
-                                                <th class="d-none d-md-table-cell">Category</th>
-                                                <th class="d-none d-md-table-cell">Price</th>
-                                                <th class="d-none d-md-table-cell">Image</th>
-                                                <th></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {{#each products}}
-                                            <tr>
-                                                <td>{{this.name}}</td>
-                                                <td class="d-none d-md-table-cell">{{this.shortDescription}}</td>
-                                                <td class="d-none d-md-table-cell">{{this.stock}}</td>
-                                                <td class="d-none d-md-table-cell">{{this.for}}</td>
-                                                <td class="d-none d-md-table-cell">{{this.category}}</td>
-                                                <td class="d-none d-md-table-cell">{{this.price}}</td>
-                                                <td class="d-none d-md-table-cell">
-                                                    <img src="/images/product-images/{{this._id}}1.jpg" width="50px" height="50px" alt="">
-                                                </td>
-                                                <td class="text-right">
-                                                    <div class="dropdown show d-inline-block widget-dropdown">
-                                                        <a class="dropdown-toggle icon-burger-mini" href=""
-                                                            role="button" id="dropdown-recent-order1"
-                                                            data-toggle="dropdown" aria-haspopup="true"
-                                                            aria-expanded="false" data-display="static"></a>
-                                                        <ul class="dropdown-menu dropdown-menu-right"
-                                                            aria-labelledby="dropdown-recent-order1">
-                                                            <li class="dropdown-item">
-                                                                <a href="/admin/edit_product/{{this._id}}">Edit</a>
-                                                            </li>
-                                                            <li class="dropdown-item">
-                                                                <a href="/admin/delete_product/{{this._id}}" onclick="return confirm('Are you sure to delete {{this.productName}}?')">Remove</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            {{/each}}
-                                        </tbody>
-                                    </table>
-                                </div>
+                <div class="col-12">
+                    <!-- Recent Order Table -->
+                    <div class="card card-table-border-none" id="recent-orders">
+                        <div class="card-header justify-content-between">
+                            <h2>All Products</h2>
+                            <div class="date-range-report ">
+                                <span></span>
                             </div>
                         </div>
+                        <div class="card-body pt-0 pb-5">
+                            <table id="productTable" class="table card-table table-responsive table-responsive-large"
+                                style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Product Name</th>
+                                        <th>Description</th>
+                                        <th class="d-none d-md-table-cell">Stock</th>
+                                        <th class="d-none d-md-table-cell">For</th>
+                                        <th class="d-none d-md-table-cell">Category</th>
+                                        <th class="d-none d-md-table-cell">Price</th>
+                                        <th class="d-none d-md-table-cell">Image</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each products}}
+                                    <tr>
+                                        <td>{{this.name}}</td>
+                                        <td class="d-none d-md-table-cell">{{this.shortDescription}}</td>
+                                        <td class="d-none d-md-table-cell">{{this.stock}}</td>
+                                        <td class="d-none d-md-table-cell">{{this.for}}</td>
+                                        <td class="d-none d-md-table-cell">{{this.category}}</td>
+                                        <td class="d-none d-md-table-cell">{{this.price}}</td>
+                                        <td class="d-none d-md-table-cell">
+                                            <img src="/images/product-images/{{this._id}}1.jpg" width="50px"
+                                                height="50px" alt="">
+                                        </td>
+                                        <td class="text-right">
+                                            <div class="dropdown show d-inline-block widget-dropdown">
+                                                <a class="dropdown-toggle icon-burger-mini" href="" role="button"
+                                                    id="dropdown-recent-order1" data-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="false"
+                                                    data-display="static"></a>
+                                                <ul class="dropdown-menu dropdown-menu-right"
+                                                    aria-labelledby="dropdown-recent-order1">
+                                                    <li class="dropdown-item">
+                                                        <a href="/admin/edit_product/{{this._id}}">Edit</a>
+                                                    </li>
+                                                    <li class="dropdown-item">
+                                                        <a href="/admin/delete_product/{{this._id}}"
+                                                            onclick="return confirm('Are you sure to delete {{this.productName}}?')">Remove</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
+                </div>
+            </div>
 
             <footer class="footer mt-auto">
                 <div class="copyright bg-white">
                     <p>
-                        &copy; <span id="copy-year">2021</span> Copyright 
+                        &copy; <span id="copy-year">2021</span> Copyright
                         <a class="text-primary" href="#" target="_blank">App Name</a>.
                     </p>
                 </div>
@@ -170,7 +144,8 @@
     </div>
 
 
-    {{!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCn8TFXGg17HAUcNpkwtxxyT9Io9B_NcM" defer></script>
+    {{!--
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCn8TFXGg17HAUcNpkwtxxyT9Io9B_NcM" defer></script>
     <script src="assets/plugins/jquery/jquery.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/plugins/toaster/toastr.min.js"></script>
@@ -191,14 +166,21 @@
     <script src="assets/js/map.js"></script>
     <script src="assets/js/custom.js"></script> --}}
 
-    <script>
+    {{!-- <script>
         jQuery(document).ready(function () {
-            jQuery('#responsive-data-table').DataTable({
+            jQuery('#productTable').DataTable({
                 "aLengthMenu": [[20, 30, 50, 75, -1], [20, 30, 50, 75, "All"]],
                 "pageLength": 20,
                 "dom": '<"row justify-content-between top-information"lf>rt<"row justify-content-between bottom-information"ip><"clear">'
             });
         });
+    </script> --}}
+
+    <script>
+        $(document).ready(function () {
+                $('#productTable').DataTable();
+            }
+        );
     </script>
 
 

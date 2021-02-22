@@ -37,21 +37,27 @@
 										</h5>
 										<ul class="list-group">
 											{{#each menCategory}}
-											<li	class="list-group-item d-flex justify-content-between align-items-center mb-4">
+											<li
+												class="list-group-item d-flex justify-content-between align-items-center mb-4">
 												{{this.category}}
 												<span class="badge badge-primary badge-pill">14</span>
 											</li>
 											{{/each}}
 										</ul>
-										<form id="addMenCategory" style="display: none;">
-											<input type="text" name="category" id="menCategory"
-											placeholder="Enter new category">
+										<div class="text-center">
+											<form id="addMenCategory" style="display: none;">
+												<input type="text" name="category" id="menCategory"
+													placeholder="Enter new category">
 
-											<input type="submit" value="Add" class="btn btn-primary">
-										</form>
-										
-										<a class="btn btn-primary btn-pill" style="color: white;" id="addMenCategoryButton" role="button"
-											onclick="addMenCategoryForm()"> Add category </a>
+												<input type="submit" value="Add" class="btn btn-primary mt-3 mb-4">
+											</form>
+
+											<a class="btn btn-primary btn-pill" style="color: white;"
+												id="addMenCategoryButton" role="button" onclick="addMenCategoryForm()">
+												Add
+												category </a>
+										</div>
+
 									</div>
 								</div>
 								<div class="card">
@@ -61,45 +67,58 @@
 												Women</a></h5>
 										<ul class="list-group">
 											{{#each womenCategory}}
-											<li	class="list-group-item d-flex justify-content-between align-items-center mb-4">
+											<li
+												class="list-group-item d-flex justify-content-between align-items-center mb-4">
 												{{this.category}}
 												<span class="badge badge-primary badge-pill">14</span>
 											</li>
 											{{/each}}
 										</ul>
-										<form id="addWomenCategory" style="display: none;">
-											<input type="text" name="category"
-											placeholder="Enter new category"  id="womenCategory">
+										<div class="text-center">
+											<form id="addWomenCategory" style="display: none;">
+												<input type="text" name="category" placeholder="Enter new category"
+													id="womenCategory">
 
-											<input type="submit" value="Add" class="btn btn-primary">
-										</form>
-										
-										<a class="btn btn-primary btn-pill" style="color: white;" id="addWomenCategoryButton" role="button"
-											onclick="addWomenCategoryForm()"> Add category </a>
+												<input type="submit" value="Add" class="btn btn-primary mt-3 mb-4">
+											</form>
+
+											<a class="btn btn-primary btn-pill" style="color: white;"
+												id="addWomenCategoryButton" role="button"
+												onclick="addWomenCategoryForm()">
+												Add category </a>
+										</div>
+
 									</div>
 								</div>
 								<div class="card">
 									<img class="card-img-top" src="assets/img/elements/cc3b.jpg" alt="Card image cap">
 									<div class="card-body" style="padding-left:0;padding-right:0">
-										<h5 class="card-title text-primary"><a href="/admin/boys_collection">For Boys</a>
+										<h5 class="card-title text-primary"><a href="/admin/boys_collection">For
+												Boys</a>
 										</h5>
 										<ul class="list-group">
 											{{#each boysCategory}}
-											<li	class="list-group-item d-flex justify-content-between align-items-center mb-4">
+											<li
+												class="list-group-item d-flex justify-content-between align-items-center mb-4">
 												{{this.category}}
 												<span class="badge badge-primary badge-pill">14</span>
 											</li>
 											{{/each}}
 										</ul>
-										<form id="addBoysCategory" style="display: none;">
-											<input type="text" name="category"
-											placeholder="Enter new category" id="boysCategory">
+										<div class="text-center">
+											<form id="addBoysCategory" style="display: none;">
+												<input type="text" name="category" placeholder="Enter new category"
+													id="boysCategory">
 
-											<input type="submit" value="Add" class="btn btn-primary">
-										</form>
-										
-										<a class="btn btn-primary btn-pill" style="color: white;" id="addBoysCategoryButton" role="button"
-											onclick="addBoysCategoryForm()"> Add category </a>
+												<input type="submit" value="Add" class="btn btn-primary mt-3 mb-4">
+											</form>
+
+											<a class="btn btn-primary btn-pill" style="color: white;"
+												id="addBoysCategoryButton" role="button"
+												onclick="addBoysCategoryForm()">
+												Add category </a>
+										</div>
+
 									</div>
 								</div>
 								<div class="card">
@@ -109,21 +128,26 @@
 												Girls</a></h5>
 										<ul class="list-group">
 											{{#each girlsCategory}}
-											<li	class="list-group-item d-flex justify-content-between align-items-center mb-4">
+											<li
+												class="list-group-item d-flex justify-content-between align-items-center mb-4">
 												{{this.category}}
 												<span class="badge badge-primary badge-pill">14</span>
 											</li>
 											{{/each}}
 										</ul>
-										<form id="addGirlsCategory" style="display: none;">
-											<input type="text" name="category"
-											placeholder="Enter new category" id="girlsCategory">
+										<div class="text-center">
+											<form id="addGirlsCategory" style="display: none;">
+												<input type="text" name="category" placeholder="Enter new category"
+													id="girlsCategory">
 
-											<input type="submit" value="Add" class="btn btn-primary">
-										</form>
-										
-										<a class="btn btn-primary btn-pill" style="color: white;" id="addGirlsCategoryButton" role="button"
-											onclick="addGirlsCategoryForm()"> Add category </a>
+												<input type="submit" value="Add" class="btn btn-primary mt-3 mb-4">
+											</form>
+
+											<a class="btn btn-primary btn-pill" style="color: white;"
+												id="addGirlsCategoryButton" role="button"
+												onclick="addGirlsCategoryForm()"> Add category </a>
+										</div>
+
 									</div>
 								</div>
 							</div>
@@ -178,27 +202,36 @@
 
 	<script>
 		function addMenCategoryForm() {
-		
-           var button = document.getElementById("addMenCategoryButton");
 
-		   if (button.innerHTML === "Cancel") {
-                button.innerHTML = "Add category";
-            } else {
-              button.innerHTML = "Cancel";
-            }
+			var button = document.getElementById("addMenCategoryButton");
+
+			if (button.innerHTML === "Cancel") {
+				button.innerHTML = "Add category";
+				button.style.background = "#4c84ff"
+				button.style.borderColor = "#4c84ff"
+				
+			} else {
+				button.innerHTML = "Cancel";
+				button.style.background = "#ce1300"
+				button.style.borderColor = "#ce1300"
+			}
 
 			$("#addMenCategory").toggle();
- 
+
 		}
 
 		function addWomenCategoryForm() {
 			var button = document.getElementById("addWomenCategoryButton");
 
-		   if (button.innerHTML === "Cancel") {
-                button.innerHTML = "Add category";
-            } else {
-              button.innerHTML = "Cancel";
-            }
+			if (button.innerHTML === "Cancel") {
+				button.innerHTML = "Add category";
+				button.style.background = "#4c84ff"
+				button.style.borderColor = "#4c84ff"
+			} else {
+				button.innerHTML = "Cancel";
+				button.style.background = "#ce1300"
+				button.style.borderColor = "#ce1300"
+			}
 
 			$("#addWomenCategory").toggle();
 		}
@@ -206,11 +239,15 @@
 		function addBoysCategoryForm() {
 			var button = document.getElementById("addBoysCategoryButton");
 
-		   if (button.innerHTML === "Cancel") {
-                button.innerHTML = "Add category";
-            } else {
-              button.innerHTML = "Cancel";
-            }
+			if (button.innerHTML === "Cancel") {
+				button.innerHTML = "Add category";
+				button.style.background = "#4c84ff"
+				button.style.borderColor = "#4c84ff"
+			} else {
+				button.innerHTML = "Cancel";
+				button.style.background = "#ce1300"
+				button.style.borderColor = "#ce1300"
+			}
 
 			$("#addBoysCategory").toggle();
 		}
@@ -218,78 +255,82 @@
 		function addGirlsCategoryForm() {
 			var button = document.getElementById("addGirlsCategoryButton");
 
-		   if (button.innerHTML === "Cancel") {
-                button.innerHTML = "Add category";
-            } else {
-              button.innerHTML = "Cancel";
-            }
+			if (button.innerHTML === "Cancel") {
+				button.innerHTML = "Add category";
+				button.style.background = "#4c84ff"
+				button.style.borderColor = "#4c84ff"
+			} else {
+				button.innerHTML = "Cancel";
+				button.style.background = "#ce1300"
+				button.style.borderColor = "#ce1300"
+			}
 
 			$("#addGirlsCategory").toggle();
 		}
 
 		$('#addMenCategory').submit((e) => {
-        e.preventDefault()
-        $.ajax({
-            url: '/admin/add_men_category',
-            method: 'post',
-            data: $('#menCategory'),
-            success: (response) => {
-                console.log(response)
-				if(response.status){
-					alert('added')
-					location.reload()
-				}	
-            }
-          })
-        })
+			e.preventDefault()
+			$.ajax({
+				url: '/admin/add_men_category',
+				method: 'post',
+				data: $('#menCategory'),
+				success: (response) => {
+					console.log(response)
+					if (response.status) {
+						alert('added')
+						location.reload()
+					}
+				}
+			})
+		})
 
 		$('#addWomenCategory').submit((e) => {
-        e.preventDefault()
-        $.ajax({
-            url: '/admin/add_women_category',
-            method: 'post',
-            data: $('#addWomenCategory').serialize(),
-            success: (response) => {
-                console.log(response)
-				if(response.status){
-					alert('added')
-					location.reload()
-				}	
-            }
-          })
-        })
+			e.preventDefault()
+			$.ajax({
+				url: '/admin/add_women_category',
+				method: 'post',
+				data: $('#addWomenCategory').serialize(),
+				success: (response) => {
+					console.log(response)
+					if (response.status) {
+						alert('added')
+						location.reload()
+					}
+				}
+			})
+		})
 
 		$('#addBoysCategory').submit((e) => {
-        e.preventDefault()
-        $.ajax({
-            url: '/admin/add_boys_category',
-            method: 'post',
-            data: $('#addBoysCategory').serialize(),
-            success: (response) => {
-                console.log(response)
-				if(response.status){
-					alert('added')
-					location.reload()
-				}	
-            }
-          })
-        })
+			e.preventDefault()
+			$.ajax({
+				url: '/admin/add_boys_category',
+				method: 'post',
+				data: $('#addBoysCategory').serialize(),
+				success: (response) => {
+					console.log(response)
+					if (response.status) {
+						alert('added')
+						location.reload()
+					}
+				}
+			})
+		})
 
 		$('#addGirlsCategory').submit((e) => {
-        e.preventDefault()
-        $.ajax({
-            url: '/admin/add_girls_category',
-            method: 'post',
-            data: $('#addGirlsCategory').serialize(),
-            success: (response) => {
-                console.log(response)
-				if(response.status){
-					alert('added')
-					location.reload()
-				}	
-            }
-          })
-        })
+			e.preventDefault()
+			$.ajax({
+				url: '/admin/add_girls_category',
+				method: 'post',
+				data: $('#addGirlsCategory').serialize(),
+				success: (response) => {
+					console.log(response)
+					if (response.status) {
+						alert('added')
+						location.reload()
+					}
+				}
+			})
+		})
 	</script>
 
 

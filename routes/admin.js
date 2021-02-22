@@ -79,6 +79,7 @@ router.get('/all_products', (req, res) => {
   let adminLogin = req.session.admin
   if (adminLogin) {
     productHelpers.getAllProducts().then((products) => {
+      console.log('just for testing',products);
       res.render('admin/all-products', {
         products,
         isAdmin
@@ -454,11 +455,10 @@ router.get('/all_coupons', (req, res) => {
   })
 })
 
-router.post('/verify_coupon', (req,res) => {
-  console.log('coupon routeril vannu',req.body);
-  console.log(req.body);
-  adminHelpers.verifyCoupon(req.body).then(()=>{
-    console.log('hahah');
+router.post('/delete_coupon', (req,res)=>{
+  console.log('routeril',req.body);
+  adminHelpers.deleteCoupon(req.body).then(()=>{
+    res.json({status:true})
   })
 })
 

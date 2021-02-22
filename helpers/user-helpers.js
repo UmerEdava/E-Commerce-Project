@@ -31,7 +31,7 @@ module.exports = {
                 phone: userData.phone
             })
 
-            if (!emailExists&&!phoneExists) {
+            if (!emailExists && !phoneExists) {
                 resolve()
             } else {
                 reject()
@@ -44,7 +44,7 @@ module.exports = {
             db.get().collection(collections.USER_COLLECTION).insertOne(userData).then((data) => {
                 resolve(data.ops[0])
             })
-        })     
+        })
     },
     doLogin: (userData) => {
         let loginStatus = false
@@ -112,6 +112,18 @@ module.exports = {
             }).then((user) => {
                 resolve(user)
             })
+        })
+    },
+    getUserAddress: (userId) => {
+        return new Promise(async(resolve, reject) => {
+            console.log('idyee',userId);
+
+            let address =await db.get().collection(collections.USER_COLLECTION).aggregate(  [  { $project: {  "address":1,"_id":0 } }, ] ).toArray()
+            console.log('1',address);
+
+            
+            resolve(address)
+ 
         })
     },
     getUserDetailsByPhone: (phone) => {
@@ -195,7 +207,7 @@ module.exports = {
         })
     },
     addToLogoutCart: (proId) => {
-        console.log(proId,'arrived here ***');
+        console.log(proId, 'arrived here ***');
         let proObj = {
             item: objectId(proId),
             quantity: 1
@@ -203,22 +215,24 @@ module.exports = {
 
         return new Promise((resolve, reject) => {
 
-        db.get().collection(collections.CART_COLLECTION).updateOne({
-            for:'logoutCart'
-        }, {
-            $push: {
-                products: proObj
-            }
-        }).then((response) => {
-            resolve()
-          })
+            db.get().collection(collections.CART_COLLECTION).updateOne({
+                for: 'logoutCart'
+            }, {
+                $push: {
+                    products: proObj
+                }
+            }).then((response) => {
+                resolve()
+            })
         })
     },
     transferLogoutCartProductsToUserCart: (userId) => {
-        
-            let logoutCart = db.get().collection(collections.CART_COLLECTION).find({for:'logoutCart'}).toArray()
-            console.log(logoutCart,'what i have missed');
-        
+
+        let logoutCart = db.get().collection(collections.CART_COLLECTION).find({
+            for: 'logoutCart'
+        }).toArray()
+        console.log(logoutCart, 'what i have missed');
+
     },
     getCartProducts: (userId) => {
         return new Promise(async (resolve, reject) => {
@@ -433,6 +447,29 @@ module.exports = {
                 date: new Date()
             }
 
+            let fullAddress = {
+                firstName: order.firstName,
+                lastName: order.lastName,
+                company: order.company,
+                country: order.country,
+                state: order.state,
+                streetAddress: order.address,
+                pin: order.pin,
+                town: order.town,
+                email: order.email,
+                phone: order.phone
+            }
+
+            console.log('address', fullAddress);
+
+            db.get().collection(collections.USER_COLLECTION).updateOne({
+                _id: objectId(order.userId)
+            }, {
+                $push: {
+                    address: fullAddress
+                }
+            })
+
             db.get().collection(collections.ORDER_COLLECTION).insertOne(orderObj).then((response) => {
                 db.get().collection(collections.CART_COLLECTION).removeOne({
                     user: objectId(order.userId)
@@ -515,43 +552,43 @@ module.exports = {
         })
     },
     generatePaypal: (orderId, total) => {
-        return new Promise((resolve,reject)=>{
+        return new Promise((resolve, reject) => {
             // create payment object 
             var payment = {
                 "intent": "authorize",
                 "payer": {
-                "payment_method": "paypal"
+                    "payment_method": "paypal"
                 },
                 "redirect_urls": {
-                "return_url": "http://127.0.0.1:3000/success",
-                "cancel_url": "http://127.0.0.1:3000/err"
+                    "return_url": "http://127.0.0.1:3000/success",
+                    "cancel_url": "http://127.0.0.1:3000/err"
                 },
                 "transactions": [{
-                "amount": {
-                "total": total,
-                "currency": "INR"
-                },
-                "description": " a book on mean stack "
+                    "amount": {
+                        "total": total,
+                        "currency": "INR"
+                    },
+                    "description": " a book on mean stack "
                 }]
             }
 
             // call the create Pay method 
-            createPay( payment ) 
-             .then( ( transaction ) => {
-                var id = transaction.id; 
-                var links = transaction.links;
-                var counter = links.length; 
-                while( counter -- ) {
-                    if ( links[counter].method == 'REDIRECT') {
-            // redirect to paypal where user approves the transaction 
-                    return res.redirect( links[counter].href )
+            createPay(payment)
+                .then((transaction) => {
+                    var id = transaction.id;
+                    var links = transaction.links;
+                    var counter = links.length;
+                    while (counter--) {
+                        if (links[counter].method == 'REDIRECT') {
+                            // redirect to paypal where user approves the transaction 
+                            return res.redirect(links[counter].href)
+                        }
                     }
-                }
-            })
-            .catch( ( err ) => { 
-                console.log( err ); 
-                res.redirect('/err');
-            });
+                })
+                .catch((err) => {
+                    console.log(err);
+                    res.redirect('/err');
+                });
         })
     },
     verifyPayment: (details) => {

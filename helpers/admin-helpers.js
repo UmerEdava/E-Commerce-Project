@@ -2,7 +2,6 @@ var db = require('../config/connection');
 var collection = require('../config/collections');
 var objectId = require('mongodb').ObjectID;
 var moment = require('moment');
-const collections = require('../config/collections');
 var voucher_codes = require('voucher-code-generator');
 
 module.exports = {
@@ -199,13 +198,26 @@ module.exports = {
         })
     },
     verifyCoupon: (enteredValue) => {
-        return new Promise(async(resolve, reject) => {
-            console.log("function 1",enteredValue);
+        return new Promise(async (resolve, reject) => {
+            console.log("function 1", enteredValue.couponCode);
             var orderTotal
             var discountAmount
-            let coupon =await db.get().collection(collection.COUPON_COLLECTION).findOne({code: enteredValue})
+            let coupon = await db.get().collection(collection.COUPON_COLLECTION).findOne({
+                code: enteredValue.couponCode
+            })
             console.log(coupon);
-            
+            resolve(coupon)
+        })
+    },
+    deleteCoupon: (couponId) => {
+        return new Promise((resolve, reject) => {
+            console.log('funcitonil', couponId);
+
+            db.get().collection(collection.COUPON_COLLECTION).findOne({
+                _id:objectId(couponId)
+            }).then(()=>{
+                resolve()
+            })
         })
     }
 }

@@ -116,6 +116,7 @@
                                 <th>Gender</th>
                                 <th>Age</th>
                                 <th>Email</th>
+                                <th></th>
                             </tr>
                         </thead>
 
@@ -128,6 +129,14 @@
                                 <td>{{this.gender}}</td>
                                 <td>{{this.age}}</td>
                                 <td>{{this.email}}</td>
+                                <td>
+                                    <label style="width: 73px;" class="switch switch-text switch-success switch-pill form-control-label">
+                                        <input type="checkbox" class="switch-input form-check-input" value="on"
+                                            checked="">
+                                        <span class="switch-label" data-on="active" data-off="blocked"></span>
+                                        <span class="switch-handle"></span>
+                                    </label>
+                                </td>
                                 <td class="text-right">
                                     <div class="dropdown show d-inline-block widget-dropdown">
                                         <a class="dropdown-toggle icon-burger-mini" href="#" role="button"
@@ -169,7 +178,7 @@
         </div>
     </div>
 
-{{!-- 
+    {{!--
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCn8TFXGg17HAUcNpkwtxxyT9Io9B_NcM" defer></script>
     <script src="assets/plugins/jquery/jquery.min.js"></script>
     <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

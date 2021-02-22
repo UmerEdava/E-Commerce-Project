@@ -190,8 +190,9 @@ module.exports = {
     },
     getMenCollection: () => {
         return new Promise(async (resolve, reject) => {
+            console.log('called function');
             let men = await db.get().collection(collections.PRODUCT_COLLECTION).find({
-                for: 'men'
+                for: 'Men'
             }).toArray()
             console.log(men)
             resolve(men)
@@ -200,7 +201,7 @@ module.exports = {
     getWomenCollection: () => {
         return new Promise(async (resolve, reject) => {
             let women = await db.get().collection(collections.PRODUCT_COLLECTION).find({
-                for: 'women'
+                for: 'Women'
             }).toArray()
             console.log(women)
             resolve(women)
@@ -218,7 +219,7 @@ module.exports = {
     getBoysCollection: () => {
         return new Promise(async (resolve, reject) => {
             let boys = await db.get().collection(collections.PRODUCT_COLLECTION).find({
-                for: 'boys'
+                for: 'Boys'
             }).toArray()
             console.log(boys)
             resolve(boys)

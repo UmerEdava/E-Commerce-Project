@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const userHelpers = require('../helpers/user-helpers')
+const adminHelpers = require('../helpers/admin-helpers')
 const productHelpers = require('../helpers/product-helpers')
 var OTP = require('../config/OTP');
 const {
@@ -191,6 +192,8 @@ router.get('/cart', verifyLogin, async (req, res) => {
     cartCount = await userHelpers.getCartCount(req.session.user._id)
   }
 
+  let userData = req.session.user
+
   let isUser = true
 
   res.render('users/cart', {
@@ -198,7 +201,8 @@ router.get('/cart', verifyLogin, async (req, res) => {
     products,
     'user': req.session.user._id,
     cartCount,
-    total
+    total,
+    userData
   })
 })
 
@@ -384,11 +388,24 @@ router.post('/OTP_verification', (req, res) => {
 router.get('/checkout', verifyLogin, async (req, res) => {
   isUser = true
   let total = await userHelpers.getCartTotal(req.session.user._id)
+  let userAddress =await userHelpers.getUserAddress(req.session.user._id)
+  let cartCount =await userHelpers.getCartCount(req.session.user._id)
+  let userData = req.session.user
+
+  console.log('kitti ith thanne vegam aavatt',userAddress);
+
+  
+  
+  
   res.render('users/checkout', {
     isUser,
     total,
-    user: req.session.user
+    user: req.session.user,
+    userAddress,
+    cartCount,
+    
   })
+
 })
 
 router.post('/place_order', async (req, res) => {
@@ -477,12 +494,16 @@ router.get('/err',(req,res)=>{
 
 router.get('/orders', verifyLogin, async (req, res) => {
   let orders = await userHelpers.getUserOrders(req.session.user._id)
+  let userData = req.session.user
+  let cartCount = await userHelpers.getCartCount(req.session.user._id)
   isUser = true
   userData = req.session.user
   res.render('users/orders', {
     user: req.session.user,
     orders,
-    isUser
+    isUser,
+    userData,
+    cartCount
   })
 })
 
@@ -490,11 +511,11 @@ router.get('/view_order_products/:id', async (req, res) => {
   console.log(req.params.id);
   let products = await userHelpers.getOrderProducts(req.params.id)
   console.log(products);
-  isUser = true
+  isUserSubrouter = true
   res.render('users/view-ordered-products', {
     user: req.session.user,
     products,
-    isUser
+    isUserSubrouter
   })
 })
 
@@ -557,6 +578,24 @@ router.get('/girls_collection', (req, res) => {
       girls,
       isUser
     })
+  })
+})
+
+router.post('/verify_coupon', async(req,res) => {
+  console.log('coupon routeril vannu',req.body);
+  console.log(req.body);
+  console.log('usere..',req.session.user._id);
+  let total =await userHelpers.getCartTotal(req.session.user._id)
+  console.log('total',total);
+  adminHelpers.verifyCoupon(req.body).then((coupon)=>{
+    console.log(coupon);
+    if(coupon){
+      console.log(coupon);
+      discountPrice = total - coupon.amount
+      console.log(discountPrice);
+      res.json({originalPrice:total,discountPrice:discountPrice,discount:coupon.amount})
+      // console.log('cart total**',total);
+    }
   })
 })
 

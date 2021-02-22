@@ -12,51 +12,72 @@
     </div>
 </div>
 
+
+
 <section class="checkout-section spad">
     <div class="container">
+        <div class="row container-fluid mb-5">
+            {{#each userAddress}}
+            <div class="col-md-4">
+                <div class="card" style="height: 17rem;">
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-size:2rem">{{userAddress.firstName}}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted" style="font-size:1.5rem">{{this.phone}}</h6>
+                        <p class="card-text" style="font-size:1.2rem">{{this.streetAddress}}</p>
+                        <a href="#" class="card-link">{{this.town}}</a>
+                        <a href="#" class="card-link">{{this.pin}}</a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        </div>
         <form action="" class="checkout-form" id="shippingForm" method="POST">
             <div class="row">
                 <div class="col-lg-6">
                     <div class="checkout-content">
-                        <a href="#" class="content-btn">Click Here To Login</a>
+                        <p class="content-btn">Add new address</p>
                     </div>
                     <h4>Biiling Details</h4>
                     <div class="row">
-                        {{!-- <div class="col-lg-6">
+                        <div class="col-lg-6">
                             <label for="fir">First Name<span>*</span></label>
-                            <input type="text" id="fir">
+                            <input type="text" id="fir" name="firstName">
                         </div>
                         <div class="col-lg-6">
                             <label for="last">Last Name<span>*</span></label>
-                            <input type="text" id="last">
-                        </div> --}}
+                            <input type="text" id="last" name="lastName">
+                        </div>
                         <div class="col-lg-12">
                             <label for="comp-name">Company Name</label>
                             <input type="text" id="comp-name" name="company">
                         </div>
                         <div class="col-lg-12">
                             <label for="country">Country<span>*</span></label>
-                            <input type="text" id="country" name="country">
+                            <input type="text" id="country" name="country" required>
+                        </div>
+                        <div class="col-lg-12">
+                            <label for="country">State<span>*</span></label>
+                            <input type="text" id="country" name="state" required>
                         </div>
                         <div class="col-lg-12">
                             <label for="address">Street Address<span>*</span></label>
-                            <input type="text" id="street" class="street-first" name="address">
+                            <input type="text" id="street" class="street-first" name="address" required>
                         </div>
                         <div class="col-lg-12">
                             <label for="pin">Postcode / ZIP (optional)</label>
-                            <input type="text" id="pin" name="pin">
+                            <input type="text" id="pin" name="pin" required>
                         </div>
                         <div class="col-lg-12">
                             <label for="town">Town / City<span>*</span></label>
-                            <input type="text" id="town" name="town">
+                            <input type="text" id="town" name="town" required>
                         </div>
                         <div class="col-lg-6">
                             <label for="email">Email Address<span>*</span></label>
-                            <input type="text" id="email" name="email">
+                            <input type="text" id="email" name="email" required>
                         </div>
                         <div class="col-lg-6">
                             <label for="phone">Phone<span>*</span></label>
-                            <input type="text" id="phone" name="phone">
+                            <input type="text" id="phone" name="phone" required>
                         </div>
                         <input type="text" name="userId" value="{{user._id}}" hidden>
                         {{!-- <div class="col-lg-12">
@@ -71,7 +92,10 @@
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    
+                    <div class="checkout-content">
+                        <p class="content-btn">Order details</p>
+                    </div>
+
                     <div class="place-order">
                         <h4>Your Order</h4>
                         <div class="order-total">
@@ -81,7 +105,9 @@
                                 <li class="fw-normal">Combination x 1 <span>$60.00</span></li>
                                 <li class="fw-normal">Combination x 1 <span>$120.00</span></li>
                                 <li class="fw-normal">Subtotal <span>${{total}}.00</span></li>
-                                <li class="total-price">Total <span>${{total}}.00</span></li>
+                                <li class="" style="border-bottom: none;color: #949191;"><span><s
+                                            id="oldTotal"></s></span></li>
+                                <li class="total-price">Total <span id="total">${{total}}.00</span></li>
                             </ul>
                             <div class="payment-check">
                                 <div class="">
@@ -110,10 +136,19 @@
             </div>
         </form>
 
-        <h6>Discount Codes</h6>
+        <div class="row">
+            <div class="col-md-3">
+                <h6 style="font-size: 1.93625rem;">Discount Coupon</h6>
 
-        <input type="text" placeholder="Enter your codes" class="form-control" id="couponCode">
-        <button type="submit" class="site-btn place-btn" onclick="verifyCoupon()">Apply</button>
+                <input style="height: calc(4.4925rem + 2px);font-size: 1.5rem;" type="text" placeholder="Enter your coupon code" class="form-control" id="couponCode">
+
+            </div>
+
+            <div class="col-md-3">
+                <button type="submit" style="margin-top:2.1rem" class="site-btn place-btn" onclick="verifyCoupon()">Apply</button>
+            </div>
+        </div>
+
 
     </div>
 </section>
@@ -214,19 +249,20 @@
 <script>
     function verifyCoupon() {
         var couponCode = $("#couponCode").val();
-        console.log('functionil',couponCode)
+        console.log('functionil', couponCode)
         $.ajax({
-            url: '/admin/verify_coupon',
+            url: '/verify_coupon',
             data: {
                 couponCode
             },
             method: 'post',
             success: (response) => {
                 if (response) {
-                    res.send('valid')
-                } else {
-                    res.send('invalid')
+                    console.log('entho vannu')
+                    $('#total').html(response.discountPrice)
+                    $('#oldTotal').html(response.originalPrice)
                 }
+                console.log(response)
             }
         })
     }

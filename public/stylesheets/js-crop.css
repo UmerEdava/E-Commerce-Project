@@ -1,0 +1,31 @@
+/* Image holder styles */
+.js-crop-image-holder { position: relative; }
+/* Image styles */
+.js-crop-image-holder > img { display: table; height: 100%; }
+/* Crop overlay styles */
+.js-crop-image-holder > canvas { display: table; position: absolute; top: 0; left: 0; opacity: 0.5; transition: opacity 125ms ease-in-out; }
+/* Crop js-crop-grid holder styles */
+.js-crop-image-holder > .js-crop-grid-holder { width: 100%; height: 100%; position: absolute; opacity: 0; box-shadow: inset 0 0 2px 1px #000000; visibility: hidden; transition: opacity 125ms ease-in-out; }
+/* Resize boundary styles */
+.js-crop-image-holder > .js-crop-grid-holder > .js-crop-resizer { width: 10px; height: 10px; position: absolute; z-index: 2; }
+.js-crop-image-holder > .js-crop-grid-holder > .js-crop-resizer.js-crop-top-left { cursor: nw-resize; top: -2px; left: -2px; z-index: 3; }
+.js-crop-image-holder > .js-crop-grid-holder > .js-crop-resizer.js-crop-top-mid { cursor: n-resize; width: 100%; top: -2px; left: 50%; transform: translateX(-50%); }
+.js-crop-image-holder > .js-crop-grid-holder > .js-crop-resizer.js-crop-top-right { cursor: ne-resize; top: -2px; right: -2px; z-index: 3; }
+.js-crop-image-holder > .js-crop-grid-holder > .js-crop-resizer.js-crop-right-mid { cursor: e-resize; height: 100%; top: 50%; right: -2px; transform: translateY(-50%); }
+.js-crop-image-holder > .js-crop-grid-holder > .js-crop-resizer.js-crop-bot-right { cursor: se-resize; bottom: -2px; right: -2px; z-index: 3; }
+.js-crop-image-holder > .js-crop-grid-holder > .js-crop-resizer.js-crop-bot-mid { cursor: s-resize; width: 100%; bottom: -2px; right: 50%; transform: translateX(50%); }
+.js-crop-image-holder > .js-crop-grid-holder > .js-crop-resizer.js-crop-bot-left { cursor: sw-resize; bottom: -2px; left: -2px; z-index: 3; }
+.js-crop-image-holder > .js-crop-grid-holder > .js-crop-resizer.js-crop-left-mid { cursor: w-resize; height: 100%; left: -2px; bottom: 50%; transform: translateY(50%); }
+/* Resize handle styles */
+.js-crop-image-holder > .js-crop-grid-holder > .js-crop-resizer.js-crop-handle { border-style: solid; border-color: #FFFFFF; }
+.js-crop-image-holder > .js-crop-grid-holder > .js-crop-resizer.js-crop-top-left.js-crop-handle { border-width: 3px 0 0 3px; }
+.js-crop-image-holder > .js-crop-grid-holder > .js-crop-resizer.js-crop-top-mid.js-crop-handle { width: 10px; border-width: 3px 0 0 0; }
+.js-crop-image-holder > .js-crop-grid-holder > .js-crop-resizer.js-crop-top-right.js-crop-handle { border-width: 3px 3px 0 0; }
+.js-crop-image-holder > .js-crop-grid-holder > .js-crop-resizer.js-crop-right-mid.js-crop-handle { height: 10px; border-width: 0 3px 0 0; }
+.js-crop-image-holder > .js-crop-grid-holder > .js-crop-resizer.js-crop-bot-right.js-crop-handle { border-width: 0 3px 3px 0; }
+.js-crop-image-holder > .js-crop-grid-holder > .js-crop-resizer.js-crop-bot-mid.js-crop-handle { width: 10px; border-width: 0 0 3px 0; }
+.js-crop-image-holder > .js-crop-grid-holder > .js-crop-resizer.js-crop-bot-left.js-crop-handle { border-width: 0 0 3px 3px; }
+.js-crop-image-holder > .js-crop-grid-holder > .js-crop-resizer.js-crop-left-mid.js-crop-handle { height: 10px; border-width: 0 0 0 3px; }
+/* Crop js-crop-grid styles */
+.js-crop-image-holder > .js-crop-grid-holder > .js-crop-grid { cursor: move; width: 100%; height: 100%; border: solid 1px #FFFFFF; border-spacing: 0; border-collapse: collapse; position: relative; box-shadow: 0 0 8px 1px #000000; z-index: 1; }
+.js-crop-image-holder > .js-crop-grid-holder > .js-crop-grid > tbody > tr > td { border: solid 1px #FFFFFF; box-shadow: 0 0 2px 1px #000000; }
