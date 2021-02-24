@@ -46,13 +46,8 @@ module.exports = {
                 _id: objectId(proId)
             }).then((product) => {
 
-                console.log(product);
-
                 offerPrice = product.price - (product.price * offerPercentage / 100)
                 actualPrice = product.price
-
-                console.log(offerPrice);
-                console.log(actualPrice);
 
                 db.get().collection(collection.PRODUCT_COLLECTION).updateOne({
                     _id: objectId(proId)
@@ -143,37 +138,89 @@ module.exports = {
         })
 
     },
-    addOfferForCategory: (allCategories) => {
-        return new Promise((resolve, reject) => {
-            db.get().collection(collection.PRODUCT_COLLECTION).find({
-                for: 'men'
-            }).then((men) => {
-                console.log(men);
-            })
+    addOfferForCategory: (offerDetails) => {
+        return new Promise(async (resolve, reject) => {
+            
+            var startDate = moment(offerDetails.startDate).format("L")
+            var lastDate = moment(offerDetails.lastDate).format("L")
+            var actualPrice
+            var offerPrice
+            console.log('functionil', offerDetails);
+
+            var percentage = offerDetails.offerPercentage
+
+            console.log(percentage);
 
             db.get().collection(collection.PRODUCT_COLLECTION).find({
-                for: 'women'
-            }).then((women) => {
-                console.log(women);
-            })
+                for: offerDetails.category
+            }).toArray().then((products) => {
 
-            db.get().collection(collection.PRODUCT_COLLECTION).find({
-                for: 'boys'
-            }).then((boys) => {
-                console.log(boys);
-            })
+                var length = products.length
+                var products = products
 
-            db.get().collection(collection.PRODUCT_COLLECTION).find({
-                for: 'girls'
-            }).then((girls) => {
-                console.log(girls);
+                for (i = 0; i < length; i++) {
+                    db.get().collection(collection.PRODUCT_COLLECTION).updateOne({
+                        _id: products[i]._id
+                    }, {
+                        $set: {
+                            actualPrice: products[i].price,
+                            price: products[i].price - products[i].price * percentage / 100,
+                            categoryOfferPercentage: percentage,
+                            startDate: startDate,
+                            lastDate: lastDate
+                        }
+                    })
+                }
             })
 
             resolve()
+
         })
     },
-    removeOfferForCategory: () => {
+    removeCategoryOffer: (category) => {
+        console.log('why not string',category);
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.PRODUCT_COLLECTION).find({
+                for: category
+            }).toArray().then((products) => {
+    
+                var length = products.length
+                var products = products
+    
+                console.log(products);
+    
+                for (i = 0; i < length; i++) {
+                    db.get().collection(collection.PRODUCT_COLLECTION).updateOne({
+                        _id: products[i]._id
+                    }, {
+                        $set: {
+                            price: products[i].actualPrice,
+                        },
+                        $unset: {
+                            categoryOfferPercentage:1,
+                            actualPrice:1,
+                            startDate:1,
+                            lastDate:1,
+                        }
+                    })
+                }
+            })
 
+            resolve()
+
+        })
+        
+    },
+    getProductDetailsForCategory: (category)=>{
+        console.log('ethiyo',category);
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.PRODUCT_COLLECTION).findOne({
+                for: category
+            }).then((product) => {
+                console.log('vannedea',product);
+                resolve(product)
+            })
+        })
     },
     editOfferForCategory: () => {
 
@@ -214,15 +261,43 @@ module.exports = {
             console.log('funcitonil', couponId);
 
             db.get().collection(collection.COUPON_COLLECTION).findOne({
-                _id:objectId(couponId)
-            }).then(()=>{
+                _id: objectId(couponId)
+            }).then(() => {
                 resolve()
             })
         })
     },
     getMenOffer: () => {
-        return new Promise((resolve,reject)=>{
-            
+        return new Promise(async (resolve, reject) => {
+            let categoryOfferExist = db.get().collection(collection.PRODUCT_COLLECTION).findOne({
+                for: 'men'
+            }, {
+                categoryOffer: 'true'
+            })
+
+            console.log(categoryOfferExist, 'athengane');
+
+            if (!categoryOfferExist) {
+                let menProducts = await db.get().collection(collection.PRODUCT_COLLECTION).find({
+                    for: 'Men'
+                }).toArray()
+                console.log('aanungalude', menProducts);
+                console.log('vanna rekshapettu', menProducts[0].offerPercentage);
+                var percentage = menProducts[0].offerPercentage
+                resolve(percentage)
+            } else {
+                console.log('ok');
+            }
+
+
+        })
+    },
+    getAllOrders: () => {
+        return new Promise(async (resolve, reject) => {
+            let orders = await db.get().collection(collection.ORDER_COLLECTION)
+                .find({}).toArray()
+            console.log('orders', orders);
+            resolve(orders)
         })
     }
 }

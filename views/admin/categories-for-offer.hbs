@@ -24,13 +24,11 @@
                         </div>
                     </div> --}}
 
-                    <form id="categoryOfferForm" action="/add_category_offer" method="POST">
-                        <table id="responsive-data-table" class="table dt-responsive nowrap mt-5" style="width:100%">
+                         <table id="responsive-data-table" class="table dt-responsive nowrap mt-5" style="width:100%">
                             <thead>
-
                                 <tr>
                                     <th>Category</th>
-                                    <th>Offer Percentage</th>
+                                    <th>Offer</th>
                                     <th>Starts</th>
                                     <th>Ends</th>
                                     <th></th>
@@ -38,20 +36,28 @@
                             </thead>
 
                             <tbody>
-
                                 <tr>
                                     <td>Men</td>
-                                    <td>{{this.offerPercentage}}0</td>
-                                    <td>{{this.startDate}}0</td>
-                                    <td>{{this.lastDate}}0</td>
+                                    <td>{{#if men.categoryOfferPercentage}}{{men.categoryOfferPercentage}}{{/if}}{{#unless men.categoryOfferPercentage}}---%{{/unless}}</td>
+                                    <td>{{#if men.categoryOfferPercentage}}{{men.startDate}}{{/if}}{{#unless men.categoryOfferPercentage}}---{{/unless}}</td>
+                                    <td>{{#if men.categoryOfferPercentage}}{{men.lastDate}}{{/if}}{{#unless men.categoryOfferPercentage}}---{{/unless}}</td>
                                     <td>
                                         <ul class="list-inline m-0">
                                             <li class="list-inline-item">
-                                                <a href="/admin/edit_men_offer"><button class="btn btn-primary btn-sm rounded-0" type="button"
+                                                {{#unless men.categoryOfferPercentage}}
+                                                <a href="/admin/add_category_offer/Men"><button class="btn btn-primary btn-sm rounded-0" type="button"
                                                     data-toggle="tooltip" id="menEditButton" data-placement="top" title="Edit Offer"><i
-                                                        class="fa fa-edit"></i>Add
+                                                        class="fa fa-edit"></i> Add
                                                 </button>
                                                 </a>
+                                                {{/unless}}
+
+                                                {{#if men.categoryOfferPercentage}}
+                                                <button class="btn btn-primary btn-sm rounded-0" type="button" onclick="removeCategoryOffer('Men')"
+                                                        data-toggle="tooltip" data-placement="top" title="Edit Offer">
+                                                        <i class="fa fa-trash"></i> Remove
+                                                </button>
+                                                {{/if}}
                                             </li>
                                         </ul>
                                     </td>
@@ -59,17 +65,26 @@
 
                                 <tr>
                                     <td>Women</td>
-                                    <td>{{this.offerPercentage}}0</td>
-                                    <td>{{this.startDate}}0</td>
-                                    <td>{{this.lastDate}}0</td>
+                                    <td>{{#if women.categoryOfferPercentage}}{{women.categoryOfferPercentage}}{{/if}}{{#unless women.categoryOfferPercentage}}---%{{/unless}}</td>
+                                    <td>{{#if women.categoryOfferPercentage}}{{women.startDate}}{{/if}}{{#unless women.categoryOfferPercentage}}---{{/unless}}</td>
+                                    <td>{{#if women.categoryOfferPercentage}}{{women.lastDate}}{{/if}}{{#unless women.categoryOfferPercentage}}---{{/unless}}</td>
                                     <td>
                                         <ul class="list-inline m-0">
                                             <li class="list-inline-item">
-                                                <a href="/admin/edit_women_offer"><button class="btn btn-primary btn-sm rounded-0" type="button"
+                                                {{#unless women.categoryOfferPercentage}}
+                                                <a href="/admin/add_category_offer/Women"><button class="btn btn-primary btn-sm rounded-0" type="button"
                                                     data-toggle="tooltip" id="womenEditButton" data-placement="top" title="Edit Offer"><i
-                                                        class="fa fa-edit"></i>Add
+                                                        class="fa fa-edit"></i> Add
                                                 </button>
                                                 </a>
+                                                {{/unless}}
+
+                                                {{#if women.categoryOfferPercentage}}
+                                                <button class="btn btn-primary btn-sm rounded-0" type="button" onclick="removeCategoryOffer('Women')"
+                                                        data-toggle="tooltip" data-placement="top" title="Edit Offer">
+                                                        <i class="fa fa-trash"></i> Remove
+                                                </button>
+                                                {{/if}}
                                             </li>
                                         </ul>
                                     </td>
@@ -77,17 +92,26 @@
 
                                 <tr>
                                     <td>Boys</td>
-                                    <td>{{this.offerPercentage}}0</td>
-                                    <td>{{this.startDate}}0</td>
-                                    <td>{{this.lastDate}}0</td>
+                                    <td>{{#if boys.categoryOfferPercentage}}{{boys.categoryOfferPercentage}}{{/if}}{{#unless boys.categoryOfferPercentage}}---%{{/unless}}</td>
+                                    <td>{{#if boys.categoryOfferPercentage}}{{boys.startDate}}{{/if}}{{#unless boys.categoryOfferPercentage}}---{{/unless}}</td>
+                                    <td>{{#if boys.categoryOfferPercentage}}{{boys.lastDate}}{{/if}}{{#unless boys.categoryOfferPercentage}}---{{/unless}}</td>
                                     <td>
                                         <ul class="list-inline m-0">
                                             <li class="list-inline-item">
-                                                <a href="/admin/edit_boys_offer"><button
-                                                        class="btn btn-primary btn-sm rounded-0" type="button"
-                                                        data-toggle="tooltip" data-placement="top" title="Edit Offer">
-                                                        <i class="fa fa-edit"></i>Edit</button>
+                                                {{#unless boys.categoryOfferPercentage}}
+                                                <a href="/admin/add_category_offer/Boys"><button class="btn btn-primary btn-sm rounded-0" type="button"
+                                                    data-toggle="tooltip" id="menEditButton" data-placement="top" title="Edit Offer"><i
+                                                        class="fa fa-edit"></i> Add
+                                                </button>
                                                 </a>
+                                                {{/unless}}
+
+                                                {{#if boys.categoryOfferPercentage}}
+                                                <button class="btn btn-primary btn-sm rounded-0" type="button" onclick="removeCategoryOffer('Boys')"
+                                                        data-toggle="tooltip" data-placement="top" title="Edit Offer">
+                                                        <i class="fa fa-trash"></i> Remove
+                                                </button>
+                                                {{/if}}
                                             </li>
                                         </ul>
                                     </td>
@@ -95,26 +119,32 @@
 
                                 <tr>
                                     <td>Girls</td>
-                                    <td>{{this.offerPercentage}}0</td>
-                                    <td>{{this.startDate}}0</td>
-                                    <td>{{this.lastDate}}0</td>
+                                    <td>{{#if girls.categoryOfferPercentage}}{{girls.categoryOfferPercentage}}{{/if}}{{#unless girls.categoryOfferPercentage}}---%{{/unless}}</td>
+                                    <td>{{#if girls.categoryOfferPercentage}}{{girls.startDate}}{{/if}}{{#unless girls.categoryOfferPercentage}}---{{/unless}}</td>
+                                    <td>{{#if girls.categoryOfferPercentage}}{{girls.lastDate}}{{/if}}{{#unless girls.categoryOfferPercentage}}---{{/unless}}</td>
                                     <td>
                                         <ul class="list-inline m-0">
                                             <li class="list-inline-item">
-                                                <a href="/admin/edit_girls_offer"><button
-                                                        class="btn btn-primary btn-sm rounded-0" type="button"
-                                                        data-toggle="tooltip" data-placement="top" title="Edit Offer">
-                                                        <i class="fa fa-edit"></i>Edit</button>
+                                                {{#unless girls.categoryOfferPercentage}}
+                                                <a href="/admin/add_category_offer/Girls"><button class="btn btn-primary btn-sm rounded-0" type="button"
+                                                    data-toggle="tooltip" id="menEditButton" data-placement="top" title="Edit Offer"><i
+                                                        class="fa fa-edit"></i> Add
+                                                </button>
                                                 </a>
+                                                {{/unless}}
+
+                                                {{#if girls.categoryOfferPercentage}}
+                                                <button class="btn btn-primary btn-sm rounded-0" type="button" onclick="removeCategoryOffer('Girls')"
+                                                        data-toggle="tooltip" data-placement="top" title="Edit Offer">
+                                                        <i class="fa fa-trash"></i> Remove
+                                                </button>
+                                                {{/if}}
                                             </li>
                                         </ul>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-                        
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
                 </div>
             </div>
         </div>
@@ -132,4 +162,20 @@
         });
 
     </script> --}}
+
+    <script>
+        function removeCategoryOffer(category){
+            console.log(category)
+            $.ajax({
+                url:'/admin/remove_category_offer/'+category,
+                method:'get',
+                success:(response)=>{
+                    if(response){
+                        alert('removed'),
+                        location.reload()
+                    }
+                }
+            })
+        }
+    </script>
 </body>

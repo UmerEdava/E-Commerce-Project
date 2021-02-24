@@ -115,15 +115,18 @@ module.exports = {
         })
     },
     getUserAddress: (userId) => {
-        return new Promise(async(resolve, reject) => {
-            console.log('idyee',userId);
+        console.log('queriyil id vanne..',userId);
+        return new Promise(async (resolve, reject) => {
+            console.log('idyee', userId);
 
-            let address =await db.get().collection(collections.USER_COLLECTION).aggregate(  [  { $project: {  "address":1,"_id":0 } }, ] ).toArray()
-            console.log('1',address);
+            let address =await db.get().collection(collections.USER_COLLECTION).find({_id:objectId(userId)}).toArray()
 
-            
-            resolve(address)
- 
+            console.log('enthaanithu',address);
+            console.log('kandu pidikkum');
+
+            resolve()
+
+
         })
     },
     getUserDetailsByPhone: (phone) => {
@@ -429,6 +432,66 @@ module.exports = {
             resolve(total[0].total)
         })
     },
+    getSubtotal: (userId) => {
+        console.log('userIduserId', userId);
+
+        return new Promise(async(resolve, reject) => {
+            let subTotal =await db.get().collection(collections.CART_COLLECTION).aggregate([{
+                $match: {
+                    user: objectId(userId)
+                }
+            },
+            {
+                $unwind: '$products'
+            },
+            {
+                $project: {
+                    item: '$products.item',
+                    quantity: '$products.quantity'
+                }
+            },
+            {
+                $lookup: {
+                    from: collections.PRODUCT_COLLECTION,
+                    localField: 'item',
+                    foreignField: '_id',
+                    as: 'productDetails'
+                }
+            },
+            {
+                $project: {
+                    item: 1,
+                    quantity: 1,
+                    product: {
+                        $arrayElemAt: ['$productDetails', 0]
+                    }
+                }
+            },
+            {
+                $project: {
+                    quantity: {
+                        $toInt: '$quantity'
+                    },
+                    unitPrice: {
+                        $toInt: '$product.price'
+                    }
+                }
+            },
+            {
+                $project: { 
+                    subTotal: { 
+                        $multiply: [ "$unitPrice", "$quantity" ] 
+            
+                    } 
+                }
+        
+            }
+            
+        ]).toArray()
+        console.log('cart total', subTotal);
+        resolve(subTotal)
+    })
+},
     placeOrder: (order, products, total) => {
         return new Promise((resolve, reject) => {
             console.log(order, products, total);

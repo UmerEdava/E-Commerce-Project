@@ -1,0 +1,89 @@
+<script>
+    NProgress.configure({ showSpinner: false });
+    NProgress.start();
+</script>
+
+<div class="mobile-sticky-body-overlay"></div>
+
+<div class="wrapper">
+
+    <!--
+          ====================================
+          ——— LEFT SIDEBAR WITH FOOTER
+          =====================================
+        -->
+
+
+
+
+    <div class="page-wrapper">
+        <div class="content-wrapper">
+            
+                <div class="card card-table-border-none" id="recent-orders">
+                    <div class="card-header justify-content-between">
+                        <h2>Orders</h2>
+                        <div class="date-range-report ">
+                            <span>Jan 14, 2021 - Feb 12, 2021</span>
+                        </div>
+                    </div>
+                    <div class="card-body pt-0 pb-5">
+                        <table class="table card-table table-responsive table-responsive-large" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Ordered Date</th>
+                                    <th class="d-none d-lg-table-cell">Address</th>
+                                    <th class="d-none d-lg-table-cell">pin</th>
+                                    <th class="d-none d-lg-table-cell">Phone</th>
+                                    <th class="d-none d-lg-table-cell">Amount</th>
+                                    <th class="d-none d-lg-table-cell">Payment-method</th>
+                                    <th>Status</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each orders}}
+                                <tr>
+                                    <td>Id</td>
+                                    <td>
+                                        <a class="text-dark" href="">{{this.date}}</a>
+                                    </td>
+                                    <td class="d-none d-lg-table-cell">{{this.deliveryDetails.address}}</td>
+                                    <td class="d-none d-lg-table-cell">{{this.deliveryDetails.pincode}}</td>
+                                    <td class="d-none d-lg-table-cell">{{this.deliveryDetails.phone}}</td>
+                                    <td class="d-none d-lg-table-cell">{{this.totalAmount}}</td>
+                                    <td class="d-none d-lg-table-cell">{{this.paymentMethod}}</td>
+                                    <td>
+                                        <span class="badge badge-success">{{this.status}}</span>
+                                    </td>
+                                    <td>
+                                        <a href="/view_order_products/{{this._id}}" class="btn btn-primary">View
+                                            Products</a>
+                                    </td>
+                                    <td class="text-right">
+                                        <div class="dropdown show d-inline-block widget-dropdown">
+                                            <a class="dropdown-toggle icon-burger-mini" href="" role="button"
+                                                id="dropdown-recent-order1" data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false" data-display="static"></a>
+                                            <ul class="dropdown-menu dropdown-menu-right"
+                                                aria-labelledby="dropdown-recent-order1">
+                                                <li class="dropdown-item">
+                                                    <a href="#">View</a>
+                                                </li>
+                                                <li class="dropdown-item">
+                                                    <a href="#">Remove</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            
+        </div>
+    </div>
+</div>

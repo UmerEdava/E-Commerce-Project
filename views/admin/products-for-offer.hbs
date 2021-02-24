@@ -14,6 +14,10 @@
         <div class="page-wrapper">
             <div class="content-wrapper">
                 <div class="content">
+                    <div class="card-header card-header-border-bottom mb-5">
+                        <h2>ALL PRODUCT OFFERS</h2>
+                    </div>
+
                     <table id="responsive-data-table" class="table dt-responsive nowrap" style="width:100%">
                         <thead>
 
@@ -39,26 +43,31 @@
                                     <ul class="list-inline m-0">
                                         {{#unless this.actualPrice}}
                                         <li class="list-inline-item">
-                                            <a href="/admin/add_product_offer/{{this._id}}"><button class="btn btn-primary btn-sm rounded-0"
-                                                 type="button" data-toggle="tooltip"
-                                                data-placement="top" title="Add Offer"> <i class="fa fa-plus"></i> Add Offer</button></a>
+                                            <a href="/admin/add_product_offer/{{this._id}}"><button
+                                                    class="btn btn-primary btn-sm rounded-0" type="button"
+                                                    data-toggle="tooltip" data-placement="top" title="Add Offer"> <i
+                                                        class="fa fa-plus"></i> Add Offer</button></a>
                                         </li>
                                         {{/unless}}
                                         {{#if this.actualPrice}}
                                         <li class="list-inline-item">
                                             {{!-- <button class="btn btn-success btn-sm rounded-0" type="button" id=""
-                                                onclick="editOffer('{{this._id}}')" data-toggle="tooltip" data-placement="top" title="Edit Offer"><i
+                                                onclick="editOffer('{{this._id}}')" data-toggle="tooltip"
+                                                data-placement="top" title="Edit Offer"><i
                                                     class="fa fa-edit"></i></button> --}}
 
-                                            <a href="/admin/edit_product_offer/{{this._id}}"><button class="btn btn-primary btn-sm rounded-0"
-                                                 type="button" data-toggle="tooltip"
-                                                data-placement="top" title="Edit Offer"> <i class="fa fa-edit"></i></button>
+                                            <a href="/admin/edit_product_offer/{{this._id}}"><button
+                                                    class="btn btn-primary btn-sm rounded-0" type="button"
+                                                    data-toggle="tooltip" data-placement="top" title="Edit Offer"> <i
+                                                        class="fa fa-edit"></i></button>
                                             </a>
                                         </li>
-                                        
+
                                         <li class="list-inline-item">
-                                            <button class="btn btn-danger btn-sm rounded-0" type="submit" id="removeButton"
-                                                data-toggle="tooltip" onclick="if(confirm('Are you sure to remove this offer?')) removeOffer('{{this._id}}')" data-placement="top" title="Delete Offer"><i
+                                            <button class="btn btn-danger btn-sm rounded-0" type="submit"
+                                                id="removeButton" data-toggle="tooltip"
+                                                onclick="if(confirm('Are you sure to remove this offer?')) removeOffer('{{this._id}}')"
+                                                data-placement="top" title="Delete Offer"><i
                                                     class="fa fa-trash"></i></button>
                                         </li>
                                         {{/if}}
@@ -67,7 +76,7 @@
                             </tr>
                             {{/each}}
                         </tbody>
-                    </table>                    
+                    </table>
                 </div>
             </div>
         </div>
@@ -81,45 +90,45 @@
     </script>
 
     <script>
-        function addOffer(proId){
+        function addOffer(proId) {
             console.log('arrived in ajax')
             $.ajax({
-                url:'/add_offer',
-                data:{
-                    product:proId
+                url: '/add_offer',
+                data: {
+                    product: proId
                 },
-                method:'post',
-                success:(response)=>{
-                                 
+                method: 'post',
+                success: (response) => {
+
                 }
             })
         }
 
-        function removeOffer(proId){
+        function removeOffer(proId) {
             console.log('remove vannu')
             $.ajax({
-                url:'/admin/remove_product_offer',
-                data:{
-                    proId:proId
+                url: '/admin/remove_product_offer',
+                data: {
+                    proId: proId
                 },
-                method:'post',
-                success:(response)=>{
-                    if(response){
+                method: 'post',
+                success: (response) => {
+                    if (response) {
                         alert('Offer removed')
                         location.reload()
                     }
-                 }
+                }
             })
         }
 
-        function editOffer(proId){
+        function editOffer(proId) {
             console.log('edit vanne')
             $.ajax({
-                url:'/admin/edit_product_offer',
-                data:{
-                    proId:proId
+                url: '/admin/edit_product_offer',
+                data: {
+                    proId: proId
                 },
-                method:'post'                
+                method: 'post'
             })
         }
     </script>

@@ -1,0 +1,90 @@
+<body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
+    <script>
+        NProgress.configure({ showSpinner: false });
+        NProgress.start();
+    </script>
+
+    <div class="mobile-sticky-body-overlay"></div>
+
+    <div class="wrapper">
+        <div class="page-wrapper">
+            <div class="content-wrapper">
+                <div class="content">
+                    <div class="card card-default">
+                        <div class="card-header card-header-border-bottom">
+                            <h2>ADD OFFER TO THE BOY'S PRODUCTS</h2>
+                        </div>
+                        <div class="card card-default">
+                            <div class="card-body">
+                                <p class="mb-5">Add a seasonal offer for the category by percentage or offer.</p>
+                                <form id="addOffer" method="POST" action="/admin/add_category_offer">
+                                    <input type="text" value="Boys" name="category" hidden>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="text-dark font-weight-medium" for="">Offer Percentage</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="inputGroupPrepend2">%</span>
+                                                </div>
+                                                <input required type="text" class="form-control" name="offerPercentage"
+                                                    id="offerPercentage" placeholder="Enter percentage"
+                                                    aria-describedby="inputGroupPrepend2" required="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="text-dark font-weight-medium" for="">Offer starts
+                                                from..</label>
+                                            <div class="input-group mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="mdi mdi-calendar-range"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="date" id="startDate" name="startDate" class="form-control"
+                                                    placeholder="" aria-label="" autocomplete="off" maxlength="10"
+                                                    required>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <label class="text-dark font-weight-medium" for="">Valids till</label>
+                                            <div class="input-group mb-2">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">
+                                                        <i class="mdi mdi-calendar-range"></i>
+                                                    </span>
+                                                </div>
+                                                <input type="date" id="lastDate" name="lastDate" class="form-control"
+                                                    placeholder="" aria-label="" autocomplete="off" maxlength="10"
+                                                    required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="mb-1 btn btn-info" id="">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer mt-auto">
+                <div class="copyright bg-white">
+                    <p>
+                        &copy; <span id="copy-year">2019</span> Copyright Sleek Dashboard Bootstrap Template by
+                        <a class="text-primary" href="http://www.iamabdus.com/" target="_blank">Abdus</a>.
+                    </p>
+                </div>
+                <script>
+                    var d = new Date();
+                    var year = d.getFullYear();
+                    document.getElementById("copy-year").innerHTML = year;
+                </script>
+            </footer>
+
+        </div>
+    </div>

@@ -411,18 +411,33 @@ router.post('/edit_product_offer', (req, res) => {
   })
 })
 
-router.get('/categories_for_offer', (req, res) => {
+router.get('/categories_for_offer', async(req, res) => {
+  
+  let men = await adminHelpers.getProductDetailsForCategory('Men')
+  let women = await adminHelpers.getProductDetailsForCategory('Women')
+  let boys = await adminHelpers.getProductDetailsForCategory('Boys')
+  let girls = await adminHelpers.getProductDetailsForCategory('Girls')
+
+  console.log('ivideyum vannu',men);
+  
+
   isAdmin = true
   isSubrouter = true
   res.render('admin/categories-for-offer', {
     isAdmin,
-    isSubrouter
+    isSubrouter,
+    men,
+    women,
+    boys,
+    girls
   })
 })
 
-router.get('/add_category_offer', (req, res) => {
-  console.log('category arrived in router');
-  adminHelpers.addOfferForCategory(req.body).then(() => {
+router.post('/add_category_offer', (req, res) => {
+  console.log(req.body,'lkskdjlsj***');
+  
+  adminHelpers.addOfferForCategory(req.body).then(()=>{
+    req.session.categoryOffer
     res.redirect('/admin/categories_for_offer')
   })
 })
@@ -462,10 +477,47 @@ router.post('/delete_coupon', (req,res)=>{
   })
 })
 
-router.get('/edit_men_offer', (req,res)=>{
-  adminHelpers.getMenOffer().then((men)=>{
-    res.render('admin/men-offer',{men})
+router.get('/add_category_offer/:id', (req,res)=>{
+
+  console.log('vanno..',req.params.id)
+  
+    isAdmin = true
+
+    if(req.params.id=='Men'){
+      res.render('admin/add-men-offer',{isAdmin})
+    }else if(req.params.id=='Women'){
+      res.render('admin/add-women-offer',{isAdmin})
+    }else if(req.params.id=='Boys'){
+      res.render('admin/add-boys-offer',{isAdmin})
+    }else if(req.params.id=='Girls'){
+      res.render('admin/add-girls-offer',{isAdmin})
+    }
+    
+ 
+})
+
+
+
+router.get('/all_orders', (req,res)=>{
+  adminHelpers.getAllOrders().then((orders)=>{
+    console.log(orders)
+    
+    console.log('order in router',orders);
+    res.render('admin/all-orders',{orders,isAdmin})
+    
+  })
+  isAdmin = true
+})
+
+router.get('/remove_category_offer/:id', (req,res)=>{
+  
+  console.log(req.params.id);
+  
+  adminHelpers.removeCategoryOffer(req.params.id).then(()=>{
+    res.json(response)
   })
 })
+
+
 
 module.exports = router;

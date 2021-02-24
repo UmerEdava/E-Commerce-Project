@@ -185,6 +185,13 @@ router.get('/cart', verifyLogin, async (req, res) => {
 
   let products = await userHelpers.getCartProducts(req.session.user._id)
 
+  let subTotal =await userHelpers.getSubtotal(req.session.user._id)
+  
+  var children = products.concat(subTotal);
+  
+
+  console.log('enthaavo entho',children);
+
   let total = 0
 
   if (products.length > 0) {
@@ -202,7 +209,8 @@ router.get('/cart', verifyLogin, async (req, res) => {
     'user': req.session.user._id,
     cartCount,
     total,
-    userData
+    userData,
+    subTotal
   })
 })
 
@@ -386,7 +394,8 @@ router.post('/OTP_verification', (req, res) => {
 })
 
 router.get('/checkout', verifyLogin, async (req, res) => {
-  isUser = true
+  console.log('id und',req.session.user._id);
+  
   let total = await userHelpers.getCartTotal(req.session.user._id)
   let userAddress =await userHelpers.getUserAddress(req.session.user._id)
   let cartCount =await userHelpers.getCartCount(req.session.user._id)
@@ -395,7 +404,7 @@ router.get('/checkout', verifyLogin, async (req, res) => {
   console.log('kitti ith thanne vegam aavatt',userAddress);
 
   
-  
+  isUser = true
   
   res.render('users/checkout', {
     isUser,
@@ -403,7 +412,7 @@ router.get('/checkout', verifyLogin, async (req, res) => {
     user: req.session.user,
     userAddress,
     cartCount,
-    
+    userData    
   })
 
 })
@@ -597,6 +606,10 @@ router.post('/verify_coupon', async(req,res) => {
       // console.log('cart total**',total);
     }
   })
+})
+
+router.get('/user_profile',(req,res)=>{
+  res.render('users/user-profile')
 })
 
 module.exports = router;

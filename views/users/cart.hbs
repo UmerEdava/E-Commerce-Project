@@ -85,7 +85,9 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="total-price first-row">Total</td>
+                                    {{#each subTotal}}
+                                    <td class="total-price first-row">{{../this.subTotal}}</td>
+                                    {{/each}}
                                     <td class="close-td first-row"><i class="ti-close"
                                             onclick="removeProductFromCart('{{this._id}}','{{this.product._id}}')"></i>
                                     </td>
@@ -94,6 +96,17 @@
                             </tbody>
                         </table>
                     </div>
+                    
+                    {{#unless products}}
+                        <div class="text-center">
+                            <div class="cart-buttons">
+                                <h2 class="mb-5">Cart is empty</h2>
+                                <a href="/" class="primary-btn continue-shop">Continue shopping</a>
+                            </div>
+                        </div>
+                    {{/unless}}
+
+                    {{#if products}}
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="cart-buttons">
@@ -118,6 +131,7 @@
                             </div>
                         </div>
                     </div>
+                    {{/if}}
                 </div>
             </div>
         </div>
@@ -254,8 +268,8 @@
         function changeQty(cartId, proId, userId, count) {
             let quantity = parseInt(document.getElementById(proId).value)
             count = parseInt(count)
-      
-            console.log('id in ajax',userId)
+
+            console.log('id in ajax', userId)
             $.ajax({
                 url: '/change_pro_qty',
                 data: {
@@ -263,17 +277,17 @@
                     product: proId,
                     user: userId,
                     count: count,
-                    quantity:quantity
+                    quantity: quantity
                 },
                 method: 'post',
                 success: (response) => {
                     if (response.removeProduct) {
                         alert('Product removed from cart')
                         location.reload()
-                    }else{
+                    } else {
                         console.log(response)
-                        document.getElementById(proId).value=quantity+count
-                        document.getElementById('total').innerHTML=response.total
+                        document.getElementById(proId).value = quantity + count
+                        document.getElementById('total').innerHTML = response.total
                     }
                 }
             })
@@ -290,10 +304,10 @@
                 method: 'post',
                 success: (response) => {
                     console.log(removed)
-                    if(removed){
-                        location.reload()             
+                    if (removed) {
+                        location.reload()
                     }
-                    
+
                 }
             })
         }
