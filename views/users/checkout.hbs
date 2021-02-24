@@ -19,16 +19,32 @@
         <div class="row container-fluid mb-5">
             {{#each userAddress}}
             <div class="col-md-4">
-                <div class="card" style="height: 17rem;">
+                <div class="card" style="height: 21rem;">
                     <div class="card-body">
-                        <h5 class="card-title" style="font-size:2rem">{{userAddress.firstName}}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted" style="font-size:1.5rem">{{this.phone}}</h6>
-                        <p class="card-text" style="font-size:1.2rem">{{this.streetAddress}}</p>
-                        <a href="#" class="card-link">{{this.town}}</a>
-                        <a href="#" class="card-link">{{this.pin}}</a>
+                        <h2 class="card-title" style="font-size:2rem">{{this.firstName}}</h2>
+                        <p class="card-text mb-1" style="font-size:1.2rem">{{this.streetAddress}}</p>
+                        <p class="card-link mb-1">{{this.town}}</p>
+                        <p class="card-text mb-1" style="font-size:1.2rem">{{this.state}} {{this.country}}</p>
+                        <p class="card-link mb-2">{{this.pin}}</p>
+                        
+                        <p class="card-text mb-1" style="font-size:1.2rem">Company: {{this.company}}</p>
+  
+                        <h6 class="card-subtitle mt-1 text-muted" style="font-size:1.5rem">Ph: {{this.phone}}</h6>
+                        <p class="card-text" style="font-size:1.2rem">{{this.email}}</p>
+
+                        <div class="mt-3">
+                        <button class="btn btn-primary">Use this address</button>
+
+                        <button class="btn btn-primary">Edit</button>
+                        </div>
                     </div>
+
+
                 </div>
+
             </div>
+
+
             {{/each}}
         </div>
         <form action="" class="checkout-form" id="shippingForm" method="POST">
@@ -140,12 +156,14 @@
             <div class="col-md-3">
                 <h6 style="font-size: 1.93625rem;">Discount Coupon</h6>
 
-                <input style="height: calc(4.4925rem + 2px);font-size: 1.5rem;" type="text" placeholder="Enter your coupon code" class="form-control" id="couponCode">
+                <input style="height: calc(4.4925rem + 2px);font-size: 1.5rem;" type="text"
+                    placeholder="Enter your coupon code" class="form-control" id="couponCode">
 
             </div>
 
             <div class="col-md-3">
-                <button type="submit" style="margin-top:2.1rem" class="site-btn place-btn" onclick="verifyCoupon()">Apply</button>
+                <button type="submit" style="margin-top:2.1rem" class="site-btn place-btn"
+                    onclick="verifyCoupon()">Apply</button>
             </div>
         </div>
 

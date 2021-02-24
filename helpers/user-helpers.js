@@ -119,12 +119,10 @@ module.exports = {
         return new Promise(async (resolve, reject) => {
             console.log('idyee', userId);
 
-            let address =await db.get().collection(collections.USER_COLLECTION).find({_id:objectId(userId)}).toArray()
+            let address =await db.get().collection(collections.USER_COLLECTION).findOne({_id:objectId(userId)})
 
-            console.log('enthaanithu',address);
-            console.log('kandu pidikkum');
 
-            resolve()
+            resolve(address.address)
 
 
         })

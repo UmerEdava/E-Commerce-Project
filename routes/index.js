@@ -186,6 +186,7 @@ router.get('/cart', verifyLogin, async (req, res) => {
   let products = await userHelpers.getCartProducts(req.session.user._id)
 
   let subTotal =await userHelpers.getSubtotal(req.session.user._id)
+  console.log('enthaanaavo..',subTotal);
   
   var children = products.concat(subTotal);
   
