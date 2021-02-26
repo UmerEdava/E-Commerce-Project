@@ -1,0 +1,70 @@
+<script>
+    NProgress.configure({ showSpinner: false });
+    NProgress.start();
+</script>
+
+<div class="mobile-sticky-body-overlay"></div>
+
+<div class="wrapper">
+    <div class="page-wrapper">
+        <div class="content-wrapper">
+            <div class="content">
+                <form>
+                    <input type="date" class="mb-3" id="firstDate" name="first"> to 
+                    <input type="date" id="lastDate" class="mb-3" name="last">
+                    <button class="btn btn-primary" type="submit" id="dateSubmit">Submit</button>
+                </form>
+                <table class="table" id="reportTable">
+                    <thead class="table-light">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">User Name</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Payment-method</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#dateSubmit').click(function (e) {
+        console.log('clicked')
+        e.preventDefault()
+        let firstDate = $('#firstDate').val()
+        var lastDate = $('#lastDate').val()
+        $('#reportTable').val('')
+        $.ajax({
+            method: 'post',
+            url: '/admin/sales_report',
+            data: {
+                firstDate,
+                lastDate
+            },
+            success: (response) => {
+                console.log('kittiyeaa..',response)
+
+                $(function () {
+                    $(function () {
+                        $.each(response, function (i, item) {
+                            $('<tr>').append(
+                                $('<td>').text(i + 1),
+                                $('<td>').text(item.deliveryDetails.firstName),
+                                $('<td>').text(item.date),
+                                $('<td>').text(item.paymentMethod),
+                                $('<td>').text(item.status),
+                                $('<td>').text("Rs." + item.totalAmount)).appendTo('#reportTable');
+                        });
+                    });
+                });
+            }
+        })
+    })
+</script>

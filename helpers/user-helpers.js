@@ -1,6 +1,7 @@
 var db = require('../config/connection');
 var collections = require('../config/collections');
 var objectId = require('mongodb').ObjectID;
+const moment = require('moment')
 const Razorpay = require('razorpay')
 var instance = new Razorpay({
     key_id: 'rzp_test_pq8S6HNUCPVXHT',
@@ -52,39 +53,39 @@ module.exports = {
 
         return new Promise(async (resolve, reject) => {
 
-                let user = await db.get().collection(collections.USER_COLLECTION).findOne({
-                    email: userData.email
-                })
-                if (user) {
-                    bcrypt.compare(userData.password, user.password).then((status) => {
-                        if (status) {
+            let user = await db.get().collection(collections.USER_COLLECTION).findOne({
+                email: userData.email
+            })
+            if (user) {
+                bcrypt.compare(userData.password, user.password).then((status) => {
+                    if (status) {
 
-                            let blocked = user.blocked
+                        let blocked = user.blocked
 
-                            if (!blocked) {
-                                response.user = user
-                                response.status = true
-                                resolve(response)
-                            }else{
-                                console.log('blocked user');
-                                reject()
-                            }
-
-
+                        if (!blocked) {
+                            response.user = user
+                            response.status = true
+                            resolve(response)
                         } else {
-                            console.log('login failed');
-                            resolve({
-                                status: false
-                            })
+                            console.log('blocked user');
+                            reject()
                         }
-                    })
-                } else {
-                    console.log('not a user');
-                    resolve({
-                        status: false
-                    })
-                }
-            
+
+
+                    } else {
+                        console.log('login failed');
+                        resolve({
+                            status: false
+                        })
+                    }
+                })
+            } else {
+                console.log('not a user');
+                resolve({
+                    status: false
+                })
+            }
+
 
         })
     },
@@ -510,16 +511,19 @@ module.exports = {
             let status = order['payment-method'] === 'COD' ? 'placed' : 'pending'
             let orderObj = {
                 deliveryDetails: {
+                    firstName: order.firstName,
+                    lastName: order.lastName,
                     phone: order.phone,
                     address: order.address,
                     pincode: order.pin
                 },
                 userId: objectId(order.userId),
+                
                 paymentMethod: order['payment-method'],
                 products: products,
                 totalAmount: total,
                 status: status,
-                date: new Date()
+                date: moment(new Date()).format('L')
             }
 
             let fullAddress = {
@@ -720,11 +724,11 @@ module.exports = {
         })
     },
     totalUsers: () => {
-        return new Promise(async(resolve,reject)=>{
+        return new Promise(async (resolve, reject) => {
             var count
             var users = await db.get().collection(collections.USER_COLLECTION).find().toArray()
             count = users.length
-            console.log('mmm',count);
+            console.log('mmm', count);
             resolve(count)
         })
     }

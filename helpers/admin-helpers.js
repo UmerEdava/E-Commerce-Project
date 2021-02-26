@@ -304,11 +304,24 @@ module.exports = {
         return new Promise(async(resolve,reject)=>{
             let pendingOrders = await db.get().collection(collection.ORDER_COLLECTION).find({
                 status:'pending'
-            })
+            }).toArray()
 
             console.log(pendingOrders);
 
             var count = pendingOrders.length
+
+            console.log(count);
+
+            resolve(count)
+        })
+    },
+    getOrdersCount: () => {
+        return new Promise(async(resolve,reject)=>{
+            let allOrders = await db.get().collection(collection.ORDER_COLLECTION).find().toArray()
+
+            console.log(allOrders);
+
+            var count = allOrders.length
 
             console.log(count);
 
@@ -357,6 +370,54 @@ module.exports = {
                 }
             })
             resolve()
+        })
+    },
+    salesRevenue: () => {
+        return new Promise(async(resolve,reject)=>{
+            // let deliveredOrders = await db.get().collection(collection.ORDER_COLLECTION).find({status:'delivered'}).toArray()
+            // console.log(deliveredOrders);
+
+            // let amount = deliveredOrders[0].totalAmount
+
+            // console.log(amount);
+
+            let totalRevenue =await db.get().collection(collection.ORDER_COLLECTION).aggregate([{
+                $group: {
+                 _id: null,
+                 total: { $sum: "$totalAmount" }
+                }
+              }]).toArray()
+
+              console.log(totalRevenue);
+
+              resolve(totalRevenue)
+
+             
+        })
+
+    },
+    reportOfSales: (firstDate,lastDate) => {
+        console.log(firstDate,lastDate);
+        return new Promise(async(resolve,reject)=>{
+            let salesReport =await db.get().collection(collection.ORDER_COLLECTION).aggregate([
+                {
+                    $match:{
+                        date:{
+                            $gte:firstDate,$lte:lastDate
+                        }
+                    }
+                },
+                {
+                    $project:{
+                        totalAmount:1,
+                        paymentMethod:1,
+                        status:1,
+                        date:1,
+                        deliveryDetails:1
+                    }
+                }
+            ]).toArray()
+            resolve(salesReport)
         })
     }
 }

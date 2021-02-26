@@ -4,6 +4,7 @@ const userHelpers = require('../helpers/user-helpers')
 const productHelpers = require('../helpers/product-helpers')
 const adminHelpers = require('../helpers/admin-helpers');
 var voucher_codes = require('voucher-code-generator');
+var moment = require("moment");
 const {
   response
 } = require('express');
@@ -22,13 +23,19 @@ router.get('/', async function (req, res, next) {
   var adminLoggedIn = req.session.admin
   if (adminLoggedIn) {
     isAdmin = true
+    salesRevenue = await adminHelpers.salesRevenue()
+    totalIncome = salesRevenue[0]
+    totalOrders = await adminHelpers.getOrdersCount()
+    pendingOrders = await adminHelpers.getPendingOrders()
     totalUsers = await userHelpers.totalUsers()
-    console.log('ethi..',totalUsers);
     totalProducts =await productHelpers.countOfProducts()
     res.render('admin/dashboard', {
       isAdmin,
       totalProducts,
-      totalUsers
+      totalUsers,
+      pendingOrders,
+      totalOrders,
+      totalIncome
     })
   } else {
     res.redirect('/admin/admin_login')
@@ -596,5 +603,22 @@ router.get('/view_order_products/:id', async (req, res) => {
   })
 })
 
+router.get('/sales_report', (req,res)=>{
+
+  isAdmin = true
+  res.render('admin/sales-report',{isAdmin})
+})
+
+router.post('/sales_report', (req,res)=>{
+  var firstDate = moment(req.body.firstDate).format("L");
+  var lastDate = moment(req.body.lastDate).format("L");
+
+  console.log(firstDate,lastDate);
+
+  adminHelpers.reportOfSales(firstDate, lastDate).then((response) => {
+    console.log(response);
+    res.json(response);
+  });
+})
 
 module.exports = router;
