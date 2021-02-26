@@ -86,6 +86,10 @@ router.post('/login', function (req, res) {
       req.session.loginError = 'Invalid email or password'
       res.redirect('/login')
     }
+  }).catch(()=>{
+    req.session.loginError = 'Sorry you have temporarily blocked'
+    console.log('user blocked');
+    res.redirect('/login')
   })
 })
 
@@ -399,6 +403,7 @@ router.get('/checkout', verifyLogin, async (req, res) => {
   
   let total = await userHelpers.getCartTotal(req.session.user._id)
   let userAddress =await userHelpers.getUserAddress(req.session.user._id)
+  
   let cartCount =await userHelpers.getCartCount(req.session.user._id)
   let userData = req.session.user
 

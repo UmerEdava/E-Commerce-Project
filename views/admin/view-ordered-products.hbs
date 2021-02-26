@@ -1,0 +1,45 @@
+<script>
+    NProgress.configure({ showSpinner: false });
+    NProgress.start();
+</script>
+
+<div class="mobile-sticky-body-overlay"></div>
+
+<div class="wrapper">
+    <div class="page-wrapper" style="padding-top: 2.875rem;">
+        <div class="content-wrapper">
+            <div class="content">
+                <div class="card card-default">
+                    <div class="card-header card-header-border-bottom">
+                        <h2>Ordered Products</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            {{#each products}}
+                            <div class="col-md-6 col-xl-3">
+                                <div class="card mb-4">
+                                    <a href="/view_product/{{this.product._id}}1" class="image">
+                                        <img class="card-img-top" height="130px" width="80px"
+                                            src="/images/product-images/{{this.product._id}}1.jpg">
+                                    </a>
+
+                                    <div class="card-body">
+                                        <h5 class="card-title text-primary">Card Title</h5>
+                                        <p class="card-text pb-3">Lorem ipsum dolor sit amet, consectetur adipisicing
+                                            elit sed do
+                                            eiusmod tempor </p>
+                                        <a href="#" class="btn btn-outline-primary">Go somewhere</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

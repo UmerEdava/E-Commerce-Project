@@ -10506,7 +10506,7 @@ input[type=radio] {
     font-size: 0.625rem;
     font-weight: 600;
     text-transform: uppercase;
-    background-color: #ffffff;
+    background-color: #e93434;
     border: 1px solid #c2cfd6;
     border-radius: 2px;
     transition: opacity background .3s ease-out; }

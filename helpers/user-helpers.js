@@ -51,29 +51,41 @@ module.exports = {
         let response = {}
 
         return new Promise(async (resolve, reject) => {
-            let user = await db.get().collection(collections.USER_COLLECTION).findOne({
-                email: userData.email
-            })
-            if (user) {
-                bcrypt.compare(userData.password, user.password).then((status) => {
-                    if (status) {
 
-                        response.user = user
-                        response.status = true
-                        resolve(response)
-                    } else {
-                        console.log('login failed');
-                        resolve({
-                            status: false
-                        })
-                    }
+                let user = await db.get().collection(collections.USER_COLLECTION).findOne({
+                    email: userData.email
                 })
-            } else {
-                console.log('not a user');
-                resolve({
-                    status: false
-                })
-            }
+                if (user) {
+                    bcrypt.compare(userData.password, user.password).then((status) => {
+                        if (status) {
+
+                            let blocked = user.blocked
+
+                            if (!blocked) {
+                                response.user = user
+                                response.status = true
+                                resolve(response)
+                            }else{
+                                console.log('blocked user');
+                                reject()
+                            }
+
+
+                        } else {
+                            console.log('login failed');
+                            resolve({
+                                status: false
+                            })
+                        }
+                    })
+                } else {
+                    console.log('not a user');
+                    resolve({
+                        status: false
+                    })
+                }
+            
+
         })
     },
     otpLogin: (mobileNumber) => {
@@ -115,11 +127,13 @@ module.exports = {
         })
     },
     getUserAddress: (userId) => {
-        console.log('queriyil id vanne..',userId);
+        console.log('queriyil id vanne..', userId);
         return new Promise(async (resolve, reject) => {
             console.log('idyee', userId);
 
-            let address =await db.get().collection(collections.USER_COLLECTION).findOne({_id:objectId(userId)})
+            let address = await db.get().collection(collections.USER_COLLECTION).findOne({
+                _id: objectId(userId)
+            })
 
 
             resolve(address.address)
@@ -433,63 +447,63 @@ module.exports = {
     getSubtotal: (userId) => {
         console.log('userIduserId', userId);
 
-        return new Promise(async(resolve, reject) => {
-            let subTotal =await db.get().collection(collections.CART_COLLECTION).aggregate([{
-                $match: {
-                    user: objectId(userId)
-                }
-            },
-            {
-                $unwind: '$products'
-            },
-            {
-                $project: {
-                    item: '$products.item',
-                    quantity: '$products.quantity'
-                }
-            },
-            {
-                $lookup: {
-                    from: collections.PRODUCT_COLLECTION,
-                    localField: 'item',
-                    foreignField: '_id',
-                    as: 'productDetails'
-                }
-            },
-            {
-                $project: {
-                    item: 1,
-                    quantity: 1,
-                    product: {
-                        $arrayElemAt: ['$productDetails', 0]
+        return new Promise(async (resolve, reject) => {
+            let subTotal = await db.get().collection(collections.CART_COLLECTION).aggregate([{
+                    $match: {
+                        user: objectId(userId)
                     }
-                }
-            },
-            {
-                $project: {
-                    quantity: {
-                        $toInt: '$quantity'
-                    },
-                    unitPrice: {
-                        $toInt: '$product.price'
+                },
+                {
+                    $unwind: '$products'
+                },
+                {
+                    $project: {
+                        item: '$products.item',
+                        quantity: '$products.quantity'
                     }
+                },
+                {
+                    $lookup: {
+                        from: collections.PRODUCT_COLLECTION,
+                        localField: 'item',
+                        foreignField: '_id',
+                        as: 'productDetails'
+                    }
+                },
+                {
+                    $project: {
+                        item: 1,
+                        quantity: 1,
+                        product: {
+                            $arrayElemAt: ['$productDetails', 0]
+                        }
+                    }
+                },
+                {
+                    $project: {
+                        quantity: {
+                            $toInt: '$quantity'
+                        },
+                        unitPrice: {
+                            $toInt: '$product.price'
+                        }
+                    }
+                },
+                {
+                    $project: {
+                        subTotal: {
+                            $multiply: ["$unitPrice", "$quantity"]
+
+                        }
+                    }
+
                 }
-            },
-            {
-                $project: { 
-                    subTotal: { 
-                        $multiply: [ "$unitPrice", "$quantity" ] 
-            
-                    } 
-                }
-        
-            }
-            
-        ]).toArray()
-        console.log('cart total', subTotal);
-        resolve(subTotal)
-    })
-},
+
+            ]).toArray()
+            console.log('cart total', subTotal);
+            resolve(subTotal)
+        })
+    },
     placeOrder: (order, products, total) => {
         return new Promise((resolve, reject) => {
             console.log(order, products, total);
@@ -677,6 +691,41 @@ module.exports = {
             }).then(() => {
                 resolve()
             })
+        })
+    },
+    blockUser: (userId) => {
+        console.log('queriyil', userId);
+        return new Promise((resolve, reject) => {
+            db.get().collection(collections.USER_COLLECTION).updateOne({
+                _id: objectId(userId)
+            }, {
+                $set: {
+                    blocked: true
+                }
+            })
+            resolve()
+        })
+    },
+    unblockUser: (userId) => {
+        console.log('queriyil', userId);
+        return new Promise((resolve, reject) => {
+            db.get().collection(collections.USER_COLLECTION).updateOne({
+                _id: objectId(userId)
+            }, {
+                $set: {
+                    blocked: false
+                }
+            })
+            resolve()
+        })
+    },
+    totalUsers: () => {
+        return new Promise(async(resolve,reject)=>{
+            var count
+            var users = await db.get().collection(collections.USER_COLLECTION).find().toArray()
+            count = users.length
+            console.log('mmm',count);
+            resolve(count)
         })
     }
 }

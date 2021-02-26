@@ -129,14 +129,20 @@
                                 <td>{{this.gender}}</td>
                                 <td>{{this.age}}</td>
                                 <td>{{this.email}}</td>
-                                <td>
+                                {{!-- <td>
                                     <label style="width: 73px;" class="switch switch-text switch-success switch-pill form-control-label">
                                         <input type="checkbox" class="switch-input form-check-input" value="on"
                                             checked="">
                                         <span class="switch-label" data-on="active" data-off="blocked"></span>
                                         <span class="switch-handle"></span>
                                     </label>
-                                </td>
+                                </td> --}}
+                                {{#unless this.blocked}}
+                                <td><button class="btn btn-danger" id="blockButton" onclick="block('{{this._id}}')">Block</button></td>
+                                {{/unless}}
+                                {{#if this.blocked}}
+                                <td><button class="btn btn-danger" id="unblockButton" onclick="unblock('{{this._id}}')">Unblock</button></td>
+                                {{/if}}
                                 <td class="text-right">
                                     <div class="dropdown show d-inline-block widget-dropdown">
                                         <a class="dropdown-toggle icon-burger-mini" href="#" role="button"
@@ -208,6 +214,32 @@
                 "dom": '<"row justify-content-between top-information"lf>rt<"row justify-content-between bottom-information"ip><"clear">'
             });
         });
+    </script>
+
+    <script>
+        function block(userId){
+            console.log('start',userId)
+            $.ajax({
+                url:'/admin/block_user'+userId,
+                method:'get',
+                success:(response)=>{
+                    alert('blocked')
+                    $("#responsive-data-table").reload()
+                }
+            })
+        }
+
+        function unblock(userId){
+            console.log('start',userId)
+            $.ajax({
+                url:'/admin/unblock_user'+userId,
+                method:'get',
+                success:(response)=>{
+                    alert('unblocked')
+                    $("#responsive-data-table").reload()
+                }
+            })
+        }
     </script>
 
 

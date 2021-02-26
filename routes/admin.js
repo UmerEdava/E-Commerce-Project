@@ -18,12 +18,17 @@ var verifyLogin = (req, res, next) => {
 }
 
 /* GET users listing. */
-router.get('/', function (req, res, next) {
+router.get('/', async function (req, res, next) {
   var adminLoggedIn = req.session.admin
   if (adminLoggedIn) {
     isAdmin = true
+    totalUsers = await userHelpers.totalUsers()
+    console.log('ethi..',totalUsers);
+    totalProducts =await productHelpers.countOfProducts()
     res.render('admin/dashboard', {
-      isAdmin
+      isAdmin,
+      totalProducts,
+      totalUsers
     })
   } else {
     res.redirect('/admin/admin_login')
@@ -79,7 +84,7 @@ router.get('/all_products', (req, res) => {
   let adminLogin = req.session.admin
   if (adminLogin) {
     productHelpers.getAllProducts().then((products) => {
-      console.log('just for testing',products);
+      console.log('just for testing', products);
       res.render('admin/all-products', {
         products,
         isAdmin
@@ -411,15 +416,15 @@ router.post('/edit_product_offer', (req, res) => {
   })
 })
 
-router.get('/categories_for_offer', async(req, res) => {
-  
+router.get('/categories_for_offer', async (req, res) => {
+
   let men = await adminHelpers.getProductDetailsForCategory('Men')
   let women = await adminHelpers.getProductDetailsForCategory('Women')
   let boys = await adminHelpers.getProductDetailsForCategory('Boys')
   let girls = await adminHelpers.getProductDetailsForCategory('Girls')
 
-  console.log('ivideyum vannu',men);
-  
+  console.log('ivideyum vannu', men);
+
 
   isAdmin = true
   isSubrouter = true
@@ -434,9 +439,9 @@ router.get('/categories_for_offer', async(req, res) => {
 })
 
 router.post('/add_category_offer', (req, res) => {
-  console.log(req.body,'lkskdjlsj***');
-  
-  adminHelpers.addOfferForCategory(req.body).then(()=>{
+  console.log(req.body, 'lkskdjlsj***');
+
+  adminHelpers.addOfferForCategory(req.body).then(() => {
     req.session.categoryOffer
     res.redirect('/admin/categories_for_offer')
   })
@@ -445,7 +450,9 @@ router.post('/add_category_offer', (req, res) => {
 router.get('/generate_coupon', (req, res) => {
   let isAdmin = true
   let isSubrouter = true
-  res.render('admin/generate-coupon',{isAdmin})
+  res.render('admin/generate-coupon', {
+    isAdmin
+  })
 })
 
 router.post('/generate_coupon', (req, res) => {
@@ -457,67 +464,137 @@ router.post('/generate_coupon', (req, res) => {
   });
 
   let coupon = couponCode[0]
-  
-  adminHelpers.saveCoupon(req.body,coupon)
+
+  adminHelpers.saveCoupon(req.body, coupon)
   res.redirect('/admin/all_coupons')
 })
 
 router.get('/all_coupons', (req, res) => {
-  adminHelpers.getAllCoupons().then((coupons)=>{
+  adminHelpers.getAllCoupons().then((coupons) => {
     isAdmin = true
     isSubrouter = true
-    res.render('admin/all-coupons',{coupons,isAdmin})
+    res.render('admin/all-coupons', {
+      coupons,
+      isAdmin
+    })
   })
 })
 
-router.post('/delete_coupon', (req,res)=>{
-  console.log('routeril',req.body);
-  adminHelpers.deleteCoupon(req.body).then(()=>{
-    res.json({status:true})
+router.post('/delete_coupon', (req, res) => {
+  console.log('routeril', req.body);
+  adminHelpers.deleteCoupon(req.body).then(() => {
+    res.json({
+      status: true
+    })
   })
 })
 
-router.get('/add_category_offer/:id', (req,res)=>{
+router.get('/add_category_offer/:id', (req, res) => {
 
-  console.log('vanno..',req.params.id)
-  
-    isAdmin = true
+  console.log('vanno..', req.params.id)
 
-    if(req.params.id=='Men'){
-      res.render('admin/add-men-offer',{isAdmin})
-    }else if(req.params.id=='Women'){
-      res.render('admin/add-women-offer',{isAdmin})
-    }else if(req.params.id=='Boys'){
-      res.render('admin/add-boys-offer',{isAdmin})
-    }else if(req.params.id=='Girls'){
-      res.render('admin/add-girls-offer',{isAdmin})
-    }
-    
- 
+  isAdmin = true
+
+  if (req.params.id == 'Men') {
+    res.render('admin/add-men-offer', {
+      isAdmin
+    })
+  } else if (req.params.id == 'Women') {
+    res.render('admin/add-women-offer', {
+      isAdmin
+    })
+  } else if (req.params.id == 'Boys') {
+    res.render('admin/add-boys-offer', {
+      isAdmin
+    })
+  } else if (req.params.id == 'Girls') {
+    res.render('admin/add-girls-offer', {
+      isAdmin
+    })
+  }
+
+
 })
 
 
 
-router.get('/all_orders', (req,res)=>{
-  adminHelpers.getAllOrders().then((orders)=>{
+router.get('/all_orders', (req, res) => {
+  adminHelpers.getAllOrders().then((orders) => {
     console.log(orders)
-    
-    console.log('order in router',orders);
-    res.render('admin/all-orders',{orders,isAdmin})
-    
+
+    console.log('order in router', orders);
+    res.render('admin/all-orders', {
+      orders,
+      isAdmin
+    })
+
   })
   isAdmin = true
 })
 
-router.get('/remove_category_offer/:id', (req,res)=>{
-  
+router.get('/remove_category_offer/:id', (req, res) => {
+
   console.log(req.params.id);
-  
-  adminHelpers.removeCategoryOffer(req.params.id).then(()=>{
+
+  adminHelpers.removeCategoryOffer(req.params.id).then(() => {
     res.json(response)
   })
 })
 
+router.get('/block_user:id', (req, res) => {
+  console.log('routeree..', req.params.id);
+  userHelpers.blockUser(req.params.id).then(() => {
+    res.json(response)
+  })
+})
+
+router.get('/unblock_user:id', (req, res) => {
+  userHelpers.unblockUser(req.params.id).then(() => {
+    res.json(response)
+  })
+})
+
+router.get('/confirm_order:id', (req, res) => {
+  console.log('routeril ethiye...', req.params.id);
+  adminHelpers.confirmOrder(req.params.id).then(() => {
+    res.json(response)
+  })
+})
+
+router.get('/cancel_order:id', (req, res) => {
+  console.log('routeril ethiye...', req.params.id);
+  adminHelpers.cancelOrder(req.params.id).then(() => {
+    res.json(response)
+  })
+})
+
+router.get('/ship_order:id', (req, res) => {
+  console.log('routeril ethiye...', req.params.id);
+  adminHelpers.shipOrder(req.params.id).then(() => {
+    res.json(response)
+  })
+})
+
+router.get('/delivered_order:id', (req, res) => {
+  console.log('routeril ethiye...', req.params.id);
+  adminHelpers.deliveredOrder(req.params.id).then(() => {
+    res.json(response)
+  })
+})
+
+router.get('/view_order_products/:id', async (req, res) => {
+  console.log(req.params.id);
+  let products = await userHelpers.getOrderProducts(req.params.id)
+  console.log(products);
+  isSubrouter = true
+  isAdmin = true
+  res.render('admin/view-ordered-products', {
+    user: req.session.user,
+    products,
+    isSubrouter,
+    isAdmin
+  })
+})
 
 
 module.exports = router;

@@ -299,5 +299,64 @@ module.exports = {
             console.log('orders', orders);
             resolve(orders)
         })
+    },
+    getPendingOrders: () => {
+        return new Promise(async(resolve,reject)=>{
+            let pendingOrders = await db.get().collection(collection.ORDER_COLLECTION).find({
+                status:'pending'
+            })
+
+            console.log(pendingOrders);
+
+            var count = pendingOrders.length
+
+            console.log(count);
+
+            resolve(count)
+        })
+    },
+    confirmOrder: (orderId) => {
+        console.log('queriyil ethiye..',orderId);
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.ORDER_COLLECTION).updateOne({_id:objectId(orderId)},{
+                $set:{
+                    status:'confirmed'
+                }
+            })
+            resolve()
+        })
+    },
+    cancelOrder: (orderId) => {
+        console.log('queriyil ethiye..',orderId);
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.ORDER_COLLECTION).updateOne({_id:objectId(orderId)},{
+                $set:{
+                    status:'cancelled'
+                }
+            })
+            resolve()
+        })
+    },
+    shipOrder: (orderId) => {
+        console.log('queriyil ethiye..',orderId);
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.ORDER_COLLECTION).updateOne({_id:objectId(orderId)},{
+                $set:{
+                    status:'shipped'
+                }
+            })
+            resolve()
+        })
+    },
+    deliveredOrder: (orderId) => {
+        console.log('queriyil ethiye..',orderId);
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collection.ORDER_COLLECTION).updateOne({_id:objectId(orderId)},{
+                $set:{
+                    status:'delivered'
+                }
+            })
+            resolve()
+        })
     }
 }

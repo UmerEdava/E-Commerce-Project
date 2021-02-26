@@ -226,15 +226,35 @@ module.exports = {
         })
     },
     clearMenCollection: () => {
-        db.get().collection(collections.PRODUCT_COLLECTION).deleteMany({for:'men'})
+        db.get().collection(collections.PRODUCT_COLLECTION).deleteMany({
+            for: 'men'
+        })
     },
     clearWomenCollection: () => {
-        db.get().collection(collections.PRODUCT_COLLECTION).deleteMany({for:'women'})
+        db.get().collection(collections.PRODUCT_COLLECTION).deleteMany({
+            for: 'women'
+        })
     },
     clearBoysCollection: () => {
-        db.get().collection(collections.PRODUCT_COLLECTION).deleteMany({for:'boys'})
+        db.get().collection(collections.PRODUCT_COLLECTION).deleteMany({
+            for: 'boys'
+        })
     },
     clearGirlsCollection: () => {
-        db.get().collection(collections.PRODUCT_COLLECTION).deleteMany({for:'girls'})
+        db.get().collection(collections.PRODUCT_COLLECTION).deleteMany({
+            for: 'girls'
+        })
+    },
+    countOfProducts: () => {
+        
+        return new Promise(async(resolve, reject) => {
+            var count
+
+            var products = await db.get().collection(collections.PRODUCT_COLLECTION).find().toArray()
+
+            count = products.length
+
+            resolve(count)
+        })
     }
 }

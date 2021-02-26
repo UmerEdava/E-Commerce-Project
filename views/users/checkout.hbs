@@ -21,21 +21,26 @@
             <div class="col-md-4">
                 <div class="card" style="height: 21rem;">
                     <div class="card-body">
-                        <h2 class="card-title" style="font-size:2rem">{{this.firstName}}</h2>
-                        <p class="card-text mb-1" style="font-size:1.2rem">{{this.streetAddress}}</p>
-                        <p class="card-link mb-1">{{this.town}}</p>
-                        <p class="card-text mb-1" style="font-size:1.2rem">{{this.state}} {{this.country}}</p>
-                        <p class="card-link mb-2">{{this.pin}}</p>
+                        <div style="clear: both">
+                            <h2 id="firstName" class="card-title" style="font-size:2rem;">{{this.firstName}} <span id="lastName">{{this.lastName}}</span></h2>                            
+                        </div>
                         
-                        <p class="card-text mb-1" style="font-size:1.2rem">Company: {{this.company}}</p>
-  
-                        <h6 class="card-subtitle mt-1 text-muted" style="font-size:1.5rem">Ph: {{this.phone}}</h6>
-                        <p class="card-text" style="font-size:1.2rem">{{this.email}}</p>
+                        {{!-- <h2 id="firstName" class="card-title" style="font-size:2rem">{{this.firstName}}</h2>
+                        <h2 id="lastName" class="card-title" style="font-size:2rem">{{this.lastName}}</h2> --}}
+                        <p id="streetAddress" class="card-text mb-1" style="font-size:1.2rem">{{this.streetAddress}}</p>
+                        <p id="town" class="card-link mb-1">{{this.town}}</p>
+                        <p id="state" class="card-text mb-1" style="font-size:1.2rem">{{this.state}} <span id="country">{{this.country}}</span></p>
+                        <p id="pin" class="card-link mb-2">{{this.pin}}</p>
+
+                        <p id="company" class="card-text mb-1" style="font-size:1.2rem">Company: {{this.company}}</p>
+
+                        <h6 id="phone" class="card-subtitle mt-1 text-muted" style="font-size:1.5rem">Ph: {{this.phone}}</h6>
+                        <p id="email" class="card-text" style="font-size:1.2rem">{{this.email}}</p>
 
                         <div class="mt-3">
-                        <button class="btn btn-primary">Use this address</button>
+                            <button class="btn btn-primary" onclick="useAddress()">Use this address</button>
 
-                        <button class="btn btn-primary">Edit</button>
+                            <button class="btn btn-primary">Edit</button>
                         </div>
                     </div>
 
