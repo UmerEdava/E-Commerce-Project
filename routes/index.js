@@ -189,13 +189,7 @@ router.get('/cart', verifyLogin, async (req, res) => {
 
   let products = await userHelpers.getCartProducts(req.session.user._id)
 
-  let subTotal =await userHelpers.getSubtotal(req.session.user._id)
-  console.log('enthaanaavo..',subTotal);
-  
-  var children = products.concat(subTotal);
-  
-
-  console.log('enthaavo entho',children);
+  console.log(products);
 
   let total = 0
 
@@ -211,11 +205,10 @@ router.get('/cart', verifyLogin, async (req, res) => {
   res.render('users/cart', {
     isUser,
     products,
-    'user': req.session.user._id,
+    user: req.session.user._id,
     cartCount,
     total,
-    userData,
-    subTotal
+    userData
   })
 })
 
@@ -224,7 +217,13 @@ router.post('/change_pro_qty', (req, res, next) => {
 
   userHelpers.changeProQty(req.body).then(async (response) => {
     response.total = await userHelpers.getCartTotal(req.body.user)
-    res.json(response)
+    response.subTotal = await userHelpers.getSubTotal(req.body.user)
+    if(response.subTotal>0 && response.total>0){
+      res.json(response)
+    }else{
+      res.json({removeProduct:true})
+    }
+    
   })
 })
 
@@ -261,18 +260,19 @@ router.get('/add_to_cart/:id', (req, res) => {
 })
 
 
-
 router.post('/clear_cart', (req, res) => {
   console.log(req.body, 'arrived in router');
   userHelpers.clearCart(req.body).then(() => {
-
+    console.log('returned');
+    res.json(response)
   })
 })
 
 router.post('/remove_product_from_cart', (req, res) => {
   console.log(req.body, 'hari arrived in router');
-  userHelpers.removeProductFromCart(req.body).then((response) => {
-    res.json(removed)
+  userHelpers.removeProductFromCart(req.body).then(() => {
+    console.log('removed');
+    res.json(response)
   })
 })
 
@@ -616,6 +616,15 @@ router.post('/verify_coupon', async(req,res) => {
 
 router.get('/user_profile',(req,res)=>{
   res.render('users/user-profile')
+})
+
+router.get('/edit_address_checkout/:firstName:lastName:streetAddress:town:state:country:pin:company:phone:email',(req,res)=>{
+  console.log(req.params.company);
+  
+  
+  console.log('reached');
+  isUserSubrouter = true
+  res.render('users/edit-address',{isUserSubrouter})
 })
 
 module.exports = router;

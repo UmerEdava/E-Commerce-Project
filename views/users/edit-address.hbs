@@ -1,0 +1,60 @@
+<div class="row container-fluid text-center">
+    <div class="col-md-6 order-md-1">
+        <h4 class="mb-3">Billing address</h4>
+        <form class="needs-validation" novalidate="">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="firstName">First name</label>
+                    <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="lastName">Last name</label>
+                    <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
+                    
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="username">Company</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" id="company" value="" placeholder="Company name" >
+                    
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" value="" placeholder="you@example.com">
+            </div>
+
+            <div class="mb-3">
+                <label for="address">Street Address</label>
+                <input type="text" class="form-control" id="address" placeholder="1234 Main St" value="" required="">
+            </div>
+
+            <div class="mb-3">
+                <label for="address">Town</label>
+                <input type="text" class="form-control" id="address" placeholder="1234 Main St" value="" required="">
+            </div>
+
+            <div class="row">
+                <div class="col-md-5 mb-3">
+                    <label for="country">Country</label>
+                    <input type="text" class="form-control" name="country" value="" id="state" placeholder="Country">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="state">State</label>
+                    <input type="text" class="form-control" name="state" value="" id="country" placeholder="State">
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label for="zip">Pin</label>
+                    <input type="text" class="form-control" id="pin" name="pin" placeholder="Pin" required="">
+                    <div class="invalid-feedback">
+                        Pin code required.
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary btn-lg btn-block" type="submit">Update Address</button>
+        </form>
+    </div>
+</div>

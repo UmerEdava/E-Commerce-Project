@@ -280,10 +280,13 @@ module.exports = {
                         quantity: 1,
                         product: {
                             $arrayElemAt: ['$productDetails', 0]
-                        }
+                        },
+                        subTotal: {$multiply:[{$arrayElemAt:["$productDetails.price",0]},"$quantity"]}
                     }
                 }
             ]).toArray()
+
+            console.log(cartItems);
 
             resolve(cartItems)
         })
@@ -337,27 +340,33 @@ module.exports = {
 
         })
     },
-    clearCart: (cartDetails) => {
-        console.log(req.body, 'arrived in query');
+    clearCart: (userId) => {
+        console.log(userId, 'arrived in query');
         return new Promise((resolve, reject) => {
-            db.get().collection(collections.CART_COLLECTION).remove({
-                _id: objectId(cartDetails.cart)
+            db.get().collection(collections.CART_COLLECTION).deleteOne({
+                user: objectId(userId.userId)
             })
+            resolve()
         })
     },
     removeProductFromCart: (productDetails) => {
         console.log(productDetails, 'hari arrived in query');
-        db.get().collection(collections.CART_COLLECTION).updateOne({
-            _id: objectId(productDetails.cart)
-        }, {
-            $pull: {
-                products: {
-                    item: objectId(productDetails.product)
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collections.CART_COLLECTION).updateOne({
+                _id: objectId(productDetails.cart)
+            }, {
+                $pull: {
+                    products: {
+                        item: objectId(productDetails.product)
+                    }
                 }
-            }
-        }).then((response) => {
-            resolve(response)
+            })
+    
+            console.log('over');
+    
+            resolve()
         })
+        
     },
     signupOtpRequest: (number, email) => {
         return new Promise(async (resolve, reject) => {
@@ -379,11 +388,21 @@ module.exports = {
                 phone: number
             })
 
-            if (user) {
-                resolve(user.phone)
-            } else {
-                reject()
+            
+
+            console.log(user);
+
+            if(!user.blocked){
+                if (user) {
+                    resolve(user.phone)
+                } else {
+                    reject()
+                }
+            }else{
+                resolve('blocked')
             }
+
+            
         })
     },
     getCartTotal: (userId) => {
@@ -441,8 +460,78 @@ module.exports = {
                     }
                 }
             ]).toArray()
-            console.log('cart total', total[0].total);
-            resolve(total[0].total)
+            
+            if(total.length>0){
+                resolve(total[0].total)
+            }else{
+                total = 0
+                resolve(total)
+            }
+            
+        })
+    },
+    getSubTotal: (userId) => {
+        console.log(userId, 'user id in getcarttotal');
+        return new Promise(async (resolve, reject) => {
+            let subTotal = await db.get().collection(collections.CART_COLLECTION).aggregate([{
+                    $match: {
+                        user: objectId(userId)
+                    }
+                },
+                {
+                    $unwind: '$products'
+                },
+                {
+                    $project: {
+                        item: '$products.item',
+                        quantity: '$products.quantity'
+                    }
+                },
+                {
+                    $lookup: {
+                        from: collections.PRODUCT_COLLECTION,
+                        localField: 'item',
+                        foreignField: '_id',
+                        as: 'productDetails'
+                    }
+                },
+                {
+                    $project: {
+                        item: 1,
+                        quantity: 1,
+                        product: {
+                            $arrayElemAt: ['$productDetails', 0]
+                        }
+                    }
+                },
+                {
+                    $project: {
+                        quantity: {
+                            $toInt: '$quantity'
+                        },
+                        unitPrice: {
+                            $toInt: '$product.price'
+                        }
+                    }
+                },
+                {
+                    $project: {
+                        _id: null,
+                        subTotal: {
+                            $sum: {$multiply:['$quantity','$unitPrice']}
+                        }
+                    }
+                },
+                
+            ]).toArray()
+            
+            if(subTotal.length>0){
+                resolve(subTotal[0].subTotal)
+            }else{
+                subTotal = 0
+                resolve(subTotal)
+            }
+            
         })
     },
     getSubtotal: (userId) => {

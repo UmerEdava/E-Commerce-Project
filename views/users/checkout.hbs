@@ -22,25 +22,27 @@
                 <div class="card" style="height: 21rem;">
                     <div class="card-body">
                         <div style="clear: both">
-                            <h2 id="firstName" class="card-title" style="font-size:2rem;">{{this.firstName}} <span id="lastName">{{this.lastName}}</span></h2>                            
+                            <h2 id="" class="card-title" style="font-size:2rem;">{{this.firstName}} <span id="">{{this.lastName}}</span></h2>                            
                         </div>
                         
                         {{!-- <h2 id="firstName" class="card-title" style="font-size:2rem">{{this.firstName}}</h2>
                         <h2 id="lastName" class="card-title" style="font-size:2rem">{{this.lastName}}</h2> --}}
-                        <p id="streetAddress" class="card-text mb-1" style="font-size:1.2rem">{{this.streetAddress}}</p>
-                        <p id="town" class="card-link mb-1">{{this.town}}</p>
-                        <p id="state" class="card-text mb-1" style="font-size:1.2rem">{{this.state}} <span id="country">{{this.country}}</span></p>
-                        <p id="pin" class="card-link mb-2">{{this.pin}}</p>
+                        <p id="" class="card-text mb-1" style="font-size:1.2rem">{{this.streetAddress}}</p>
+                        <p id="" class="card-link mb-1">{{this.town}}</p>
+                        <p id="" class="card-text mb-1" style="font-size:1.2rem">{{this.state}} <span id="">{{this.country}}</span></p>
+                        <p id="" class="card-link mb-2">{{this.pin}}</p>
 
-                        <p id="company" class="card-text mb-1" style="font-size:1.2rem">Company: {{this.company}}</p>
+                        <p id="" class="card-text mb-1" style="font-size:1.2rem">Company: {{this.company}}</p>
 
-                        <h6 id="phone" class="card-subtitle mt-1 text-muted" style="font-size:1.5rem">Ph: {{this.phone}}</h6>
-                        <p id="email" class="card-text" style="font-size:1.2rem">{{this.email}}</p>
+                        <h6 id="" class="card-subtitle mt-1 text-muted" style="font-size:1.5rem">Ph: {{this.phone}}</h6>
+                        <p id="" class="card-text" style="font-size:1.2rem">{{this.email}}</p>
 
                         <div class="mt-3">
-                            <button class="btn btn-primary" onclick="useAddress()">Use this address</button>
+                            <button class="btn btn-primary" onclick="useAddress('{{this.firstName}}','{{this.lastName}}','{{this.streetAddress}}','{{this.town}}','{{this.state}}','{{this.country}}','{{this.pin}}','{{this.company}}','{{this.phone}}','{{this.email}}')">Use this address</button>
 
-                            <button class="btn btn-primary">Edit</button>
+                            <a class="btn btn-primary" href="/edit_address_checkout/{{this.firstName}},{{this.lastName}},{{this.streetAddress}},{{this.town}},{{this.state}},{{this.country}},{{this.pin}},{{this.company}},{{this.phone}},{{this.email}}">Edit</a>
+
+                            <button class="btn btn-primary" onclick="removeAddress()">Delete</button>
                         </div>
                     </div>
 
@@ -62,15 +64,15 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <label for="fir">First Name<span>*</span></label>
-                            <input type="text" id="fir" name="firstName">
+                            <input type="text" id="firstName" name="firstName">
                         </div>
                         <div class="col-lg-6">
                             <label for="last">Last Name<span>*</span></label>
-                            <input type="text" id="last" name="lastName">
+                            <input type="text" id="lastName" name="lastName">
                         </div>
                         <div class="col-lg-12">
                             <label for="comp-name">Company Name</label>
-                            <input type="text" id="comp-name" name="company">
+                            <input type="text" id="company" name="company">
                         </div>
                         <div class="col-lg-12">
                             <label for="country">Country<span>*</span></label>
@@ -78,11 +80,11 @@
                         </div>
                         <div class="col-lg-12">
                             <label for="country">State<span>*</span></label>
-                            <input type="text" id="country" name="state" required>
+                            <input type="text" id="state" name="state" required>
                         </div>
                         <div class="col-lg-12">
                             <label for="address">Street Address<span>*</span></label>
-                            <input type="text" id="street" class="street-first" name="address" required>
+                            <input type="text" id="streetAddress" class="street-first" name="address" required>
                         </div>
                         <div class="col-lg-12">
                             <label for="pin">Postcode / ZIP (optional)</label>
@@ -289,4 +291,23 @@
             }
         })
     }
+</script>
+
+<script>
+    function useAddress(firstName, lastName, streetAddress, town, state, country, pin, company, phone, email) {
+        console.log('clicked')
+        console.log(firstName, lastName, streetAddress, town, state, country, pin, company, phone, email)
+        document.getElementById('firstName').value = firstName
+        document.getElementById('lastName').value = lastName
+        document.getElementById('streetAddress').value = streetAddress
+        document.getElementById('town').value = town
+        document.getElementById('state').value = state
+        document.getElementById('country').value = country
+        document.getElementById('pin').value = pin
+        document.getElementById('company').value = company
+        document.getElementById('phone').value = phone
+        document.getElementById('email').value = email
+    }
+
+    
 </script>

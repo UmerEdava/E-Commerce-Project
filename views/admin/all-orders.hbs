@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="card-body pt-0 pb-5">
-                    <table class="table card-table table-responsive table-responsive-large" style="width:100%">
+                    <table id="ordersTable" class="table card-table table-responsive table-responsive-large" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Order ID</th>
@@ -187,4 +187,10 @@
         $('#confirmButton').disable()
     }
    
+</script>
+
+<script>
+    $(document).ready( function () {
+    $('#ordersTable').DataTable();
+    });
 </script>

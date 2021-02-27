@@ -32,15 +32,7 @@
   <!-- FAVICON -->
   <link href="assets/img/favicon.png" rel="shortcut icon" />
 
-  <!--
-    HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
-  -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-  <script src="assets/plugins/nprogress/nprogress.js"></script>
+    <script src="assets/plugins/nprogress/nprogress.js"></script>
 
   <link rel="stylesheet" href="https://e6t7a8v2.stackpathcdn.com/tutorial/css/fontawesome-all.min.css">
 
@@ -134,8 +126,6 @@
   <!-- SLEEK CSS -->
   <link id="sleek-css" rel="stylesheet" href="../assets/css/sleek.css" />
 
-
-
   <!-- FAVICON -->
   <link href="../assets/img/favicon.png" rel="shortcut icon" />
 
@@ -148,6 +138,23 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
   <script src="../assets/plugins/nprogress/nprogress.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js"
+    integrity="sha512-bztGAvCE/3+a1Oh0gUro7BHukf6v7zpzrAb3ReWAVrt+bVNNphcl2tDTKCBr5zk7iEDmQ2Bv401fX3jeVXGIcA=="
+    crossorigin="anonymous"></script>
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+  <script src="https://unpkg.com/js-image-zoom@0.4.1/js-image-zoom.js" type="application/javascript"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.10/cropper.min.js"
+    integrity="sha512-xGS/xZWFNRawi18FCrjoHevJ+NK4GjBb7ZwMLrf8yEDqcEVLTsFWV83s+juZgW6og9UL0hiva0NP51dd6NVR+g=="
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.10/cropper.min.css"
+    integrity="sha512-PTE+VGaWzAJkMyk19RyXUfpHPgJBye7vXH+0ceyYrlHLu+aMtZ07OBmHSKGLsE+cCj4ojkrag+KKNAAzBXEiuw=="
+    crossorigin="anonymous" />
   {{/if}}
 
   {{#if isSubrouter}}
@@ -169,26 +176,14 @@
   <link href="../assets/img/favicon.png" rel="shortcut icon" />
   <script src="../assets/plugins/nprogress/nprogress.js"></script>
 
+  
+  
+
   {{/if}}
 
 
 
-  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajaxy/1.6.1/scripts/jquery.ajaxy.min.js"
-    integrity="sha512-bztGAvCE/3+a1Oh0gUro7BHukf6v7zpzrAb3ReWAVrt+bVNNphcl2tDTKCBr5zk7iEDmQ2Bv401fX3jeVXGIcA=="
-    crossorigin="anonymous"></script>
-
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
-  <script src="https://unpkg.com/js-image-zoom@0.4.1/js-image-zoom.js" type="application/javascript"></script>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.10/cropper.min.js"
-    integrity="sha512-xGS/xZWFNRawi18FCrjoHevJ+NK4GjBb7ZwMLrf8yEDqcEVLTsFWV83s+juZgW6og9UL0hiva0NP51dd6NVR+g=="
-    crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.10/cropper.min.css"
-    integrity="sha512-PTE+VGaWzAJkMyk19RyXUfpHPgJBye7vXH+0ceyYrlHLu+aMtZ07OBmHSKGLsE+cCj4ojkrag+KKNAAzBXEiuw=="
-    crossorigin="anonymous" />
+  
 
 
   <script src="/javascripts/script.js"></script>
@@ -202,8 +197,9 @@
 </head>
 
 {{#if isUser}}
+
 <body style="background-color: white;">
-{{/if}}
+  {{/if}}
 
 
 
@@ -259,6 +255,14 @@
     <script src="assets/js/date-range.js"></script>
     <script src="assets/js/map.js"></script>
     <script src="assets/js/custom.js"></script>
+
+    
+    <script type="text/javascript" charset="utf8"
+      src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
+
+    <script type="text/javascript" charset="utf8"
+      src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
     {{/if}}
 
     {{#if isSubrouter}}
@@ -282,6 +286,19 @@
     <script src="../assets/js/date-range.js"></script>
     <script src="../assets/js/map.js"></script>
     <script src="../assets/js/custom.js"></script>
+
+    <link rel="stylesheet" type="text/css"
+      href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css"
+      href="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/css/jquery.dataTables_themeroller.css">
+    <script type="text/javascript" charset="utf8"
+      src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" charset="utf8"
+      src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.0/jquery.dataTables.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
+
+    <script type="text/javascript" charset="utf8"
+      src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
     {{/if}}
 
   </body>

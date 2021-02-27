@@ -10,6 +10,7 @@ const {
 
 module.exports = {
     addProduct: (product, callback) => {
+        
         console.log(product);
 
         db.get().collection('product').insertOne(product).then((data) => {
@@ -79,6 +80,13 @@ module.exports = {
         })
     },
     editProduct: (proId, productDetails) => {
+        
+        var intPrice = productDetails.price
+
+        console.log(intPrice);
+        var convertedPrice = parseInt(intPrice)
+        console.log(convertedPrice);
+
         return new Promise((resolve, reject) => {
             db.get().collection(collections.PRODUCT_COLLECTION).updateOne({
                 _id: objectId(proId)
@@ -87,7 +95,7 @@ module.exports = {
                     name: productDetails.name,
                     for: productDetails.for,
                     category: productDetails.category,
-                    price: productDetails.price,
+                    price: convertedPrice,
                     stock: productDetails.shortDescription,
                     description: productDetails.description
                 }

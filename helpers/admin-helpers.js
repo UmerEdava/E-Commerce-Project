@@ -300,7 +300,7 @@ module.exports = {
             resolve(orders)
         })
     },
-    getPendingOrders: () => {
+    getPendingOrdersCount: () => {
         return new Promise(async(resolve,reject)=>{
             let pendingOrders = await db.get().collection(collection.ORDER_COLLECTION).find({
                 status:'pending'
@@ -309,6 +309,66 @@ module.exports = {
             console.log(pendingOrders);
 
             var count = pendingOrders.length
+
+            console.log(count);
+
+            resolve(count)
+        })
+    },
+    getDeliveredOrdersCount: () => {
+        return new Promise(async(resolve,reject)=>{
+            let deliveredOrders = await db.get().collection(collection.ORDER_COLLECTION).find({
+                status:'delivered'
+            }).toArray()
+
+            console.log(deliveredOrders);
+
+            var count = deliveredOrders.length
+
+            console.log(count);
+
+            resolve(count)
+        })
+    },
+    getPlacedOrdersCount: () => {
+        return new Promise(async(resolve,reject)=>{
+            let placedOrders = await db.get().collection(collection.ORDER_COLLECTION).find({
+                status:'placed'
+            }).toArray()
+
+            console.log(placedOrders);
+
+            var count = placedOrders.length
+
+            console.log(count);
+
+            resolve(count)
+        })
+    },
+    getShippedOrdersCount: () => {
+        return new Promise(async(resolve,reject)=>{
+            let shippedOrders = await db.get().collection(collection.ORDER_COLLECTION).find({
+                status:'shipped'
+            }).toArray()
+
+            console.log(shippedOrders);
+
+            var count = shippedOrders.length
+
+            console.log(count);
+
+            resolve(count)
+        })
+    },
+    getCancelledOrdersCount: () => {
+        return new Promise(async(resolve,reject)=>{
+            let cancelledOrders = await db.get().collection(collection.ORDER_COLLECTION).find({
+                status:'cancelled'
+            }).toArray()
+
+            console.log(cancelledOrders);
+
+            var count = cancelledOrders.length
 
             console.log(count);
 

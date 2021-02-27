@@ -60,7 +60,7 @@
                                     <th>Price</th>
                                     <th>Quantity</th>
                                     <th>Total</th>
-                                    <th><i class="ti-close" onclick="clearCart('{{products._id}}')"></i></th>
+                                    <th><button onclick="clearCart('{{user}}')">Clear cart</button></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -85,9 +85,9 @@
                                             </div>
                                         </div>
                                     </td>
-                                    {{#each subTotal}}
-                                    <td class="total-price first-row">{{../this.subTotal}}</td>
-                                    {{/each}}
+                                    
+                                    <td id="subTotal" class="total-price first-row">{{this.subTotal}}</td>
+                                    
                                     <td class="close-td first-row"><i class="ti-close"
                                             onclick="removeProductFromCart('{{this._id}}','{{this.product._id}}')"></i>
                                     </td>
@@ -96,14 +96,14 @@
                             </tbody>
                         </table>
                     </div>
-                    
+
                     {{#unless products}}
-                        <div class="text-center">
-                            <div class="cart-buttons">
-                                <h2 class="mb-5">Cart is empty</h2>
-                                <a href="/" class="primary-btn continue-shop">Continue shopping</a>
-                            </div>
+                    <div class="text-center">
+                        <div class="cart-buttons">
+                            <h2 class="mb-5">Cart is empty</h2>
+                            <a href="/" class="primary-btn continue-shop">Continue shopping</a>
                         </div>
+                    </div>
                     {{/unless}}
 
                     {{#if products}}
@@ -124,7 +124,7 @@
                         <div class="col-lg-4 offset-lg-4">
                             <div class="proceed-checkout">
                                 <ul>
-                                    <li class="subtotal">Subtotal <span id="subtotal">{{total}}</span></li>
+                                    {{!-- <li class="subtotal">Subtotal <span id="subtotal">{{total}}</span></li> --}}
                                     <li class="total">Total <span id="total">{{total}}</span></li>
                                 </ul>
                                 <a href="/checkout" class="proceed-btn">PROCEED TO CHECK OUT</a>
@@ -288,6 +288,7 @@
                         console.log(response)
                         document.getElementById(proId).value = quantity + count
                         document.getElementById('total').innerHTML = response.total
+                        document.getElementById('subTotal').innerHTML = response.subTotal
                     }
                 }
             })
@@ -303,8 +304,8 @@
                 },
                 method: 'post',
                 success: (response) => {
-                    console.log(removed)
-                    if (removed) {
+                    console.log('removed')
+                    if (response) {
                         location.reload()
                     }
 
@@ -312,11 +313,12 @@
             })
         }
 
-        function clearCart(cartId) {
+        function clearCart(userId) {
+            console.log('clicked',userId)
             $.ajax({
                 url: '/clear_cart',
                 data: {
-                    cart: cartId
+                    userId: userId
                 },
                 method: 'post',
                 success: (response) => {

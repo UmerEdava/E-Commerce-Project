@@ -26,16 +26,27 @@ router.get('/', async function (req, res, next) {
     salesRevenue = await adminHelpers.salesRevenue()
     totalIncome = salesRevenue[0]
     totalOrders = await adminHelpers.getOrdersCount()
-    pendingOrders = await adminHelpers.getPendingOrders()
+    pendingOrders = await adminHelpers.getPendingOrdersCount()
+    deliveredOrders = await adminHelpers.getDeliveredOrdersCount()
+    placedOrders = await adminHelpers.getPlacedOrdersCount()
+    shippedOrders = await adminHelpers.getShippedOrdersCount()
+    cancelledOrders = await adminHelpers.getCancelledOrdersCount()
+    console.log(cancelledOrders,'**');
+    
     totalUsers = await userHelpers.totalUsers()
     totalProducts =await productHelpers.countOfProducts()
+
     res.render('admin/dashboard', {
       isAdmin,
       totalProducts,
       totalUsers,
       pendingOrders,
       totalOrders,
-      totalIncome
+      totalIncome,
+      deliveredOrders,
+      placedOrders,
+      shippedOrders,
+      cancelledOrders
     })
   } else {
     res.redirect('/admin/admin_login')
@@ -376,10 +387,9 @@ router.get('/add_product_offer/:id', verifyLogin, (req, res) => {
 
   let proId = req.params.id
   let isAdmin = true
-  let isSubrouter = true
+  
   res.render('admin/add-product-offer', {
     isAdmin,
-    isSubrouter,
     proId
   })
 })

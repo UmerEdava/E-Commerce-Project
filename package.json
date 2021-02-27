@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
+    "chart.js": "^2.9.4",
     "cookie-parser": "~1.4.4",
     "cropperjs": "^1.5.11",
     "datatables.net": "^1.10.23",
