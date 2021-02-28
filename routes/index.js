@@ -614,9 +614,15 @@ router.post('/verify_coupon', async(req,res) => {
   })
 })
 
-router.get('/user_profile',verifyLogin,(req,res)=>{
+router.get('/user_profile',verifyLogin,async(req,res)=>{   
   
-  res.render('users/user-profile')
+  let userData = await userHelpers.getUserDetails(req.session.user._id)
+  let userAddress =await userHelpers.getUserAddress(req.session.user._id)
+
+  console.log(userData);
+  console.log(userAddress);
+  isUser = true
+  res.render('users/user-profile',{isUser,userData,userAddress})
 })
 
 router.get('/edit_address_checkout/:firstName:lastName:streetAddress:town:state:country:pin:company:phone:email',(req,res)=>{

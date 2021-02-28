@@ -135,7 +135,7 @@
                         </div>
                     </div>
 
-                    <canvas id="myChart" width="400" height="400"></canvas>
+                    <canvas id="newChart" width="400" height="400"></canvas>
 
                     <div class="col-12">
                         <div class="card card-default pb-5">
@@ -649,14 +649,14 @@
 
 
     <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var myChart = new Chart(ctx, {
+        var ctx = document.getElementById('newChart').getContext('2d');
+        var newChart = new Chart(ctx, {
             type: 'bar',
             data: {
                 labels: ['Total Orders', 'Orders Delivered', 'Orders Shipped', 'Orders Placed', 'Orders Cancelled'],
                 datasets: [{
                     label: 'Total Orders',
-                    data: [{{ totalOrders }}, {{ deliveredOrders }},{{ shippedOrders }}, { { placedOrders } }, { { cancelledOrders } }],
+                    data: [{{ totalOrders }}, {{ deliveredOrders }},{{ shippedOrders }}, {{ placedOrders }}, {{ cancelledOrders }}],
         backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',

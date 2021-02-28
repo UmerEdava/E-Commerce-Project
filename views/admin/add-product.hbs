@@ -780,23 +780,7 @@
     </script>
 
     
-<script>
-        function viewImage1(event) {
-        document.getElementById('img1Disp').src = URL.createObjectURL(event.target.files[0])
-        let file = event.target.files[0].name
 
-        let filename = file.split('.').pop()
-        if (filename == 'jpeg' || filename == 'png' || filename == 'jpg') {
-            $('#add-product-button').show()
-            $('#not-img1-error').hide()
-            $('#img1Disp').show()
-        } else {
-            $('#not-img1-error').show()
-            $('#add-product-button').hide()
-            $('#img1Disp').hide()
-        }
-    }
-</script>
 
 <script>
         function viewImage2(event) {
@@ -873,7 +857,7 @@
 
 
 <script>
-    let cropper;
+let cropper;
 let cropperModalId = '#cropperModal';
 let $jsPhotoUploadInput = $('.js-photo-upload');
 
@@ -921,6 +905,24 @@ $('.js-save-cropped-avatar').on('click', function(event) {
     $('#img1Disp').attr('src', base64encodedImage);
     $(cropperModalId).modal('hide');
 });
+</script>
+
+<script>
+        function viewImage1(event) {
+        document.getElementById('img1Disp').src = URL.createObjectURL(event.target.files[0])
+        let file = event.target.files[0].name
+
+        let filename = file.split('.').pop()
+        if (filename == 'jpeg' || filename == 'png' || filename == 'jpg') {
+            $('#add-product-button').show()
+            $('#not-img1-error').hide()
+            $('#img1Disp').show()
+        } else {
+            $('#not-img1-error').show()
+            $('#add-product-button').hide()
+            $('#img1Disp').hide()
+        }
+    }
 </script>
 
 

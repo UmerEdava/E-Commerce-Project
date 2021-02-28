@@ -137,50 +137,17 @@ router.post('/add_product', (req, res) => {
     let image4 = req.files.image4
     let image5 = req.files.image5
 
-    image1.mv('./public/images/product-images/' + id + '1' + '.jpg', (err, done) => {
-      if (!err) {
-        res.redirect('/admin/all_products')
-        return
-      } else {
-        console.log(err)
-      }
-    })
+    image1.mv('./public/images/product-images/' + id + '1' + '.jpg')
 
-    image2.mv('./public/images/product-images/' + id + '2' + '.jpg', (err, done) => {
-      if (!err) {
-        res.redirect('/admin/all_products')
-        return
-      } else {
-        console.log(err)
-      }
-    })
+    image2.mv('./public/images/product-images/' + id + '2' + '.jpg')
 
-    image3.mv('./public/images/product-images/' + id + '3' + '.jpg', (err, done) => {
-      if (!err) {
-        res.redirect('/admin/all_products')
-        return
-      } else {
-        console.log(err)
-      }
-    })
+    image3.mv('./public/images/product-images/' + id + '3' + '.jpg')
 
-    image4.mv('./public/images/product-images/' + id + '4' + '.jpg', (err, done) => {
-      if (!err) {
-        res.redirect('/admin/all_products')
-        return
-      } else {
-        console.log(err)
-      }
-    })
+    image4.mv('./public/images/product-images/' + id + '4' + '.jpg')
 
-    image5.mv('./public/images/product-images/' + id + '5' + '.jpg', (err, done) => {
-      if (!err) {
-        res.redirect('/admin/all_products')
-        return
-      } else {
-        console.log(err)
-      }
-    })
+    image5.mv('./public/images/product-images/' + id + '5' + '.jpg')
+
+    res.redirect('/admin/all_products')
 
   });
 })
@@ -544,7 +511,6 @@ router.get('/all_orders', (req, res) => {
   adminHelpers.getAllOrders().then((orders) => {
     console.log(orders)
 
-    console.log('order in router', orders);
     res.render('admin/all-orders', {
       orders,
       isAdmin
@@ -552,6 +518,29 @@ router.get('/all_orders', (req, res) => {
 
   })
   isAdmin = true
+})
+
+router.get('/pending_orders', (req, res) => {
+  adminHelpers.getPendingOrders().then((pendingOrders) => {
+    console.log(pendingOrders)
+    isAdmin = true
+    console.log('order in router', pendingOrders);
+    res.render('admin/pending-orders', {
+      pendingOrders,
+      isAdmin
+    })
+  })
+})
+
+router.get('/delivered_orders', (req, res) => {
+  adminHelpers.getDeliveredOrders().then((deliveredOrders) => {
+    isAdmin = true
+    console.log('order in router', deliveredOrders);
+    res.render('admin/delivered-orders', {
+      deliveredOrders,
+      isAdmin
+    })
+  })
 })
 
 router.get('/remove_category_offer/:id', (req, res) => {

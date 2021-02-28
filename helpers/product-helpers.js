@@ -18,7 +18,7 @@ module.exports = {
 
             console.log(data.ops[0]._id);
 
-            if (product.for == 'men') {
+            if (product.for == 'Men') {
                 db.get().collection(collections.MEN_COLLECTION).updateOne({
                     category: product.category
                 }, {
@@ -26,7 +26,7 @@ module.exports = {
                         products: objectId(data.ops[0]._id)
                     }
                 })
-            } else if (product.for == 'women') {
+            } else if (product.for == 'Women') {
                 db.get().collection(collections.WOMEN_COLLECTION).updateOne({
                     category: product.category
                 }, {
@@ -34,7 +34,7 @@ module.exports = {
                         products: objectId(data.ops[0]._id)
                     }
                 })
-            } else if (product.for == 'boys') {
+            } else if (product.for == 'Boys') {
                 db.get().collection(collections.BOYS_COLLECTION).updateOne({
                     category: product.category
                 }, {
@@ -42,7 +42,7 @@ module.exports = {
                         products: objectId(data.ops[0]._id)
                     }
                 })
-            } else if (product.for == 'girls') {
+            } else if (product.for == 'Girls') {
                 db.get().collection(collections.GIRLS_COLLECTION).updateOne({
                     category: product.category
                 }, {

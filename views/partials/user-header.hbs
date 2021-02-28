@@ -19,22 +19,21 @@
                 <a href="/login" class="login-panel"><i class="fa fa-user"></i>Login</a>
                 {{/if}}
 
-                         
-                <div class="lan-selector">
+
+                <div class="lan-selector" style="padding-left: 1rem; padding-right: 1rem;">
                     {{#if userData}}
-                    
-                        <a href="/user_profile" class="" style="background: #fff;
+
+                    <a href="/user_profile" class="" style="background: #fff;
                             max-width: 142px;
                             width: 100%;
                             position: relative;
                             left: 0;
                             color:black;
                             border:none;
-                            font-size:17px" 
-                            class="btn btn-secondary dropdown-toggle" type="" id="dropdownMenu2">
+                            font-size:17px" class="btn btn-secondary dropdown-toggle" type="" id="dropdownMenu2">
                         {{userData.firstName}}
-                        </a>
-                    
+                    </a>
+
                     {{/if}}
 
                 </div>
@@ -85,7 +84,8 @@
                                         <tbody>
                                             {{#each cartProducts}}
                                             <tr>
-                                                <td class="si-pic"><img src="/images/product-images/{{this._id}}.jpg" alt=""></td>
+                                                <td class="si-pic"><img src="/images/product-images/{{this._id}}.jpg"
+                                                        alt=""></td>
                                                 <td class="si-text">
                                                     <div class="product-selected">
                                                         <p>{{this.products.price}} x 1</p>

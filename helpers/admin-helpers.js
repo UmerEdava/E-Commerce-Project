@@ -300,6 +300,22 @@ module.exports = {
             resolve(orders)
         })
     },
+    getPendingOrders: () => {
+        return new Promise(async (resolve, reject) => {
+            let orders = await db.get().collection(collection.ORDER_COLLECTION)
+                .find({status:'pending'}).toArray()
+            console.log('orders', orders);
+            resolve(orders)
+        })
+    },
+    getDeliveredOrders: () => {
+        return new Promise(async (resolve, reject) => {
+            let orders = await db.get().collection(collection.ORDER_COLLECTION)
+                .find({status:'delivered'}).toArray()
+            console.log('orders', orders);
+            resolve(orders)
+        })
+    },
     getPendingOrdersCount: () => {
         return new Promise(async(resolve,reject)=>{
             let pendingOrders = await db.get().collection(collection.ORDER_COLLECTION).find({
