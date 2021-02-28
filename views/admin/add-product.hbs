@@ -33,7 +33,7 @@
 <link href="vendroid/plugins/dataTables/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
 <link href="plugins/dataTables/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css">
 <link href="plugins/jquery-file-upload/css/jquery.fileupload.css" rel="stylesheet" type="text/css">
-<link href="plugins/jquery-file-upload/css/jquery.fileupload-ui.css" rel="stylesheet" type="text/css">
+<link href="../plugins/jquery-file-upload/css/jquery.fileupload-ui.css" rel="stylesheet" type="text/css">
 
 <!-- Theme CSS -->
 <link href="vendroid/css/theme.min.css" rel="stylesheet" type="text/css">
@@ -78,6 +78,10 @@
     table .vd_radio label:after {
         top: 0;
     }
+
+    .cropper-container {
+  margin: 0 auto 20px auto;
+}
 </style>
 
 <!-- for specific page responsive in style css -->
@@ -236,22 +240,22 @@
                                                     </span></label>
                                                 <div class="col-lg-9">
                                                     <div class="vd_radio radio-success">
-                                                        <input type="radio" checked="" value="men" name="for"
+                                                        <input type="radio" checked="" value="Men" name="for"
                                                             id="simple_product" />
                                                         <label for="simple_product">Men</label>
                                                     </div>
                                                     <div class="vd_radio radio-success">
-                                                        <input type="radio" value="women" name="for"
+                                                        <input type="radio" value="Women" name="for"
                                                             id="pack_product" />
                                                         <label for="pack_product">Women</label>
                                                     </div>
                                                     <div class="vd_radio radio-success">
-                                                        <input type="radio" value="boys" name="for"
+                                                        <input type="radio" value="Boys" name="for"
                                                             id="virtual_product" />
                                                         <label for="virtual_product">Boys</label>
                                                     </div>
                                                     <div class="vd_radio radio-success">
-                                                        <input type="radio" value="girls" name="for"
+                                                        <input type="radio" value="Girls" name="for"
                                                             id="virtual_product" />
                                                         <label for="virtual_product">Girls</label>
                                                     </div>
@@ -355,7 +359,7 @@
                                             <!-- form-group -->
 
 
-                                            <div id="tabimage" class="tab-pane this">
+                                            <div id="" class="">
                                                 <h3 class="mgtp-15 mgbt-xs-20">Images</h3>
 
 
@@ -363,25 +367,154 @@
                                                     <label class="control-label col-lg-3 file_upload_label">
                                                         <span title="" data-toggle="tooltip" class="label-tooltip"
                                                             data-original-title="Format JPG, GIF, PNG. Filesize 8.00 MB max.">
-                                                            Add a new image to this product
+                                                            Add 5 images to this product
                                                         </span>
                                                     </label>
-                                                    <div class="col-lg-9">
+
+                                                    <div class="row mt-5">
+                                                        <div class="col-md-5">
                                                         <span class="btn vd_btn vd_bg-green fileinput-button">
                                                             <i class="glyphicon glyphicon-plus"></i>
                                                             <span>Add files...</span>
                                                             <!-- The file input field used as target for the file upload widget -->
-                                                            <input type="file" accept="image/*" name="image"
-                                                                id="fileupload" name="" onchange="viewImage(event)"
-                                                                multiple />
+                                                            <input type="file" accept="image/*" name="image1"
+                                                                id="fileupload" class="js-photo-upload" onchange="viewImage1(event)">
+                                                                
+                                                        </span>
+                                                        </div>
+
+
+
+
+                                                        <div class="modal fade remove-modal" tabindex="-1" role="dialog" id="cropperModal">
+                                                            <div class="modal-dialog modal-lg" role="document">
+                                                                <div class="modal-content text-center">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    <div class="modal-positioner">
+                                                                        <h1>Crop Photo</h1>
+                                                                        <hr>
+                                                                        <img style="width: 271px; height: 271px;" class="js-avatar-preview" src="">
+                                                                        <button class="btn btn-primary js-save-cropped-avatar">Save</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
+
+                                                        <br />
+                                                        <br />
+                                                        
+
+                                                        <h6 id="not-img1-error" style="color: rgb(163, 24, 24);display: none;">!! Please upload a image !!</h6>
+
+                                                        <div class="col-md-3">
+
+                                                        <img src="" style="width: 60px;display:none"
+                                                                        alt="product image" id="img1Disp" />
+
+                                                        </div>
+
+
+                                                    </div>
+                                                    
+                                                    <div class="row mt-3">
+                                                        <div class="col-md-5">
+                                                        <span class="btn vd_btn vd_bg-green fileinput-button">
+                                                            <i class="glyphicon glyphicon-plus"></i>
+                                                            <span>Add files...</span>
+                                                            <!-- The file input field used as target for the file upload widget -->
+                                                            <input type="file" accept="image/*" name="image2"
+                                                                id="fileupload" onchange="viewImage2(event)"
+                                                                />
                                                         </span>
                                                         <br />
                                                         <br />
-                                                        <!-- The container for the uploaded files -->
-                                                        <div id="files" class="files"></div>
-                                                        <br />
+                                                        </div>
+
+                                                        <h6 id="not-img2-error" style="color: rgb(163, 24, 24);display: none">!! Please upload a image !!</h6>
+
+                                                        <div class="col-md-3">
+                                                        <img src="" style="width: 60px;display: none"
+                                                                        alt="product image" id="img2Disp" />
+                                                        </div>
+                                                        
                                                     </div>
+
+                                                    <div class="row mt-3">
+                                                        <div class="col-md-5">
+                                                        <span class="btn vd_btn vd_bg-green fileinput-button">
+                                                            <i class="glyphicon glyphicon-plus"></i>
+                                                            <span>Add files...</span>
+                                                            <!-- The file input field used as target for the file upload widget -->
+                                                            <input type="file" accept="image/*" name="image3"
+                                                                id="fileupload" onchange="viewImage3(event)"
+                                                                />
+                                                        </span>
+                                                        <br />
+                                                        <br />
+                                                        </div>
+
+                                                        <h6 id="not-img3-error" style="color: rgb(163, 24, 24);display: none">!! Please upload a image !!</h6>
+
+                                                        <div class="col-md-3">
+                                                        <img src="" style="width: 60px;display: none"
+                                                                        alt="product image" id="img3Disp" />
+                                                        </div>
+                                                        
+                                                    </div>
+
+                                                    <div class="row mt-3">
+                                                        <div class="col-md-5">
+                                                        <span class="btn vd_btn vd_bg-green fileinput-button">
+                                                            <i class="glyphicon glyphicon-plus"></i>
+                                                            <span>Add files...</span>
+                                                            <!-- The file input field used as target for the file upload widget -->
+                                                            <input type="file" accept="image/*" name="image4"
+                                                                id="fileupload" onchange="viewImage4(event)"
+                                                                />
+                                                        </span>
+                                                        <br />
+                                                        <br />
+                                                        </div>
+
+                                                        <h6 id="not-img4-error" style="color: rgb(163, 24, 24);display: none">!! Please upload a image !!</h6>
+
+                                                        <div class="col-md-3">
+                                                        <img src="" style="width: 60px;display: none"
+                                                                        alt="product image" id="img4Disp" />
+                                                        </div>
+                                                        
+                                                    </div>
+
+                                                    <div class="row mt-3">
+                                                        <div class="col-md-5">
+                                                        <span class="btn vd_btn vd_bg-green fileinput-button">
+                                                            <i class="glyphicon glyphicon-plus"></i>
+                                                            <span>Add files...</span>
+                                                            <!-- The file input field used as target for the file upload widget -->
+                                                            <input type="file" accept="image/*" name="image5"
+                                                                id="fileupload" onchange="viewImage5(event)"
+                                                                />
+                                                        </span>
+                                                        <br />
+                                                        <br />
+                                                        </div>
+
+                                                        <h6 id="not-img5-error" style="color: rgb(163, 24, 24);display: none">!! Please upload a image !!</h6>
+
+                                                        <div class="col-md-3">
+                                                        <img src="" style="width: 60px;display: none"
+                                                                        alt="product image" id="img5Disp" />
+                                                        </div>
+                                                        
+                                                    </div>
+                    
+                                                      
                                                 </div>
+
+                                                <!-- *******need******* -->
 
                                                 {{!-- <div class="image-container">
                                                     <img id="cropTest" src="img1.jpg" alt="Image" />
@@ -395,29 +528,14 @@
                                                     <canvas id="crop-result" width="200" height="300"></canvas>
                                                 </div> --}}
 
-                                                <table id="imageTable" class="table table-dragable">
-                                                    <thead>
-                                                        <tr class="nodrag nodrop">
-                                                            <th style="width: 20px"></th>
-                                                            <th class="fixed-width-lg" style="width: 80px">
-                                                                <span class="title_box">Image</span>
-                                                            </th>
-
-                                                            <th></th>
-                                                            <!-- action -->
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody id="imageList">
-                                                        <tr id="1">
-                                                            <td>
-                                                                <i class="fa fa-arrows vd_soft-grey"></i>
-                                                            </td>
-                                                            <td>
-                                                                <a data-rel="prettyPhoto" href="img/products/01.jpg">
-                                                                    <img src="img/products/01.jpg" style="width: 60px"
-                                                                        alt="product image" id="img1Disp" />
-                                                                </a>
-                                                            </td>
+                                                
+                                                    
+                                                        
+                                                           
+                                                                
+                                                                    
+                                                                
+                                                            
                                                             {{!-- <td>Hard Disk</td>
                                                             <td class="pointer text-center" id="td_1">
                                                                 1
@@ -429,96 +547,13 @@
                                                                     <label for="yes">&nbsp;</label>
                                                                 </div>
                                                             </td> --}}
-                                                            <td>
-                                                                <a class="delete_product_image pull-right btn vd_btn vd_bg-yellow btn-sm"
-                                                                    onclick="removeImage1()">
-                                                                    <i class="icon-trash append-icon"></i>
-                                                                    Delete this image
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr id="1">
-                                                            <td>
-                                                                <i class="fa fa-arrows vd_soft-grey"></i>
-                                                            </td>
-                                                            <td>
-                                                                <a data-rel="prettyPhoto" href="img/products/01.jpg">
-                                                                    <img src="img/products/01.jpg" style="width: 60px"
-                                                                        alt="product image" id="img2Disp" />
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                <a class="delete_product_image pull-right btn vd_btn vd_bg-yellow btn-sm"
-                                                                    href="#">
-                                                                    <i class="icon-trash append-icon"></i>
-                                                                    Delete this image
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr id="1">
-                                                            <td>
-                                                                <i class="fa fa-arrows vd_soft-grey"></i>
-                                                            </td>
-                                                            <td>
-                                                                <a data-rel="prettyPhoto" href="img/products/01.jpg">
-                                                                    <img src="img/products/01.jpg" style="width: 60px"
-                                                                        alt="product image" id="img3Disp" />
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                <a class="delete_product_image pull-right btn vd_btn vd_bg-yellow btn-sm"
-                                                                    href="#">
-                                                                    <i class="icon-trash append-icon"></i>
-                                                                    Delete this image
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr id="1">
-                                                            <td>
-                                                                <i class="fa fa-arrows vd_soft-grey"></i>
-                                                            </td>
-                                                            <td>
-                                                                <a data-rel="prettyPhoto" href="img/products/01.jpg">
-                                                                    <img src="img/products/01.jpg" style="width: 60px"
-                                                                        alt="product image" id="img4Disp" />
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                <a class="delete_product_image pull-right btn vd_btn vd_bg-yellow btn-sm"
-                                                                    href="#">
-                                                                    <i class="icon-trash append-icon"></i>
-                                                                    Delete this image
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        <tr id="1">
-                                                            <td>
-                                                                <i class="fa fa-arrows vd_soft-grey"></i>
-                                                            </td>
-                                                            <td>
-                                                                <a data-rel="prettyPhoto" href="img/products/01.jpg">
-                                                                    <img src="img/products/01.jpg" style="width: 60px"
-                                                                        alt="product image" id="img5Disp" />
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                <a class="delete_product_image pull-right btn vd_btn vd_bg-yellow btn-sm"
-                                                                    href="#">
-                                                                    <i class="icon-trash append-icon"></i>
-                                                                    Delete this image
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-
-
+                    
                                                 <div>
-                                                    <input type="submit"
+                                                    <input id="add-product-button" type="submit"
                                                         class="btn vd_btn vd_bg-blue btn-sm save-btn text-center m-5"
                                                         value="Submit">
                                                 </div>
-
+                                            </div>
                                         </form>
                                     </div>
 
@@ -741,40 +776,178 @@
         // sets drag mode: 'none', 'crop', 'move'
         myCropper.setDragMode([mode])
 
-        function viewImage(event) {
-            document.getElementById("imageToCrop").src = URL.createObjectURL(event.target.files[0])
-            document.getElementById("img2Disp").src = URL.createObjectURL(event.target.files[1])
-            document.getElementById("img3Disp").src = URL.createObjectURL(event.target.files[2])
-            document.getElementById("img4Disp").src = URL.createObjectURL(event.target.files[3])
-            document.getElementById("img5Disp").src = URL.createObjectURL(event.target.files[4])
-        }
 
-        function removeImage1() {
-            document.getElementById("img1Disp").src = null
-        }
     </script>
 
+    
+<script>
+        function viewImage1(event) {
+        document.getElementById('img1Disp').src = URL.createObjectURL(event.target.files[0])
+        let file = event.target.files[0].name
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDCn8TFXGg17HAUcNpkwtxxyT9Io9B_NcM" defer></script>
-    <script src="assets/plugins/jquery/jquery.min.js"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/plugins/toaster/toastr.min.js"></script>
-    <script src="assets/plugins/slimscrollbar/jquery.slimscroll.min.js"></script>
-    <script src="assets/plugins/charts/Chart.min.js"></script>
-    <script src="assets/plugins/ladda/spin.min.js"></script>
-    <script src="assets/plugins/ladda/ladda.min.js"></script>
-    <script src="assets/plugins/jquery-mask-input/jquery.mask.min.js"></script>
-    <script src="assets/plugins/select2/js/select2.min.js"></script>
-    <script src="assets/plugins/jvectormap/jquery-jvectormap-2.0.3.min.js"></script>
-    <script src="assets/plugins/jvectormap/jquery-jvectormap-world-mill.js"></script>
-    <script src="assets/plugins/daterangepicker/moment.min.js"></script>
-    <script src="assets/plugins/daterangepicker/daterangepicker.js"></script>
-    <script src="assets/plugins/jekyll-search.min.js"></script>
-    <script src="assets/js/sleek.js"></script>
-    <script src="assets/js/chart.js"></script>
-    <script src="assets/js/date-range.js"></script>
-    <script src="assets/js/map.js"></script>
-    <script src="assets/js/custom.js"></script>
+        let filename = file.split('.').pop()
+        if (filename == 'jpeg' || filename == 'png' || filename == 'jpg') {
+            $('#add-product-button').show()
+            $('#not-img1-error').hide()
+            $('#img1Disp').show()
+        } else {
+            $('#not-img1-error').show()
+            $('#add-product-button').hide()
+            $('#img1Disp').hide()
+        }
+    }
+</script>
+
+<script>
+        function viewImage2(event) {
+        document.getElementById('img2Disp').src = URL.createObjectURL(event.target.files[0])
+        let file = event.target.files[0].name
+
+        let filename = file.split('.').pop()
+        if (filename == 'jpeg' || filename == 'png' || filename == 'jpg') {
+            $('#add-product-button').show()
+            $('#not-img2-error').hide()
+            $('#img2Disp').show()
+        } else {
+            $('#not-img2-error').show()
+            $('#add-product-button').hide()
+            $('#img2Disp').hide()
+        }
+    }
+</script>
+
+<script>
+        function viewImage3(event) {
+        document.getElementById('img3Disp').src = URL.createObjectURL(event.target.files[0])
+        let file = event.target.files[0].name
+
+        let filename = file.split('.').pop()
+        if (filename == 'jpeg' || filename == 'png' || filename == 'jpg') {
+            $('#add-product-button').show()
+            $('#not-img3-error').hide()
+            $('#img3Disp').show()
+        } else {
+            $('#not-img3-error').show()
+            $('#add-product-button').hide()
+            $('#img3Disp').hide()
+        }
+    }
+</script>
+
+<script>
+        function viewImage4(event) {
+        document.getElementById('img4Disp').src = URL.createObjectURL(event.target.files[0])
+        let file = event.target.files[0].name
+
+        let filename = file.split('.').pop()
+        if (filename == 'jpeg' || filename == 'png' || filename == 'jpg') {
+            $('#add-product-button').show()
+            $('#not-img4-error').hide()
+            $('#img4Disp').show()
+        } else {
+            $('#not-img4-error').show()
+            $('#add-product-button').hide()
+            $('#img4Disp').hide()
+        }
+    }
+</script>
+
+<script>
+        function viewImage5(event) {
+        document.getElementById('img5Disp').src = URL.createObjectURL(event.target.files[0])
+        let file = event.target.files[0].name
+
+        let filename = file.split('.').pop()
+        if (filename == 'jpeg' || filename == 'png' || filename == 'jpg') {
+            $('#add-product-button').show()
+            $('#not-img5-error').hide()
+            $('#img5Disp').show()
+        } else {
+            $('#not-img5-error').show()
+            $('#add-product-button').hide()
+            $('#img5Disp').hide()
+        }
+    }
+</script>
+
+
+
+<script>
+    let cropper;
+let cropperModalId = '#cropperModal';
+let $jsPhotoUploadInput = $('.js-photo-upload');
+
+$jsPhotoUploadInput.on('change', function() {
+    var files = this.files;
+    if (files.length > 0) {
+        var photo = files[0];
+
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            var image = $('.js-avatar-preview')[0];
+            image.src = event.target.result;
+
+            cropper = new Cropper(image, {
+                viewMode: 1,
+                aspectRatio: 1,
+                minContainerWidth: 400,
+                minContainerHeight: 400,
+                minCropBoxWidth: 271,
+                minCropBoxHeight: 271,
+                movable: true,
+                ready: function () {
+                    console.log('ready');
+                    console.log(cropper.ready);
+                }
+            });
+
+            $(cropperModalId).modal();
+        };
+        reader.readAsDataURL(photo);
+    }
+});
+
+$('.js-save-cropped-avatar').on('click', function(event) {
+    event.preventDefault();
+
+    console.log(cropper.ready);
+
+    var $button = $(this);
+    $button.text('uploading...');
+    $button.prop('disabled', true);
+
+    const canvas = cropper.getCroppedCanvas();
+    const base64encodedImage = canvas.toDataURL();
+    $('#img1Disp').attr('src', base64encodedImage);
+    $(cropperModalId).modal('hide');
+});
+</script>
+
+
+
+
+    {{!-- <script>
+        function viewImage1(event) {
+            console.log('clicked')
+            document.getElementById("img1Disp").src = URL.createObjectURL(event.target.files)
+        }
+
+        function viewImage2(event) {
+            document.getElementById("img2Disp").src = URL.createObjectURL(event.target.files)
+        }
+
+        function viewImage3(event) {
+            document.getElementById("img3Disp").src = URL.createObjectURL(event.target.files)
+        }
+
+        function viewImage4(event) {
+            document.getElementById("img4Disp").src = URL.createObjectURL(event.target.files)
+        }
+
+        function viewImage5(event) {
+            document.getElementById("img5Disp").src = URL.createObjectURL(event.target.files)
+        }
+    </script> --}}
 
 
 

@@ -131,15 +131,16 @@ router.get('/add_product', verifyLogin, async (req, res) => {
 
 router.post('/add_product', (req, res) => {
   productHelpers.addProduct(req.body, (id) => {
-    let image1 = req.files.image[0]
-    let image2 = req.files.image[1]
-    let image3 = req.files.image[2]
-    let image4 = req.files.image[3]
-    let image5 = req.files.image[4]
+    let image1 = req.files.image1
+    let image2 = req.files.image2
+    let image3 = req.files.image3
+    let image4 = req.files.image4
+    let image5 = req.files.image5
 
     image1.mv('./public/images/product-images/' + id + '1' + '.jpg', (err, done) => {
       if (!err) {
         res.redirect('/admin/all_products')
+        return
       } else {
         console.log(err)
       }
@@ -148,6 +149,7 @@ router.post('/add_product', (req, res) => {
     image2.mv('./public/images/product-images/' + id + '2' + '.jpg', (err, done) => {
       if (!err) {
         res.redirect('/admin/all_products')
+        return
       } else {
         console.log(err)
       }
@@ -156,6 +158,7 @@ router.post('/add_product', (req, res) => {
     image3.mv('./public/images/product-images/' + id + '3' + '.jpg', (err, done) => {
       if (!err) {
         res.redirect('/admin/all_products')
+        return
       } else {
         console.log(err)
       }
@@ -164,6 +167,7 @@ router.post('/add_product', (req, res) => {
     image4.mv('./public/images/product-images/' + id + '4' + '.jpg', (err, done) => {
       if (!err) {
         res.redirect('/admin/all_products')
+        return
       } else {
         console.log(err)
       }
@@ -172,6 +176,7 @@ router.post('/add_product', (req, res) => {
     image5.mv('./public/images/product-images/' + id + '5' + '.jpg', (err, done) => {
       if (!err) {
         res.redirect('/admin/all_products')
+        return
       } else {
         console.log(err)
       }

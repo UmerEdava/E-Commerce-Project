@@ -614,7 +614,8 @@ router.post('/verify_coupon', async(req,res) => {
   })
 })
 
-router.get('/user_profile',(req,res)=>{
+router.get('/user_profile',verifyLogin,(req,res)=>{
+  
   res.render('users/user-profile')
 })
 
