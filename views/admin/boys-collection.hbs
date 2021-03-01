@@ -20,14 +20,17 @@
         <div class="page-wrapper" style="padding-top: 2.875rem;">
             <div class="content-wrapper">
                 <div class="content">
+                    <a href="/admin/clear_men_collection" class="btn btn-danger float-right"
+                        onclick="confirm('Are you sure to clear this collection')">Clear this collection</a>
                     <h2 style="margin-bottom: 2rem;">Men's Collections</h2>
+
                     <section id="importedProducts">
 
                         <div class="demo" style="padding: 20px 0 30px;background: #fff;}">
                             <div class="container">
                                 <div class="row">
                                     {{#each boys}}
-                                    <div class="col-md-3 col-sm-6 mt-4">
+                                    {{!-- <div class="col-md-3 col-sm-6 mt-4">
                                         <div class="product-grid">
                                             <div class="product-image">
                                                 <a href="/view_product/{{this._id}}" class="image">
@@ -58,12 +61,33 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
+                                    
+                                        <div class="col-md-4">
+                                        <div class="card-body">
+                                            
+                                            <div class="card-deck">
+                                                <div class="card">
+                                                    <img class="card-img-top" style="height: 20rem;" src="/images/product-images/{{this._id}}1.jpg"
+                                                        alt="Card image cap">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title text-primary">{{this.name}}</h5>
+                                                        <p class="card-text pb-3">{{this.description}}</p>
+                                                        <p class="card-text pb-3">&#8377; {{this.price}}</p>
+                                                        {{!-- <p class="card-text pb-3">Stock left: {{this.stock}}</p> --}}
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    
                                     {{/each}}
                                 </div>
                             </div>
                         </div>
                     </section>
+
                 </div>
             </div>
         </div>

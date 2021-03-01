@@ -13,21 +13,21 @@
     <link href="https://cdn.materialdesignicons.com/3.0.39/css/materialdesignicons.min.css" rel="stylesheet" />
 
     <!-- PLUGINS CSS STYLE -->
-    <link href="../assets/plugins/toaster/toastr.min.css" rel="stylesheet" />
-    <link href="../assets/plugins/nprogress/nprogress.css" rel="stylesheet" />
-    <link href="../assets/plugins/flag-icons/css/flag-icon.min.css" rel="stylesheet" />
-    <link href="../assets/plugins/jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
-    <link href="../assets/plugins/ladda/ladda.min.css" rel="stylesheet" />
-    <link href="../assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
-    <link href="../assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <link href="../../assets/plugins/toaster/toastr.min.css" rel="stylesheet" />
+    <link href="../../assets/plugins/nprogress/nprogress.css" rel="stylesheet" />
+    <link href="../../assets/plugins/flag-icons/css/flag-icon.min.css" rel="stylesheet" />
+    <link href="../../assets/plugins/jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
+    <link href="../../assets/plugins/ladda/ladda.min.css" rel="stylesheet" />
+    <link href="../../assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
+    <link href="../../assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
 
     <!-- SLEEK CSS -->
-    <link id="sleek-css" rel="stylesheet" href="../assets/css/sleek.css" />
+    <link id="sleek-css" rel="stylesheet" href="../../assets/css/sleek.css" />
 
 
 
     <!-- FAVICON -->
-    <link href="../assets/img/favicon.png" rel="shortcut icon" />
+    <link href="../../assets/img/favicon.png" rel="shortcut icon" />
 
     <!--
     HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
@@ -388,11 +388,23 @@
                                                         <div class="col-sm-4">
 
                                                             <select id="category" name="category">
-                                                                <option value="">{{product.category}}</option>
-                                                                <option value="Shirts">Shirts</option>
-                                                                <option value="T-Shirts">T-Shirts</option>
-                                                                <option value="Jeans">Jeans</option>
-                                                                <option value="Trowsers">Trowsers</option>
+                                                                <option value="{{product.category}}">{{product.category}}</option>
+                                                                {{#each menCategory}}
+                                                                <option value="{{this.category}}">{{this.category}}
+                                                                </option>
+                                                                {{/each}}
+                                                                {{#each womenCategory}}
+                                                                <option value="{{this.category}}">{{this.category}}
+                                                                </option>
+                                                                {{/each}}
+                                                                {{#each boysCategory}}
+                                                                <option value="{{this.category}}">{{this.category}}
+                                                                </option>
+                                                                {{/each}}
+                                                                {{#each girlsCategory}}
+                                                                <option value="{{this.category}}">{{this.category}}
+                                                                </option>
+                                                                {{/each}}
                                                             </select>
 
                                                         </div>

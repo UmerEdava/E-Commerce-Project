@@ -163,10 +163,19 @@ router.get('/delete_product/:id', (req, res) => {
 router.get('/edit_product/:id', verifyLogin, async (req, res) => {
   console.log(req.params.id, 'product id arrived in router');
   let product = await productHelpers.getProductDetails(req.params.id)
+  let menCategory = await productHelpers.getMenCategoryList()
+  let womenCategory = await productHelpers.getWomenCategoryList()
+  let boysCategory = await productHelpers.getBoysCategoryList()
+  let girlsCategory = await productHelpers.getGirlsCategoryList()
+
   let isAdmin = true
   res.render('admin/edit-product', {
     product,
-    isAdmin
+    isAdmin,
+    menCategory,
+    womenCategory,
+    boysCategory,
+    girlsCategory
   })
 })
 

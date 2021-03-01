@@ -122,7 +122,7 @@
                 {{#each products}}
                 <div class="col-md-3 col-sm-6 mt-4">
                     <div class="product-grid">
-                        <div class="product-image">
+                        <div class="product-image" style="background-color: white;">
                             <a href="/view_product/{{this._id}}" class="image">
                                 <img class="pic-1" src="/images/product-images/{{this._id}}1.jpg">
                                 <img class="pic-2" src="/images/product-images/{{this._id}}2.jpg">
@@ -130,17 +130,26 @@
                             <span class="product-discount-label">sale</span>
                             <ul class="product-links">
                                 <li>
-                                    <button style="color: #777;background: #fff;border-radius:0%" class="btn"
-                                        onclick="addToCart('{{this._id}}')"><i class="fa fa-shopping-cart"></i></button>
+                                    <button style="    color: #777;
+                                        background: #fff;
+                                        font-size: 16px;
+                                        line-height: 25px;
+                                        width: 38px;
+                                        height: 38px;
+                                        display: block;
+                                        transition: all 0.2s ease-out;" 
+                                        class="btn" onclick="addToCart('{{this._id}}')"><i
+                                            class="fa fa-shopping-cart"></i></button>
                                 </li>
                                 <li><a href="#"><i class="far fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-random"></i></a></li>
-                                <li><a href="#"><i class="fa fa-search"></i></a></li>
+
+
                             </ul>
                         </div>
                         <div class="product-content">
                             <h3 class="title"><a href="#">{{this.name}}</a></h3>
-                            {{#if this.actualPrice}}<p style="margin-bottom: 11px;font-size: 1.4rem;"><s>&#8377; {{this.actualPrice}}</s></p>{{/if}}
+                            {{#if this.actualPrice}}<p style="margin-bottom: 11px;font-size: 1.4rem;"><s>&#8377;
+                                    {{this.actualPrice}}</s></p>{{/if}}
                             <div class="price">&#8377; {{this.price}}</div>
                             <ul class="rating">
                                 <li class="fas fa-star"></li>
@@ -1971,10 +1980,10 @@
             <div class="col-lg-8">
                 <div class="filter-control">
                     <ul>
-                        <li class="active">Clothings</li>
-                        <li>HandBag</li>
-                        <li>Shoes</li>
-                        <li>Accessories</li>
+                        <li class="active">Latest Products</li>
+                        <li>Top Rated</li>
+                        {{!-- <li>Shoes</li>
+                        <li>Accessories</li> --}}
                     </ul>
                 </div>
                 <div class="product-slider owl-carousel">

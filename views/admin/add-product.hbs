@@ -902,6 +902,7 @@ $('.js-save-cropped-avatar').on('click', function(event) {
 
     const canvas = cropper.getCroppedCanvas();
     const base64encodedImage = canvas.toDataURL();
+    console.log(base64encodedImage)
     $('#img1Disp').attr('src', base64encodedImage);
     $(cropperModalId).modal('hide');
 });

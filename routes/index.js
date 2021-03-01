@@ -626,7 +626,7 @@ router.get('/user_profile',verifyLogin,async(req,res)=>{
 })
 
 router.get('/edit_address_checkout/:firstName:lastName:streetAddress:town:state:country:pin:company:phone:email',(req,res)=>{
-  console.log(req.params.company);
+  console.log(req.params.firstName);
   
   
   console.log('reached');
