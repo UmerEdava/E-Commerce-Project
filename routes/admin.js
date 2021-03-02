@@ -168,6 +168,8 @@ router.get('/edit_product/:id', verifyLogin, async (req, res) => {
   let boysCategory = await productHelpers.getBoysCategoryList()
   let girlsCategory = await productHelpers.getGirlsCategoryList()
 
+  console.log('oho',product)
+
   let isAdmin = true
   res.render('admin/edit-product', {
     product,

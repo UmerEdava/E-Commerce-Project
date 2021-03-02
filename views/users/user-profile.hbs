@@ -4,7 +4,7 @@
     }
 </style>
 
-<div class="bg-white border rounded">
+<div class="">
 
     <div class="">
         <div class="profile-content-left pt-5 pb-3 px-3 px-xl-5 mt-5 mb-3">
@@ -51,7 +51,7 @@
 
     <div class="mb-4">
 
-        <div id="exTab2" class="container mb-5">
+        <div id="exTab2" class="container" style="margin-top: 8rem;margin-bottom:15rem;">
             <ul class="nav nav-tabs" style="font-size: 2.5rem;">
                 <li class="active">
                     <a href="#1" data-toggle="tab">Overview</a>
@@ -64,19 +64,19 @@
 
 
             <div class="tab-content mb-4 ">
-                <div class="tab-pane active" id="1" style="margin-top: 8rem;">
+                <div class="tab-pane active" id="1" style="margin-top: 10rem;">
 
                     <div>
                         <p class="mt-3" style="font-size: 2rem;">Phone : {{userData.phone}}</p>
                         <p class="mt-3" style="font-size: 2rem;">Email : {{userData.email}}</p>
                         <p class="mt-3" style="font-size: 2rem;">Gender : {{userData.gender}}</p>
                         <p class="mt-3" style="font-size: 2rem;">Gender : {{userData.age}}</p>
+
+                        <h4 class="mt-2">Referral Code: {{userData.referralCode}}788sf4r5f</h4>
                     </div>
 
-
-
                 </div>
-                <div class="tab-pane" id="2">
+                <div class="tab-pane" id="2" style="margin-top: 3rem;">
                     {{#each userAddress}}
                     <div class="col-md-4">
                         <div class="card mt-5" style="width: 20rem;">
@@ -110,6 +110,38 @@
                         <button class="btn btn-primary">Delete Account</button>
                     </div>
 
+                </div>
+            </div>
+        </div>
+
+        <div class="partner-logo">
+            <div class="container">
+                <div class="logo-carousel owl-carousel">
+                    <div class="logo-item">
+                        <div class="tablecell-inner">
+                            <img src="img/logo-carousel/logo-1.png" alt="">
+                        </div>
+                    </div>
+                    <div class="logo-item">
+                        <div class="tablecell-inner">
+                            <img src="img/logo-carousel/logo-2.png" alt="">
+                        </div>
+                    </div>
+                    <div class="logo-item">
+                        <div class="tablecell-inner">
+                            <img src="img/logo-carousel/logo-3.png" alt="">
+                        </div>
+                    </div>
+                    <div class="logo-item">
+                        <div class="tablecell-inner">
+                            <img src="img/logo-carousel/logo-4.png" alt="">
+                        </div>
+                    </div>
+                    <div class="logo-item">
+                        <div class="tablecell-inner">
+                            <img src="img/logo-carousel/logo-5.png" alt="">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

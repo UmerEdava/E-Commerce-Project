@@ -40,7 +40,7 @@
                         <div class="mt-3">
                             <button class="btn btn-primary" onclick="useAddress('{{this.firstName}}','{{this.lastName}}','{{this.streetAddress}}','{{this.town}}','{{this.state}}','{{this.country}}','{{this.pin}}','{{this.company}}','{{this.phone}}','{{this.email}}')">Use this address</button>
 
-                            <a class="btn btn-primary" href="/edit_address_checkout/{{this.firstName}},{{this.lastName}},{{this.streetAddress}},{{this.town}},{{this.state}},{{this.country}},{{this.pin}},{{this.company}},{{this.phone}},{{this.email}}">Edit</a>
+                            <button class="btn btn-primary" onclick="editAddress('{{this.firstName}}','{{this.lastName}}','{{this.streetAddress}}','{{this.town}}','{{this.state}}','{{this.country}}','{{this.pin}}','{{this.company}}','{{this.phone}}','{{this.email}}')">Edit</button>
 
                             <button class="btn btn-primary" onclick="removeAddress()">Delete</button>
                         </div>
@@ -50,7 +50,6 @@
                 </div>
 
             </div>
-
 
             {{/each}}
         </div>
@@ -309,5 +308,28 @@
         document.getElementById('email').value = email
     }
 
-    
+    function editAddress(firstName, lastName, streetAddress, town, state, country, pin, company, phone, email) {
+        console.log('clicked')
+        console.log(firstName, lastName, streetAddress, town, state, country, pin, company, phone, email)
+        
+        $.ajax({
+            url:'/edit_address_checkout',
+            method:'post',
+            data:{
+                firstName:firstName,
+                lastName:lastName,
+                streetAddress:streetAddress,
+                town:town,
+                state:state,
+                country:country,
+                pin:pin,
+                company:company,
+                phone:phone,
+                email:email
+            },
+            success:(response)=>{
+
+            }
+        })
+    }
 </script>

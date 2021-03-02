@@ -1,96 +1,4 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
 
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <title>Sleek - Admin Dashboard Template</title>
-
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500"
-        rel="stylesheet" />
-    <link href="https://cdn.materialdesignicons.com/3.0.39/css/materialdesignicons.min.css" rel="stylesheet" />
-
-    <!-- PLUGINS CSS STYLE -->
-    <link href="../../assets/plugins/toaster/toastr.min.css" rel="stylesheet" />
-    <link href="../../assets/plugins/nprogress/nprogress.css" rel="stylesheet" />
-    <link href="../../assets/plugins/flag-icons/css/flag-icon.min.css" rel="stylesheet" />
-    <link href="../../assets/plugins/jvectormap/jquery-jvectormap-2.0.3.css" rel="stylesheet" />
-    <link href="../../assets/plugins/ladda/ladda.min.css" rel="stylesheet" />
-    <link href="../../assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
-    <link href="../../assets/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
-
-    <!-- SLEEK CSS -->
-    <link id="sleek-css" rel="stylesheet" href="../../assets/css/sleek.css" />
-
-
-
-    <!-- FAVICON -->
-    <link href="../../assets/img/favicon.png" rel="shortcut icon" />
-
-    <!--
-    HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
-  -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-
-    <style>
-        .top-information,
-        .bottom-information {
-            padding: 0 20px;
-        }
-
-        table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>td:first-child:before,
-        table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>th:first-child:before {
-            background-color: #29cc97;
-            top: 14px;
-            width: 16px;
-            height: 16px;
-            line-height: 16px;
-            border: 0;
-            font-weight: bold;
-            box-shadow: none;
-        }
-
-        table.dataTable.dtr-inline.collapsed>tbody>tr.parent>td:first-child:before,
-        table.dataTable.dtr-inline.collapsed>tbody>tr.parent>th:first-child:before {
-            background-color: fec400;
-        }
-    </style>
-
-    <script>
-        jQuery(document).ready(function () {
-            jQuery('#responsive-data-table').DataTable({
-                "aLengthMenu": [[20, 30, 50, 75, -1], [20, 30, 50, 75, "All"]],
-                "pageLength": 20,
-                "dom": '<"row justify-content-between top-information"lf>rt<"row justify-content-between bottom-information"ip><"clear">'
-            });
-        });
-    </script>
-
-    <script src="../assets/plugins/nprogress/nprogress.js"></script>
-
-    <!-- vendroid assets starts -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144"
-        href="../vendroid/img/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114"
-        href="../vendroid/img/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../vendroid/img/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="../vendroid/img/ico/apple-touch-icon-57-precomposed.png">
-    <link rel="shortcut icon" href="../vendroid/img/ico/favicon.png">
-
-
-    <!-- CSS -->
-
-    <!-- Bootstrap & FontAwesome & Entypo CSS -->
-    <link href="../vendroid/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="../vendroid/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <!--[if IE 7]><link type="text/css" rel="stylesheet" href="css/font-awesome-ie7.min.css"><![endif]-->
-    <link href="../vendroid/css/font-entypo.css" rel="stylesheet" type="text/css">
 
     <!-- Fonts CSS -->
     <link href="../vendroid/css/fonts.css" rel="stylesheet" type="text/css">
@@ -117,11 +25,14 @@
     <link href="../plugins/jquery-file-upload/css/jquery.fileupload-ui.css" rel="stylesheet" type="text/css">
 
     <!-- Theme CSS -->
-    <link href="../vendroid/css/theme.min.css" rel="stylesheet" type="text/css">
+    <link href="../../vendroid/css/theme.min.css" rel="stylesheet" type="text/css">
     <!--[if IE]> <link href="css/ie.css" rel="stylesheet" > <![endif]-->
-    <link href="../vendroid/css/chrome.css" rel="stylesheet" type="text/chrome"> <!-- chrome only css -->
+    <link href="../../vendroid/css/chrome.css" rel="stylesheet" type="text/chrome"> <!-- chrome only css -->
 
-
+<!-- Theme CSS -->
+<link href="vendroid/css/theme.min.css" rel="stylesheet" type="text/css">
+<!--[if IE]> <link href="css/ie.css" rel="stylesheet" > <![endif]-->
+<link href="vendroid/css/chrome.css" rel="stylesheet" type="text/chrome"> <!-- chrome only css -->
 
     <!-- Responsive CSS -->
     <link href="../vendroid/css/theme-responsive.min.css" rel="stylesheet" type="text/css">
@@ -225,91 +136,7 @@
             <div class="vd_title-section clearfix">
                 <div class="vd_panel-header">
                     <h1>Edit Product</h1>
-                    <div class="vd_panel-menu hidden-xs">
-                        <div class="menu">
-                            <div>
-                                <span class="menu-icon mgr-10"><i class="fa fa-search"></i></span>Preview
-                            </div>
-                        </div>
-                        <div class="menu">
-                            <div>
-                                <span class="menu-icon mgr-10"><i class="fa fa-copy"></i></span>Duplicate
-                            </div>
-                        </div>
-                        <div class="menu">
-                            <div>
-                                <span class="menu-icon mgr-10"><i class="fa fa-money"></i></span>Product Sales
-                            </div>
-                        </div>
-                        <div class="menu">
-                            <div>
-                                <span class="menu-icon mgr-10"><i class="fa fa-trash-o"></i></span>Delete
-                            </div>
-                        </div>
-                        <div class="menu">
-                            <div>
-                                <span class="menu-icon mgr-10"><i class="fa fa-support"></i></span>Help
-                            </div>
-                        </div>
-                    </div>
-                    <div class="vd_panel-menu visible-xs">
-                        <div class="menu">
-                            <div data-action="click-trigger">
-                                <span class="menu-icon mgr-10"><i class="fa fa-bars"></i></span>Menu <i
-                                    class="fa fa-angle-down"></i>
-                            </div>
-                            <div data-action="click-target" class="vd_mega-menu-content width-xs-2 left-xs"
-                                style="display: none">
-                                <div class="child-menu">
-                                    <div class="content-list content-menu">
-                                        <ul class="list-wrapper pd-lr-10">
-                                            <li>
-                                                <a href="#">
-                                                    <div class="menu-icon">
-                                                        <i class="fa fa-search"></i>
-                                                    </div>
-                                                    <div class="menu-text">Preview</div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <div class="menu-icon">
-                                                        <i class="fa fa-copy"></i>
-                                                    </div>
-                                                    <div class="menu-text">Duplicate</div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <div class="menu-icon">
-                                                        <i class="fa fa-money"></i>
-                                                    </div>
-                                                    <div class="menu-text">Product Sales</div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <div class="menu-icon">
-                                                        <i class="fa fa-trash-o"></i>
-                                                    </div>
-                                                    <div class="menu-text">Delete</div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <div class="menu-icon">
-                                                        <i class="fa fa-support"></i>
-                                                    </div>
-                                                    <div class="menu-text">Help</div>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- menu -->
-                    </div>
+                    
                 </div>
             </div>
 
@@ -388,7 +215,7 @@
                                                         <div class="col-sm-4">
 
                                                             <select id="category" name="category">
-                                                                <option value="{{product.category}}">{{product.category}}</option>
+                                                                <option value="">{{product.category}}</option>
                                                                 {{#each menCategory}}
                                                                 <option value="{{this.category}}">{{this.category}}
                                                                 </option>
@@ -421,7 +248,7 @@
                                                 </label>
                                                 <div class="col-lg-3">
                                                     <input type="number" required value="{{product.price}}" name="price"
-                                                        value="{{product.price}}" class="updateCurrentText"
+                                                         class="updateCurrentText"
                                                         id="code_1" />
                                                 </div>
                                             </div>

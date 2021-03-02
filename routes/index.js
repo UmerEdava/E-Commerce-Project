@@ -3,6 +3,7 @@ var router = express.Router();
 const userHelpers = require('../helpers/user-helpers')
 const adminHelpers = require('../helpers/admin-helpers')
 const productHelpers = require('../helpers/product-helpers')
+var voucher_codes = require('voucher-code-generator');
 var OTP = require('../config/OTP');
 const {
   response
@@ -112,6 +113,15 @@ router.post('/register', function (req, res) {
   userHelpers.otpRegisterCheck(req.body).then(() => {
     // req.session.userLoggedIn = true
     req.session.otpRegister = req.body
+
+    let referralCode = voucher_codes.generate({
+      length: 8,
+      count: 1
+    });
+  
+    let referral = referralCode[0]
+
+    console.log('codea..',referralCode);
 
     twilio
       .verify
@@ -424,8 +434,10 @@ router.get('/checkout', verifyLogin, async (req, res) => {
 })
 
 router.post('/place_order', async (req, res) => {
+  console.log('vanne',req.body.discountPrice);
   let products = await userHelpers.getCartProductsList(req.body.userId)
   let totalPrice = await userHelpers.getCartTotal(req.body.userId)
+  totalPrice = totalPrice - req.body.discountPrice
   userHelpers.placeOrder(req.body, products, totalPrice).then((orderId) => {
     if (req.body['payment-method'] === 'COD') {
       res.json({
@@ -632,6 +644,10 @@ router.get('/edit_address_checkout/:firstName:lastName:streetAddress:town:state:
   console.log('reached');
   isUserSubrouter = true
   res.render('users/edit-address',{isUserSubrouter})
+})
+
+router.get('/forget_password',(req,res)=>{
+  res.render('users/retrieve-password')
 })
 
 module.exports = router;

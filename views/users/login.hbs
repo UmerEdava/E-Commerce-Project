@@ -62,19 +62,15 @@
                             </div>
                             <div class="text-center">
                             <p>OR</p>
-                            <a href="/OTP_login" class="mb-4">Login with OTP</a>
+                            <a href="/OTP_login" class="mb-4 btn btn-dark">Login with OTP</a>
                             </div>
                             {{#if loginError}}
                             <p style="color: red;">{{loginError}}</p>
                             {{/if}}
                             <div class="group-input gi-check">
                                 <div class="gi-more">
-                                    <label for="save-pass">
-                                        Save Password
-                                        <input type="checkbox" id="save-pass">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <a href="#" class="forget-pass">Forget your Password</a>
+                                    
+                                    <a href="/forget_password" class="forget-pass">Forget your Password</a>
                                 </div>
                             </div>
                             <button type="submit" class="site-btn login-btn">Sign In</button>
