@@ -138,17 +138,18 @@
                                     <label for="pc-check">Cash On Delivery</label>
                                 </div>
                                 <div class="">
-                                    <input type="radio" id="pay-online" name="payment-method" value="razorpay"
+                                    <input type="radio" id="razorpay" name="payment-method" value="razorpay"
                                         style="width: 3%;height: 12px;">
                                     <label for="pc-paypal">Razorpay</label>
                                 </div>
                                 <div class="">
-                                    <input type="radio" id="pay-online" name="payment-method" value="paypal"
+                                    <input type="radio" id="paypal" name="payment-method" value="paypal"
                                         style="width: 3%;height: 12px;">
                                     <label for="pc-paypal">Paypal</label>
                                     <div id="paypal-button"></div>
                                 </div>
                             </div>
+                            <input type="number" id="discountPrice" name="discountPrice" hidden>
                             <div class="order-btn">
                                 <button type="submit" class="site-btn place-btn">Place Order</button>
                             </div>
@@ -177,6 +178,9 @@
     </div>
 </section>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <script
@@ -186,14 +190,14 @@
 
 <script>
     $('#shippingForm').submit((e) => {
+        console.log('clickedee')
         e.preventDefault()
         $.ajax({
             url: '/place_order',
             method: 'post',
             data: $('#shippingForm').serialize(),
             success: (response) => {
-                console.log(response)
-                alert(response)
+                
                 if (response.codSuccess == 'COD') {
                     location.href = '/order_success'
                 } else if (response.paypal) {
@@ -285,6 +289,7 @@
                     console.log('entho vannu')
                     $('#total').html(response.discountPrice)
                     $('#oldTotal').html(response.originalPrice)
+                    $('#discountPrice').val(response.discountPrice)
                 }
                 console.log(response)
             }
@@ -308,7 +313,7 @@
         document.getElementById('email').value = email
     }
 
-    function editAddress(firstName, lastName, streetAddress, town, state, country, pin, company, phone, email) {
+    {{!-- function editAddress(firstName, lastName, streetAddress, town, state, country, pin, company, phone, email) {
         console.log('clicked')
         console.log(firstName, lastName, streetAddress, town, state, country, pin, company, phone, email)
         
@@ -331,5 +336,5 @@
 
             }
         })
-    }
+    } --}}
 </script>

@@ -434,10 +434,12 @@ router.get('/checkout', verifyLogin, async (req, res) => {
 })
 
 router.post('/place_order', async (req, res) => {
-  console.log('vanne',req.body.discountPrice);
   let products = await userHelpers.getCartProductsList(req.body.userId)
   let totalPrice = await userHelpers.getCartTotal(req.body.userId)
-  totalPrice = totalPrice - req.body.discountPrice
+  if(!req.body.discountPrice==0){
+    totalPrice = req.body.discountPrice
+  }
+  
   userHelpers.placeOrder(req.body, products, totalPrice).then((orderId) => {
     if (req.body['payment-method'] === 'COD') {
       res.json({
