@@ -495,5 +495,30 @@ module.exports = {
             ]).toArray()
             resolve(salesReport)
         })
+    },
+    getSalesReportOfCurrentMonth: ()=>{
+        var todayDate
+        var firstDateOfCurrentMonth
+
+        var report = db.get().collection(collection.ORDER_COLLECTION).aggregate([
+            {
+                $match:{
+                    date:{
+                        $gte:firstDateOfCurrentMonth,$lte:todayDate
+                    }
+                }
+            },
+            {
+                $project:{
+                    totalAmount:1,
+                    paymentMethod:1,
+                    status:1,
+                    date:1,
+                    deliveryDetails:1
+                }
+            }
+        ]).toArray()
+        console.log('kittippoyi...',report);
+        resolve(report)        
     }
 }

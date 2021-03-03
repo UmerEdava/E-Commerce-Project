@@ -388,6 +388,8 @@
                                                         <img src="" style="width: 60px;display:none"
                                                                         alt="product image" id="img1Disp" />
 
+                                                        <textarea name="imageBase64Data" id="imageBase64Data" cols="30" rows="10" hidden></textarea>
+
                                                         </div>
 
 
@@ -878,7 +880,9 @@ $('.js-save-cropped-avatar').on('click', function(event) {
     const base64encodedImage = canvas.toDataURL();
     console.log(base64encodedImage)
     $('#img1Disp').attr('src', base64encodedImage);
+    $("#imageBase64Data").val(base64encodedImage);
     $(cropperModalId).modal('hide');
+    
 });
 </script>
 

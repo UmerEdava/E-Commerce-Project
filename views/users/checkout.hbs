@@ -22,14 +22,16 @@
                 <div class="card" style="height: 21rem;">
                     <div class="card-body">
                         <div style="clear: both">
-                            <h2 id="" class="card-title" style="font-size:2rem;">{{this.firstName}} <span id="">{{this.lastName}}</span></h2>                            
+                            <h2 id="" class="card-title" style="font-size:2rem;">{{this.firstName}} <span
+                                    id="">{{this.lastName}}</span></h2>
                         </div>
-                        
+
                         {{!-- <h2 id="firstName" class="card-title" style="font-size:2rem">{{this.firstName}}</h2>
                         <h2 id="lastName" class="card-title" style="font-size:2rem">{{this.lastName}}</h2> --}}
                         <p id="" class="card-text mb-1" style="font-size:1.2rem">{{this.streetAddress}}</p>
                         <p id="" class="card-link mb-1">{{this.town}}</p>
-                        <p id="" class="card-text mb-1" style="font-size:1.2rem">{{this.state}} <span id="">{{this.country}}</span></p>
+                        <p id="" class="card-text mb-1" style="font-size:1.2rem">{{this.state}} <span
+                                id="">{{this.country}}</span></p>
                         <p id="" class="card-link mb-2">{{this.pin}}</p>
 
                         <p id="" class="card-text mb-1" style="font-size:1.2rem">Company: {{this.company}}</p>
@@ -38,9 +40,12 @@
                         <p id="" class="card-text" style="font-size:1.2rem">{{this.email}}</p>
 
                         <div class="mt-3">
-                            <button class="btn btn-primary" onclick="useAddress('{{this.firstName}}','{{this.lastName}}','{{this.streetAddress}}','{{this.town}}','{{this.state}}','{{this.country}}','{{this.pin}}','{{this.company}}','{{this.phone}}','{{this.email}}')">Use this address</button>
+                            <button class="btn btn-primary"
+                                onclick="useAddress('{{this.firstName}}','{{this.lastName}}','{{this.streetAddress}}','{{this.town}}','{{this.state}}','{{this.country}}','{{this.pin}}','{{this.company}}','{{this.phone}}','{{this.email}}')">Use
+                                this address</button>
 
-                            <button class="btn btn-primary" onclick="editAddress('{{this.firstName}}','{{this.lastName}}','{{this.streetAddress}}','{{this.town}}','{{this.state}}','{{this.country}}','{{this.pin}}','{{this.company}}','{{this.phone}}','{{this.email}}')">Edit</button>
+                            <button class="btn btn-primary"
+                                onclick="editAddress('{{this.firstName}}','{{this.lastName}}','{{this.streetAddress}}','{{this.town}}','{{this.state}}','{{this.country}}','{{this.pin}}','{{this.company}}','{{this.phone}}','{{this.email}}')">Edit</button>
 
                             <button class="btn btn-primary" onclick="removeAddress()">Delete</button>
                         </div>
@@ -131,6 +136,22 @@
                                             id="oldTotal"></s></span></li>
                                 <li class="total-price">Total <span id="total">${{total}}.00</span></li>
                             </ul>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6 style="font-size: 1.93625rem;">Discount Coupon</h6>
+
+                                    <input style="height: calc(4.4925rem + 2px);font-size: 1.5rem;" type="text"
+                                        placeholder="Enter your coupon code" class="form-control" id="couponCode">
+
+                                </div>
+
+                                <div class="col-md-6">
+                                    <button type="button" style="margin-top:2.1rem" class="site-btn place-btn"
+                                        onclick="verifyCoupon()">Apply</button>
+                                </div>
+                            </div>
+
                             <div class="payment-check">
                                 <div class="">
                                     <input type="radio" id="pay-cod" name="payment-method" value="COD"
@@ -159,20 +180,7 @@
             </div>
         </form>
 
-        <div class="row">
-            <div class="col-md-3">
-                <h6 style="font-size: 1.93625rem;">Discount Coupon</h6>
 
-                <input style="height: calc(4.4925rem + 2px);font-size: 1.5rem;" type="text"
-                    placeholder="Enter your coupon code" class="form-control" id="couponCode">
-
-            </div>
-
-            <div class="col-md-3">
-                <button type="submit" style="margin-top:2.1rem" class="site-btn place-btn"
-                    onclick="verifyCoupon()">Apply</button>
-            </div>
-        </div>
 
 
     </div>
@@ -197,7 +205,7 @@
             method: 'post',
             data: $('#shippingForm').serialize(),
             success: (response) => {
-                
+
                 if (response.codSuccess == 'COD') {
                     location.href = '/order_success'
                 } else if (response.paypal) {
@@ -313,28 +321,31 @@
         document.getElementById('email').value = email
     }
 
-    {{!-- function editAddress(firstName, lastName, streetAddress, town, state, country, pin, company, phone, email) {
-        console.log('clicked')
-        console.log(firstName, lastName, streetAddress, town, state, country, pin, company, phone, email)
-        
-        $.ajax({
-            url:'/edit_address_checkout',
-            method:'post',
-            data:{
-                firstName:firstName,
-                lastName:lastName,
-                streetAddress:streetAddress,
-                town:town,
-                state:state,
-                country:country,
-                pin:pin,
-                company:company,
-                phone:phone,
-                email:email
-            },
-            success:(response)=>{
+    {
+        {
+            !-- function editAddress(firstName, lastName, streetAddress, town, state, country, pin, company, phone, email) {
+                console.log('clicked')
+                console.log(firstName, lastName, streetAddress, town, state, country, pin, company, phone, email)
 
-            }
-        })
-    } --}}
+                $.ajax({
+                    url: '/edit_address_checkout',
+                    method: 'post',
+                    data: {
+                        firstName: firstName,
+                        lastName: lastName,
+                        streetAddress: streetAddress,
+                        town: town,
+                        state: state,
+                        country: country,
+                        pin: pin,
+                        company: company,
+                        phone: phone,
+                        email: email
+                    },
+                    success: (response) => {
+
+                    }
+                })
+            } --}
+    }
 </script>

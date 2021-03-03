@@ -65,7 +65,7 @@
                             </thead>
                             <tbody>
                                 {{#each products}}
-                                <tr>
+                                <tr id="{{this.product._id}}">
 
                                     <td class="cart-pic first-row"><img
                                             src="/images/product-images/{{this.product._id}}1.jpg" alt=""></td>
@@ -98,7 +98,7 @@
                     </div>
 
                     {{#unless products}}
-                    <div class="text-center">
+                    <div class="text-center" id="emptyCart">
                         <div class="cart-buttons">
                             <h2 class="mb-5">Cart is empty</h2>
                             <a href="/" class="primary-btn continue-shop">Continue shopping</a>
@@ -106,8 +106,15 @@
                     </div>
                     {{/unless}}
 
+                    <div class="text-center" id="emptyCart" style="display: none;">
+                        <div class="cart-buttons">
+                            <h2 class="mb-5">Cart is empty</h2>
+                            <a href="/" class="primary-btn continue-shop">Continue shopping</a>
+                        </div>
+                    </div>
+
                     {{#if products}}
-                    <div class="row">
+                    <div class="row" id="cartComponent">
                         <div class="col-lg-4">
                             <div class="cart-buttons">
                                 <a href="#" class="primary-btn continue-shop">Continue shopping</a>
@@ -295,6 +302,7 @@
         }
 
         function removeProductFromCart(cartId, proId) {
+            var product = proId
             console.log(cartId, proId)
             $.ajax({
                 url: '/remove_product_from_cart',
@@ -305,8 +313,13 @@
                 method: 'post',
                 success: (response) => {
                     console.log('removed')
-                    if (response) {
-                        location.reload()
+                    if (response) {                        
+                        document.getElementById(product).style.display = "none"
+                        document.getElementById('emptyCart').style.display = "block"
+                        document.getElementById('cartComponent').style.display = "none"
+
+                        {{!-- $("#emptyCart").load(" #emptyCart"); --}}
+                        
                     }
 
                 }

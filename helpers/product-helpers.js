@@ -265,5 +265,13 @@ module.exports = {
 
             resolve(count)
         })
+    },getSubCategory: (subCategory) => {
+        return new Promise(async (resolve, reject) => {
+            let subCategory = await db.get().collection(collections.PRODUCT_COLLECTION).find({
+                category: subCategory
+            }).toArray()
+            console.log(subCategory)
+            resolve(subCategory)
+        })
     }
 }

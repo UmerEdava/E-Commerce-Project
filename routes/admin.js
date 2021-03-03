@@ -130,12 +130,13 @@ router.get('/add_product', verifyLogin, async (req, res) => {
 })
 
 router.post('/add_product', (req, res) => {
+  console.log('ithaanu saadhanam',req.body.imageBase64Data);
   productHelpers.addProduct(req.body, (id) => {
     let image1 = req.files.image1
     let image2 = req.files.image2
     let image3 = req.files.image3
     let image4 = req.files.image4
-    let image5 = req.files.image5
+    let image5 = req.files.image5    
 
     image1.mv('./public/images/product-images/' + id + '1' + '.jpg')
 
@@ -335,6 +336,17 @@ router.get('/girls_collection', verifyLogin, (req, res) => {
     isAdmin = true
     res.render('admin/girls-collection', {
       girls,
+      isAdmin
+    })
+  })
+})
+
+router.get('/sub_category_collection:subCategory', verifyLogin,(req,res)=>{
+  productHelpers.getSubCategory(req.params.subCategory).then((subCategory)=>{
+    console.log(subCategory);
+    isAdmin = true
+    res.render('admin/sub-category', {
+      subCategory,
       isAdmin
     })
   })
@@ -619,9 +631,12 @@ router.get('/view_order_products/:id', async (req, res) => {
 })
 
 router.get('/sales_report', (req,res)=>{
-
+  var currentMonthReport
+  // adminHelpers.getSalesReportOfCurrentMonth().then((report)=>{
+  //   currentMonthReport = report
+  // })
   isAdmin = true
-  res.render('admin/sales-report',{isAdmin})
+  res.render('admin/sales-report',{isAdmin,currentMonthReport})
 })
 
 router.post('/sales_report', (req,res)=>{
@@ -634,6 +649,10 @@ router.post('/sales_report', (req,res)=>{
     console.log(response);
     res.json(response);
   });
+})
+
+router.get('/home_banner', (req,res)=>{
+  res.render('admin/home-banner')
 })
 
 module.exports = router;
