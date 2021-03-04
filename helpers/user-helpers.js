@@ -825,5 +825,6 @@ module.exports = {
             console.log('kittiyea....',users);
             resolve(users)
         })
-    }
+    },
+    // getOrdersOfLastFiveUsers
 }
