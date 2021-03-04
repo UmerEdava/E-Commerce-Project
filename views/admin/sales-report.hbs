@@ -10,9 +10,20 @@
         <div class="content-wrapper">
             <div class="content">
                 <form>
-                    <input type="date" class="mb-3" id="firstDate" name="first"> to 
-                    <input type="date" id="lastDate" class="mb-3" name="last">
-                    <button class="btn btn-primary" type="submit" id="dateSubmit">Submit</button>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <input type="date" class="mb-3 form-control" id="firstDate" name="first"
+                                onchange="handler(event)">
+                        </div>
+                        <p>to</p>
+                        <div class="col-sm-3">
+                            <input type="date" id="lastDate" class="mb-3 form-control" name="last">
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-primary" type="submit" id="dateSubmit">Submit</button>
+                        </div>
+                    </div>
+
                 </form>
                 <table class="table" id="reportTable">
                     <thead class="table-light">
@@ -26,7 +37,7 @@
                         </tr>
                     </thead>
                     <tbody id="tableBody">
-                        {{#each currentMonthReport}}                        
+                        {{#each currentMonthReport}}
                         <tr id="defaultData">
                             <td scope="col">#</td>
                             <td scope="col">{{this.deliveryDetails.firstName}}</td>
@@ -35,7 +46,7 @@
                             <td scope="col">{{this.status}}</td>
                             <td scope="col">{{this.totalAmount}}</td>
                         </tr>
-                        {{/each}}  
+                        {{/each}}
                     </tbody>
                 </table>
             </div>
@@ -58,7 +69,7 @@
                 lastDate
             },
             success: (response) => {
-                console.log('kittiyeaa..',response)
+                console.log('kittiyeaa..', response)
 
                 $("#defaultData").find("tr:gt(0)").remove();
 
@@ -81,7 +92,34 @@
 </script>
 
 <script>
-    $(document).ready( function () {
-    $('#reportTable').DataTable();
+    $(document).ready(function () {
+        $('#reportTable').DataTable();
     });
+</script>
+
+{{!-- <script>
+    $(function () {
+        var dtToday = new Date();
+
+        var month = dtToday.getMonth() + 1;
+        var day = dtToday.getDate();
+        var year = dtToday.getFullYear();
+        if (month < 10)
+            month = '0' + month.toString();
+        if (day < 10)
+            day = '0' + day.toString();
+
+        var maxDate = year + '-' + month + '-' + day;
+
+        $('#firstDate').attr('min', maxDate);
+        $('#lastDate').attr('min', maxDate);
+    });
+</script> --}}
+
+<script>
+    function handler(e) {
+        var first = e.target.value
+        console.log('vanne', first)
+        document.getElementById("lastDate").min = first
+    }
 </script>

@@ -4,6 +4,7 @@ const userHelpers = require('../helpers/user-helpers')
 const productHelpers = require('../helpers/product-helpers')
 const adminHelpers = require('../helpers/admin-helpers');
 var voucher_codes = require('voucher-code-generator');
+var base64ToImage = require('base64-to-image');
 var moment = require("moment");
 const {
   response
@@ -105,7 +106,6 @@ router.get('/all_products', (req, res) => {
   let adminLogin = req.session.admin
   if (adminLogin) {
     productHelpers.getAllProducts().then((products) => {
-      console.log('just for testing', products);
       res.render('admin/all-products', {
         products,
         isAdmin
@@ -133,7 +133,9 @@ router.get('/add_product', verifyLogin, async (req, res) => {
 })
 
 router.post('/add_product', (req, res) => {
-  console.log('ithaanu saadhanam',req.body.imageBase64Data);
+  
+  
+  
   productHelpers.addProduct(req.body, (id) => {
     let image1 = req.files.image1
     let image2 = req.files.image2
@@ -141,7 +143,14 @@ router.post('/add_product', (req, res) => {
     let image4 = req.files.image4
     let image5 = req.files.image5    
 
-    image1.mv('./public/images/product-images/' + id + '1' + '.jpg')
+    // image1.mv('./public/images/product-images/' + id + '1' + '.jpg')
+
+    var base64Str = req.body.imageBase64Data
+    console.log('ithaanalle',base64Str);
+    var path = "./public/images/product-images/";
+    var optionalObj = { fileName: id+'1', type: "jpg" };
+
+    base64ToImage(base64Str, path, optionalObj);
 
     image2.mv('./public/images/product-images/' + id + '2' + '.jpg')
 

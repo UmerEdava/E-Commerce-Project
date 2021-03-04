@@ -398,7 +398,7 @@
                                                             <span>Add files...</span>
                                                             <!-- The file input field used as target for the file upload widget -->
                                                             <input type="file" accept="image/*" name="image2"
-                                                                id="fileupload" onchange="viewImage2(event)"
+                                                                id="fileupload" class="js-photo-upload" onchange="viewImage2(event)"
                                                                 />
                                                         </span>
                                                         <br />
@@ -861,8 +861,8 @@ $('.js-save-cropped-avatar').on('click', function(event) {
     console.log(cropper.ready);
 
     var $button = $(this);
-    $button.text('uploading...');
-    $button.prop('disabled', true);
+    {{!-- $button.text('uploading...');
+    $button.prop('disabled', true); --}}
 
     const canvas = cropper.getCroppedCanvas();
     const base64encodedImage = canvas.toDataURL();

@@ -6,6 +6,8 @@
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
+    "base64-img": "^1.0.4",
+    "base64-to-image": "^1.0.2",
     "bcrypt": "^5.0.0",
     "chart.js": "^2.9.4",
     "cookie-parser": "~1.4.4",
