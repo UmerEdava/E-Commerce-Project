@@ -140,7 +140,7 @@ module.exports = {
     },
     addOfferForCategory: (offerDetails) => {
         return new Promise(async (resolve, reject) => {
-            
+
             var startDate = moment(offerDetails.startDate).format("L")
             var lastDate = moment(offerDetails.lastDate).format("L")
             var actualPrice
@@ -178,17 +178,17 @@ module.exports = {
         })
     },
     removeCategoryOffer: (category) => {
-        console.log('why not string',category);
-        return new Promise((resolve,reject)=>{
+        console.log('why not string', category);
+        return new Promise((resolve, reject) => {
             db.get().collection(collection.PRODUCT_COLLECTION).find({
                 for: category
             }).toArray().then((products) => {
-    
+
                 var length = products.length
                 var products = products
-    
+
                 console.log(products);
-    
+
                 for (i = 0; i < length; i++) {
                     db.get().collection(collection.PRODUCT_COLLECTION).updateOne({
                         _id: products[i]._id
@@ -197,10 +197,10 @@ module.exports = {
                             price: products[i].actualPrice,
                         },
                         $unset: {
-                            categoryOfferPercentage:1,
-                            actualPrice:1,
-                            startDate:1,
-                            lastDate:1,
+                            categoryOfferPercentage: 1,
+                            actualPrice: 1,
+                            startDate: 1,
+                            lastDate: 1,
                         }
                     })
                 }
@@ -209,15 +209,15 @@ module.exports = {
             resolve()
 
         })
-        
+
     },
-    getProductDetailsForCategory: (category)=>{
-        console.log('ethiyo',category);
+    getProductDetailsForCategory: (category) => {
+        console.log('ethiyo', category);
         return new Promise((resolve, reject) => {
             db.get().collection(collection.PRODUCT_COLLECTION).findOne({
                 for: category
             }).then((product) => {
-                console.log('vannedea',product);
+                console.log('vannedea', product);
                 resolve(product)
             })
         })
@@ -303,7 +303,9 @@ module.exports = {
     getPendingOrders: () => {
         return new Promise(async (resolve, reject) => {
             let orders = await db.get().collection(collection.ORDER_COLLECTION)
-                .find({status:'pending'}).toArray()
+                .find({
+                    status: 'pending'
+                }).toArray()
             console.log('orders', orders);
             resolve(orders)
         })
@@ -311,15 +313,17 @@ module.exports = {
     getDeliveredOrders: () => {
         return new Promise(async (resolve, reject) => {
             let orders = await db.get().collection(collection.ORDER_COLLECTION)
-                .find({status:'delivered'}).toArray()
+                .find({
+                    status: 'delivered'
+                }).toArray()
             console.log('orders', orders);
             resolve(orders)
         })
     },
     getPendingOrdersCount: () => {
-        return new Promise(async(resolve,reject)=>{
+        return new Promise(async (resolve, reject) => {
             let pendingOrders = await db.get().collection(collection.ORDER_COLLECTION).find({
-                status:'pending'
+                status: 'pending'
             }).toArray()
 
             console.log(pendingOrders);
@@ -332,9 +336,9 @@ module.exports = {
         })
     },
     getDeliveredOrdersCount: () => {
-        return new Promise(async(resolve,reject)=>{
+        return new Promise(async (resolve, reject) => {
             let deliveredOrders = await db.get().collection(collection.ORDER_COLLECTION).find({
-                status:'delivered'
+                status: 'delivered'
             }).toArray()
 
             console.log(deliveredOrders);
@@ -347,9 +351,9 @@ module.exports = {
         })
     },
     getPlacedOrdersCount: () => {
-        return new Promise(async(resolve,reject)=>{
+        return new Promise(async (resolve, reject) => {
             let placedOrders = await db.get().collection(collection.ORDER_COLLECTION).find({
-                status:'placed'
+                status: 'placed'
             }).toArray()
 
             console.log(placedOrders);
@@ -362,9 +366,9 @@ module.exports = {
         })
     },
     getShippedOrdersCount: () => {
-        return new Promise(async(resolve,reject)=>{
+        return new Promise(async (resolve, reject) => {
             let shippedOrders = await db.get().collection(collection.ORDER_COLLECTION).find({
-                status:'shipped'
+                status: 'shipped'
             }).toArray()
 
             console.log(shippedOrders);
@@ -377,9 +381,9 @@ module.exports = {
         })
     },
     getCancelledOrdersCount: () => {
-        return new Promise(async(resolve,reject)=>{
+        return new Promise(async (resolve, reject) => {
             let cancelledOrders = await db.get().collection(collection.ORDER_COLLECTION).find({
-                status:'cancelled'
+                status: 'cancelled'
             }).toArray()
 
             console.log(cancelledOrders);
@@ -392,7 +396,7 @@ module.exports = {
         })
     },
     getOrdersCount: () => {
-        return new Promise(async(resolve,reject)=>{
+        return new Promise(async (resolve, reject) => {
             let allOrders = await db.get().collection(collection.ORDER_COLLECTION).find().toArray()
 
             console.log(allOrders);
@@ -405,51 +409,59 @@ module.exports = {
         })
     },
     confirmOrder: (orderId) => {
-        console.log('queriyil ethiye..',orderId);
-        return new Promise((resolve,reject)=>{
-            db.get().collection(collection.ORDER_COLLECTION).updateOne({_id:objectId(orderId)},{
-                $set:{
-                    status:'confirmed'
+        console.log('queriyil ethiye..', orderId);
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.ORDER_COLLECTION).updateOne({
+                _id: objectId(orderId)
+            }, {
+                $set: {
+                    status: 'confirmed'
                 }
             })
             resolve()
         })
     },
     cancelOrder: (orderId) => {
-        console.log('queriyil ethiye..',orderId);
-        return new Promise((resolve,reject)=>{
-            db.get().collection(collection.ORDER_COLLECTION).updateOne({_id:objectId(orderId)},{
-                $set:{
-                    status:'cancelled'
+        console.log('queriyil ethiye..', orderId);
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.ORDER_COLLECTION).updateOne({
+                _id: objectId(orderId)
+            }, {
+                $set: {
+                    status: 'cancelled'
                 }
             })
             resolve()
         })
     },
     shipOrder: (orderId) => {
-        console.log('queriyil ethiye..',orderId);
-        return new Promise((resolve,reject)=>{
-            db.get().collection(collection.ORDER_COLLECTION).updateOne({_id:objectId(orderId)},{
-                $set:{
-                    status:'shipped'
+        console.log('queriyil ethiye..', orderId);
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.ORDER_COLLECTION).updateOne({
+                _id: objectId(orderId)
+            }, {
+                $set: {
+                    status: 'shipped'
                 }
             })
             resolve()
         })
     },
     deliveredOrder: (orderId) => {
-        console.log('queriyil ethiye..',orderId);
-        return new Promise((resolve,reject)=>{
-            db.get().collection(collection.ORDER_COLLECTION).updateOne({_id:objectId(orderId)},{
-                $set:{
-                    status:'delivered'
+        console.log('queriyil ethiye..', orderId);
+        return new Promise((resolve, reject) => {
+            db.get().collection(collection.ORDER_COLLECTION).updateOne({
+                _id: objectId(orderId)
+            }, {
+                $set: {
+                    status: 'delivered'
                 }
             })
             resolve()
         })
     },
     salesRevenue: () => {
-        return new Promise(async(resolve,reject)=>{
+        return new Promise(async (resolve, reject) => {
             // let deliveredOrders = await db.get().collection(collection.ORDER_COLLECTION).find({status:'delivered'}).toArray()
             // console.log(deliveredOrders);
 
@@ -457,68 +469,80 @@ module.exports = {
 
             // console.log(amount);
 
-            let totalRevenue =await db.get().collection(collection.ORDER_COLLECTION).aggregate([{
+            let totalRevenue = await db.get().collection(collection.ORDER_COLLECTION).aggregate([{
                 $group: {
-                 _id: null,
-                 total: { $sum: "$totalAmount" }
+                    _id: null,
+                    total: {
+                        $sum: "$totalAmount"
+                    }
                 }
-              }]).toArray()
+            }]).toArray()
 
-              console.log(totalRevenue);
+            console.log(totalRevenue);
 
-              resolve(totalRevenue)
+            resolve(totalRevenue)
 
-             
+
         })
 
     },
-    reportOfSales: (firstDate,lastDate) => {
-        console.log(firstDate,lastDate);
-        return new Promise(async(resolve,reject)=>{
-            let salesReport =await db.get().collection(collection.ORDER_COLLECTION).aggregate([
-                {
-                    $match:{
-                        date:{
-                            $gte:firstDate,$lte:lastDate
+    reportOfSales: (firstDate, lastDate) => {
+        console.log(firstDate, lastDate);
+        return new Promise(async (resolve, reject) => {
+            let salesReport = await db.get().collection(collection.ORDER_COLLECTION).aggregate([{
+                    $match: {
+                        date: {
+                            $gte: firstDate,
+                            $lte: lastDate
                         }
                     }
                 },
                 {
-                    $project:{
-                        totalAmount:1,
-                        paymentMethod:1,
-                        status:1,
-                        date:1,
-                        deliveryDetails:1
+                    $project: {
+                        totalAmount: 1,
+                        paymentMethod: 1,
+                        status: 1,
+                        date: 1,
+                        deliveryDetails: 1
                     }
                 }
             ]).toArray()
             resolve(salesReport)
         })
     },
-    getSalesReportOfCurrentMonth: ()=>{
-        var todayDate
-        var firstDateOfCurrentMonth
+    getSalesReportOfCurrentMonth: () => {
+        return new Promise(async(resolve, reject) => {
+            var todayDate = new Date();
+            var firstDateOfCurrentMonth = new Date(todayDate.getFullYear(), todayDate.getMonth(), 1); 
+            first = moment(firstDateOfCurrentMonth).format("L")
+            Last = moment(todayDate).format("L")
 
-        var report = db.get().collection(collection.ORDER_COLLECTION).aggregate([
-            {
-                $match:{
-                    date:{
-                        $gte:firstDateOfCurrentMonth,$lte:todayDate
+           console.log('main',first);
+           console.log('main',Last);
+
+            console.log(typeof(first));
+            console.log(typeof(Last));
+            
+            var report = await db.get().collection(collection.ORDER_COLLECTION).aggregate([{
+                    $match: {
+                        date: {
+                            $gte: first,
+                            $lte: Last
+                        }
+                    }
+                },
+                {
+                    $project: {
+                        totalAmount: 1,
+                        paymentMethod: 1,
+                        status: 1,
+                        date: 1,
+                        deliveryDetails: 1
                     }
                 }
-            },
-            {
-                $project:{
-                    totalAmount:1,
-                    paymentMethod:1,
-                    status:1,
-                    date:1,
-                    deliveryDetails:1
-                }
-            }
-        ]).toArray()
-        console.log('kittippoyi...',report);
-        resolve(report)        
+            ]).toArray()
+            console.log('kittippoyi...', report);
+            resolve(report)
+        })
     }
 }

@@ -23,6 +23,8 @@ router.get('/', async function (req, res, next) {
   var adminLoggedIn = req.session.admin
   if (adminLoggedIn) {
     isAdmin = true
+    lastFiveUsers = await userHelpers.getLastFiveUsers()
+    console.log('haai',lastFiveUsers);
     salesRevenue = await adminHelpers.salesRevenue()
     totalIncome = salesRevenue[0]
     totalOrders = await adminHelpers.getOrdersCount()
@@ -46,7 +48,8 @@ router.get('/', async function (req, res, next) {
       deliveredOrders,
       placedOrders,
       shippedOrders,
-      cancelledOrders
+      cancelledOrders,
+      lastFiveUsers
     })
   } else {
     res.redirect('/admin/admin_login')
@@ -528,8 +531,6 @@ router.get('/add_category_offer/:id', (req, res) => {
 
 })
 
-
-
 router.get('/all_orders', (req, res) => {
   adminHelpers.getAllOrders().then((orders) => {
     console.log(orders)
@@ -630,11 +631,12 @@ router.get('/view_order_products/:id', async (req, res) => {
   })
 })
 
-router.get('/sales_report', (req,res)=>{
+router.get('/sales_report', async(req,res)=>{
   var currentMonthReport
-  // adminHelpers.getSalesReportOfCurrentMonth().then((report)=>{
-  //   currentMonthReport = report
-  // })
+  await adminHelpers.getSalesReportOfCurrentMonth().then((report)=>{
+    console.log('reportundo..',report)
+    currentMonthReport = report
+  })
   isAdmin = true
   res.render('admin/sales-report',{isAdmin,currentMonthReport})
 })
@@ -654,5 +656,6 @@ router.post('/sales_report', (req,res)=>{
 router.get('/home_banner', (req,res)=>{
   res.render('admin/home-banner')
 })
+
 
 module.exports = router;

@@ -35,6 +35,10 @@ router.get('/', async function (req, res, next) {
     // var total = await userHelpers.getCartTotal(req.session.user._id)
     var cartProducts = await userHelpers.getCartProducts(req.session.user._id)
 
+    
+
+    var latestProducts = await productHelpers.getLastFourProducts()
+
     productHelpers.getAllProducts().then((products) => {
       isUser = true
       res.render('users/home', {
@@ -43,16 +47,20 @@ router.get('/', async function (req, res, next) {
         products,
         cartCount,
         // total,
-        cartProducts
+        cartProducts,
+        latestProducts
       });
     })
   } else {
+    var latestProducts = await productHelpers.getLastFourProducts()
+
     productHelpers.getAllProducts().then((products) => {
       isUser = true
       res.render('users/home', {
         userData,
         isUser,
-        products
+        products,
+        latestProducts
       });
     })
   }
@@ -227,13 +235,14 @@ router.post('/change_pro_qty', (req, res, next) => {
 
   userHelpers.changeProQty(req.body).then(async (response) => {
     response.total = await userHelpers.getCartTotal(req.body.user)
-    response.subTotal = await userHelpers.getSubTotal(req.body.user)
+    response.subTotal = await userHelpers.getSubTotal(req.body.user,req.body.product)
     if(response.subTotal>0 && response.total>0){
       res.json(response)
-    }else{
+    }else if(response.total<=0){
+      res.json({cartEmpty:true})
+    } else{
       res.json({removeProduct:true})
-    }
-    
+    }    
   })
 })
 
@@ -280,9 +289,14 @@ router.post('/clear_cart', (req, res) => {
 
 router.post('/remove_product_from_cart', (req, res) => {
   console.log(req.body, 'hari arrived in router');
-  userHelpers.removeProductFromCart(req.body).then(() => {
-    console.log('removed');
-    res.json(response)
+  userHelpers.removeProductFromCart(req.body).then(async (response) => {
+    response.total = await userHelpers.getCartTotal(req.session.user._id)
+    response.cartCount = await userHelpers.getCartCount(req.session.user._id)
+    if (response.total > 0) {
+      res.json(response)
+    } else {
+      res.json({ cartEmpty: true })
+    }
   })
 })
 

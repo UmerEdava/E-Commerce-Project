@@ -65,8 +65,9 @@
                             </thead>
                             <tbody>
                                 {{#each products}}
-                                <tr id="{{this.product._id}}">
+                                <tr id="this{{this.product._id}}">
 
+                                    
                                     <td class="cart-pic first-row"><img
                                             src="/images/product-images/{{this.product._id}}1.jpg" alt=""></td>
                                     <td class="cart-title first-row">
@@ -276,6 +277,8 @@
             let quantity = parseInt(document.getElementById(proId).value)
             count = parseInt(count)
 
+            console.log('qty',quantity)
+
             console.log('id in ajax', userId)
             $.ajax({
                 url: '/change_pro_qty',
@@ -290,7 +293,13 @@
                 success: (response) => {
                     if (response.removeProduct) {
                         alert('Product removed from cart')
-                        location.reload()
+                        document.getElementById('this'+proId).hidden=true
+                        
+                    }else if(response.cartEmpty){
+                        alert('Product removed from cart')
+                        document.getElementById('emptyCart').style.display = "block"
+                        document.getElementById('cartComponent').style.display = "none"
+                        document.getElementById('this'+proId).hidden=true
                     } else {
                         console.log(response)
                         document.getElementById(proId).value = quantity + count
@@ -313,15 +322,13 @@
                 method: 'post',
                 success: (response) => {
                     console.log('removed')
-                    if (response) {                        
-                        document.getElementById(product).style.display = "none"
+                    if (response.cartEmpty) {                        
+                        document.getElementById('this'+product).style.display = "none"
                         document.getElementById('emptyCart').style.display = "block"
                         document.getElementById('cartComponent').style.display = "none"
-
-                        {{!-- $("#emptyCart").load(" #emptyCart"); --}}
-                        
+                    }else{
+                        document.getElementById('this'+product).style.display = "none"
                     }
-
                 }
             })
         }

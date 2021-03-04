@@ -78,7 +78,7 @@
             <div class="col-lg-12">
                 <div class="filter-control">
                     <ul>
-                        <li class="active">New Arrivals</li>
+                        <li class="active">Trending</li>
                         <li>Top Rated</li>
                         <li>Top Seller</li>
                         <li>Top Offers</li>
@@ -130,7 +130,7 @@
                             <span class="product-discount-label">sale</span>
                             <ul class="product-links">
                                 <li>
-                                    <button style="    color: #777;
+                                    <button style="color: #777;
                                         background: #fff;
                                         font-size: 16px;
                                         line-height: 25px;
@@ -1987,9 +1987,10 @@
                     </ul>
                 </div>
                 <div class="product-slider owl-carousel">
+                    {{#each latestProducts}}
                     <div class="product-item">
                         <div class="pi-pic">
-                            <img src="img/products/man-1.jpg" alt="">
+                            <img src="/images/product-images/{{this._id}}1.jpg" alt="" width="270" height="330">
                             <div class="sale">Sale</div>
                             <div class="icon">
                                 <i class="icon_heart_alt"></i>
@@ -2001,17 +2002,18 @@
                             </ul>
                         </div>
                         <div class="pi-text">
-                            <div class="catagory-name">Coat</div>
+                            <div class="catagory-name">{{this.category}}</div>
                             <a href="#">
-                                <h5>Pure Pineapple</h5>
+                                <h5>{{this.name}}</h5>
                             </a>
                             <div class="product-price">
-                                $14.00
-                                <span>$35.00</span>
+                                {{this.price}}
+                                {{#if this.actualPrice}}<span>{{this.actualPrice}}</span>{{/if}}
                             </div>
                         </div>
                     </div>
-                    <div class="product-item">
+                    {{/each}}
+                    {{!-- <div class="product-item">
                         <div class="pi-pic">
                             <img src="img/products/man-2.jpg" alt="">
                             <div class="icon">
@@ -2076,13 +2078,13 @@
                                 $34.00
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="col-lg-3 offset-lg-1">
                 <div class="product-large set-bg m-large" data-setbg="img/products/man-large.jpg">
                     <h2>Men’s</h2>
-                    <a href="#">Discover More</a>
+                    <a href="/men_collection">Discover More</a>
                 </div>
             </div>
         </div>

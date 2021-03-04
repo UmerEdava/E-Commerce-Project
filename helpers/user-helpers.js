@@ -281,7 +281,7 @@ module.exports = {
                         product: {
                             $arrayElemAt: ['$productDetails', 0]
                         },
-                        subTotal: {$multiply:[{$arrayElemAt:["$productDetails.price",0]},"$quantity"]}
+                        subTotal: { $multiply: [{ $arrayElemAt: ["$productDetails.price", 0] }, "$quantity"] }
                     }
                 }
             ]).toArray()
@@ -360,13 +360,10 @@ module.exports = {
                         item: objectId(productDetails.product)
                     }
                 }
-            })
-    
-            console.log('over');
-    
-            resolve()
-        })
-        
+            }).then((response) => {
+                resolve({ deleteSingleProduct: true })
+            })    
+        })        
     },
     signupOtpRequest: (number, email) => {
         return new Promise(async (resolve, reject) => {
@@ -819,6 +816,14 @@ module.exports = {
             count = users.length
             console.log('mmm', count);
             resolve(count)
+        })
+    },
+    getLastFiveUsers: () => {
+        return new Promise(async (resolve, reject) => {
+            console.log("mmm ethiyittund");
+            let users = await db.get().collection(collections.USER_COLLECTION).find({$query: {}, $orderby: {$natural : -1}}).limit(5).toArray()
+            console.log('kittiyea....',users);
+            resolve(users)
         })
     }
 }

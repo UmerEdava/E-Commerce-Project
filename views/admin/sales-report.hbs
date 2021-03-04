@@ -26,7 +26,16 @@
                         </tr>
                     </thead>
                     <tbody id="tableBody">
-                        
+                        {{#each currentMonthReport}}                        
+                        <tr id="defaultData">
+                            <td scope="col">#</td>
+                            <td scope="col">{{this.deliveryDetails.firstName}}</td>
+                            <td scope="col">{{this.date}}</td>
+                            <td scope="col">{{this.paymentMethod}}</td>
+                            <td scope="col">{{this.status}}</td>
+                            <td scope="col">{{this.totalAmount}}</td>
+                        </tr>
+                        {{/each}}  
                     </tbody>
                 </table>
             </div>
@@ -50,6 +59,8 @@
             },
             success: (response) => {
                 console.log('kittiyeaa..',response)
+
+                $("#defaultData").find("tr:gt(0)").remove();
 
                 $(function () {
                     $(function () {

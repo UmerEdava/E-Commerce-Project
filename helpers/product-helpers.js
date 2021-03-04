@@ -273,5 +273,12 @@ module.exports = {
             console.log(subCategory)
             resolve(subCategory)
         })
+    },getLastFourProducts: () => {
+        return new Promise(async (resolve, reject) => {
+            console.log("mmm ethiyittund");
+            let products = await db.get().collection(collections.PRODUCT_COLLECTION).find({$query: {}, $orderby: {$natural : -1}}).limit(4).toArray()
+            console.log('kittiyea....',products);
+            resolve(products)
+        })
     }
 }
