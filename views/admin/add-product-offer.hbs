@@ -34,12 +34,8 @@
                                         <div class="col-md-6">
                                             <label class="text-dark font-weight-medium" for="">Offer starts from..</label>
                                             <div class="input-group mb-2">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="mdi mdi-calendar-range"></i>
-                                                    </span>
-                                                </div>
-                                                <input type="date" id="startDate" name="startDate" class="form-control"
+                                                
+                                                <input type="date" onchange="handler(event)" id="startDate" name="startDate" class="form-control"
                                                     placeholder="" aria-label="" autocomplete="off" maxlength="10" required>
                                             </div>
                                         </div>
@@ -47,11 +43,7 @@
                                         <div class="col-md-6">
                                             <label class="text-dark font-weight-medium" for="">Valids till</label>
                                             <div class="input-group mb-2">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="mdi mdi-calendar-range"></i>
-                                                    </span>
-                                                </div>
+                                                
                                                 <input type="date" id="lastDate" name="lastDate" class="form-control" 
                                                     placeholder="" aria-label="" autocomplete="off" maxlength="10" required>
                                             </div>
@@ -111,3 +103,30 @@
         })
     })
 </script>
+
+<script>
+        $(function () {
+            var dtToday = new Date();
+
+            var month = dtToday.getMonth() + 1;
+            var day = dtToday.getDate();
+            var year = dtToday.getFullYear();
+            if (month < 10)
+                month = '0' + month.toString();
+            if (day < 10)
+                day = '0' + day.toString();
+
+            var maxDate = year + '-' + month + '-' + day;
+
+            $('#startDate').attr('min', maxDate);
+            $('#lastDate').attr('min', maxDate);
+        });
+    </script>
+
+    <script>
+        function handler(e) {
+            var first = e.target.value
+            console.log('vanne', first)
+            document.getElementById("lastDate").min = first
+        }
+    </script>

@@ -440,7 +440,7 @@ router.post('/edit_product_offer', (req, res) => {
   })
 })
 
-router.get('/categories_for_offer', async (req, res) => {
+router.get('/categories_for_offer',verifyLogin, async (req, res) => {
 
   let men = await adminHelpers.getProductDetailsForCategory('Men')
   let women = await adminHelpers.getProductDetailsForCategory('Women')
@@ -450,15 +450,17 @@ router.get('/categories_for_offer', async (req, res) => {
   console.log('ivideyum vannu', men);
 
 
-  isAdmin = true
+  
   isSubrouter = true
+  isAdmin = true
   res.render('admin/categories-for-offer', {
-    isAdmin,
-    isSubrouter,
+    
+    
     men,
     women,
     boys,
-    girls
+    girls,
+    isAdmin
   })
 })
 
@@ -513,15 +515,18 @@ router.post('/delete_coupon', (req, res) => {
   })
 })
 
-router.get('/add_category_offer/:id', (req, res) => {
+router.get('/add_category_offer/:id',verifyLogin, (req, res) => {
 
   console.log('vanno..', req.params.id)
 
   isAdmin = true
+  isSubrouter = true
+  isSecondSub = true
 
   if (req.params.id == 'Men') {
     res.render('admin/add-men-offer', {
-      isAdmin
+      isSubrouter
+      
     })
   } else if (req.params.id == 'Women') {
     res.render('admin/add-women-offer', {

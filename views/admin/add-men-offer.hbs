@@ -1,3 +1,12 @@
+<!-- GOOGLE FONTS -->
+
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500"
+    rel="stylesheet" />
+<link href="https://cdn.materialdesignicons.com/3.0.39/css/materialdesignicons.min.css" rel="stylesheet" />
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+
 <body class="sidebar-fixed sidebar-dark header-light header-fixed" id="body">
     <script>
         NProgress.configure({ showSpinner: false });
@@ -18,59 +27,58 @@
                             <div class="card-body">
                                 <p class="mb-5">Add a seasonal offer for the category by percentage or offer.</p>
                                 <form id="addOffer" method="POST" action="/admin/add_category_offer">
-                                <input type="text" value="Men" name="category" hidden>
+                                    <input type="text" value="Men" name="category" hidden>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <label class="text-dark font-weight-medium" for="">Offer Percentage</label>
                                             <div class="input-group">
-												<div class="input-group-prepend">
-													<span class="input-group-text" id="inputGroupPrepend2">%</span>
-												</div>
-												<input required type="text" class="form-control" name="offerPercentage" id="offerPercentage" placeholder="Enter percentage" aria-describedby="inputGroupPrepend2" required="">
-											</div>
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="inputGroupPrepend2">%</span>
+                                                </div>
+                                                <input required type="text" class="form-control" name="offerPercentage"
+                                                    id="offerPercentage" placeholder="Enter percentage"
+                                                    aria-describedby="inputGroupPrepend2" required="">
+                                            </div>
                                         </div>
                                     </div>
 
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <label class="text-dark font-weight-medium" for="">Offer starts from..</label>
+                                            <label class="text-dark font-weight-medium" for="">Offer starts
+                                                from..</label>
                                             <div class="input-group mb-2">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="mdi mdi-calendar-range"></i>
-                                                    </span>
-                                                </div>
-                                                <input type="date" id="startDate" name="startDate" class="form-control"
-                                                    placeholder="" aria-label="" autocomplete="off" maxlength="10" required>
+
+                                                <input type="date" id="startDate" onchange="handler(event)"
+                                                    name="startDate" class="form-control" required>
                                             </div>
                                         </div>
 
                                         <div class="col-md-6">
                                             <label class="text-dark font-weight-medium" for="">Valids till</label>
                                             <div class="input-group mb-2">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text">
-                                                        <i class="mdi mdi-calendar-range"></i>
-                                                    </span>
-                                                </div>
-                                                <input type="date" id="lastDate" name="lastDate" class="form-control" 
-                                                    placeholder="" aria-label="" autocomplete="off" maxlength="10" required>
+
+                                                <input type="date" id="lastDate" name="lastDate" class="form-control"
+                                                    placeholder="" aria-label="" autocomplete="off" maxlength="10"
+                                                    required>
                                             </div>
                                         </div>
                                     </div>
 
                                     <button type="submit" class="mb-1 btn btn-info" id="">Submit</button>
 
-                                    {{!-- <button type="submit" class="ladda-button btn btn-success btn-square btn-ladda mt-5" data-style="contract" id="addOffer">
-										<span class="ladda-label">Submit!</span>
-											
-										<span class="ladda-spinner"></span>
+                                    {{!-- <button type="submit"
+                                        class="ladda-button btn btn-success btn-square btn-ladda mt-5"
+                                        data-style="contract" id="addOffer">
+                                        <span class="ladda-label">Submit!</span>
+
+                                        <span class="ladda-spinner"></span>
                                     </button> --}}
 
-                                    {{!-- <button class="ladda-button btn btn-success btn-square btn-ladda" data-style="contract-overlay">
-											<span class="ladda-label">Submit!</span>
-											
-										<span class="ladda-spinner"></span>
+                                    {{!-- <button class="ladda-button btn btn-success btn-square btn-ladda"
+                                        data-style="contract-overlay">
+                                        <span class="ladda-label">Submit!</span>
+
+                                        <span class="ladda-spinner"></span>
                                     </button> --}}
                                 </form>
                             </div>
@@ -96,3 +104,29 @@
         </div>
     </div>
 
+    <script>
+        $(function () {
+            var dtToday = new Date();
+
+            var month = dtToday.getMonth() + 1;
+            var day = dtToday.getDate();
+            var year = dtToday.getFullYear();
+            if (month < 10)
+                month = '0' + month.toString();
+            if (day < 10)
+                day = '0' + day.toString();
+
+            var maxDate = year + '-' + month + '-' + day;
+
+            $('#startDate').attr('min', maxDate);
+            $('#lastDate').attr('min', maxDate);
+        });
+    </script>
+
+    <script>
+        function handler(e) {
+            var first = e.target.value
+            console.log('vanne', first)
+            document.getElementById("lastDate").min = first
+        }
+    </script>

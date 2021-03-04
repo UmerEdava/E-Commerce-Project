@@ -10,12 +10,12 @@
                     <div class="row">
                         <div class="col-sm-6">
                             <label for="">Starting date</label>
-                            <input type="date" name="startDate" class="form-control" id="exampleFormControlInput3"
+                            <input type="date" onchange="handler(event)" name="startDate" class="form-control" id="startDate"
                                 placeholder="Enter offer starting date">
                         </div>
                         <div class="col-sm-6">
                             <label for="">Last date</label>
-                            <input type="date" name="lastDate" class="form-control" id="exampleFormControlInput3"
+                            <input type="date" name="lastDate" class="form-control" id="lastDate"
                                 placeholder="Enter the validity date of offer">
                         </div>
                     </div>
@@ -37,3 +37,30 @@
         </div>
     </div>
 </div>
+
+<script>
+        $(function () {
+            var dtToday = new Date();
+
+            var month = dtToday.getMonth() + 1;
+            var day = dtToday.getDate();
+            var year = dtToday.getFullYear();
+            if (month < 10)
+                month = '0' + month.toString();
+            if (day < 10)
+                day = '0' + day.toString();
+
+            var maxDate = year + '-' + month + '-' + day;
+
+            $('#startDate').attr('min', maxDate);
+            $('#lastDate').attr('min', maxDate);
+        });
+    </script>
+
+    <script>
+        function handler(e) {
+            var first = e.target.value
+            console.log('vanne', first)
+            document.getElementById("lastDate").min = first
+        }
+    </script>

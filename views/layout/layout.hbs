@@ -214,6 +214,11 @@
   {{>user-header}}
   {{/if}}
 
+  {{#if isSubrouter}}
+  {{>admin-header}}
+  {{>sidebar}}
+  {{/if}}
+
   {{#if isAdmin}}
   {{>admin-header}}
   {{>sidebar}}
@@ -306,6 +311,7 @@
     <script type="text/javascript" charset="utf8"
       src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
     {{/if}}
+    
 
   </body>
 
