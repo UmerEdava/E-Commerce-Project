@@ -8,6 +8,7 @@ var session = require('express-session')
 var hbs = require('express-handlebars')
 var fileUpload = require('express-fileupload')
 var OTP = require('./config/OTP')
+var dotenv = require('dotenv').config()
 var twilio = require('twilio')(OTP.accountSID,OTP.authToken)
 const multer  = require('multer')
 

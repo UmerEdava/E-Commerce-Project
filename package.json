@@ -14,6 +14,7 @@
     "cropperjs": "^1.5.11",
     "datatables.net": "^1.10.23",
     "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
     "express": "~4.16.1",
     "express-fileupload": "^1.2.1",
     "express-handlebars": "^5.2.0",
