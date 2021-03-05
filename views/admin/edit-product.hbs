@@ -30,9 +30,9 @@
     <link href="../../vendroid/css/chrome.css" rel="stylesheet" type="text/chrome"> <!-- chrome only css -->
 
 <!-- Theme CSS -->
-<link href="vendroid/css/theme.min.css" rel="stylesheet" type="text/css">
+<link href="./vendroid/css/theme.min.css" rel="stylesheet" type="text/css">
 <!--[if IE]> <link href="css/ie.css" rel="stylesheet" > <![endif]-->
-<link href="vendroid/css/chrome.css" rel="stylesheet" type="text/chrome"> <!-- chrome only css -->
+<link href="./vendroid/css/chrome.css" rel="stylesheet" type="text/chrome"> <!-- chrome only css -->
 
     <!-- Responsive CSS -->
     <link href="../vendroid/css/theme-responsive.min.css" rel="stylesheet" type="text/css">
@@ -70,6 +70,10 @@
         table .vd_radio label:after {
             top: 0;
         }
+
+        .cropper-container {
+  margin: 0 auto 20px auto;
+}
     </style>
 
     <!-- for specific page responsive in style css -->
@@ -307,28 +311,266 @@
                                                     <label class="control-label col-lg-3 file_upload_label">
                                                         <span title="" data-toggle="tooltip" class="label-tooltip"
                                                             data-original-title="Format JPG, GIF, PNG. Filesize 8.00 MB max.">
-                                                            Add a new image to this product
+                                                            Add 5 images to this product
                                                         </span>
                                                     </label>
-                                                    <div class="col-lg-9">
+                                                </div>
+
+
+                                                    <div class="row mt-5">
+                                                        <div class="col-md-5">
                                                         <span class="btn vd_btn vd_bg-green fileinput-button">
                                                             <i class="glyphicon glyphicon-plus"></i>
                                                             <span>Add files...</span>
                                                             <!-- The file input field used as target for the file upload widget -->
-                                                            <input type="file" multiple name="image" id="fileupload"
-                                                                name="image" onchange="viewImage(event)">
+                                                            <input type="file" accept="image/*" name="image1"
+                                                                id="fileupload" class="js-photo-upload" onchange="viewImage1(event)">
+                                                                
                                                         </span>
-                                                        <br />
-                                                        <br />
-                                                        <!-- The global progress bar -->
-                                                        <div id="progress" class="progress">
-                                                            <div class="progress-bar progress-bar-success"></div>
                                                         </div>
-                                                        <!-- The container for the uploaded files -->
-                                                        <div id="files" class="files"></div>
+
+                                                        <div class="modal fade remove-modal" tabindex="-1" role="dialog" id="cropperModal">
+                                                            <div class="modal-dialog modal-lg" role="document">
+                                                                <div class="modal-content text-center">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    <div class="modal-positioner">
+                                                                        <h1>Crop Photo</h1>
+                                                                        <hr>
+                                                                        <img style="width: 271px; height: 271px;" class="js-avatar-preview" src="">
+                                                                        <button class="btn btn-primary js-save-cropped-avatar">Save</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
+
                                                         <br />
+                                                        <br />
+                                                        
+
+                                                        <h6 id="not-img1-error" style="color: rgb(163, 24, 24);display: none;">!! Please upload a image !!</h6>
+
+                                                        <div class="col-md-3">
+
+                                                        <img src="/images/product-images/{{product._id}}1.jpg" style="width: 60px;"
+                                                                        alt="product image" id="img1Disp" />
+
+
+                                                        
+
+                                                        <textarea name="imageBase64Data" id="imageBase64Data" cols="30" rows="10" hidden></textarea>
+
+                                                        </div>
+
+
                                                     </div>
-                                                </div>
+
+
+
+                                                    <div class="row mt-5">
+                                                        <div class="col-md-5">
+                                                        <span class="btn vd_btn vd_bg-green fileinput-button">
+                                                            <i class="glyphicon glyphicon-plus"></i>
+                                                            <span>Add files...</span>
+                                                            <!-- The file input field used as target for the file upload widget -->
+                                                            <input type="file" accept="image/*" name="image2"
+                                                                id="fileupload" class="js-photo-upload2" onchange="viewImage2(event)">
+                                                                
+                                                        </span>
+                                                        </div>
+
+                                                        <div class="modal fade remove-modal" tabindex="-1" role="dialog" id="cropperModal">
+                                                            <div class="modal-dialog modal-lg" role="document">
+                                                                <div class="modal-content text-center">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    <div class="modal-positioner">
+                                                                        <h1>Crop Photo</h1>
+                                                                        <hr>
+                                                                        <img style="width: 271px; height: 271px;" class="js-avatar-preview" src="">
+                                                                        <button class="btn btn-primary js-save-cropped-avatar">Save</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
+
+                                                        <br />
+                                                        <br />
+                                                        
+
+                                                        <h6 id="not-img2-error" style="color: rgb(163, 24, 24);display: none;">!! Please upload a image !!</h6>
+
+                                                        <div class="col-md-3">
+
+                                                        <img src="/images/product-images/{{product._id}}2.jpg" style="width: 60px;"
+                                                                        alt="product image" id="img2Disp" />
+
+
+                                                        
+
+                                                        <textarea name="image1Base64Data" id="image1Base64Data" cols="30" rows="10" hidden></textarea>
+
+                                                        </div>
+
+
+                                                    </div>
+
+
+                                                    <div class="row mt-5">
+                                                        <div class="col-md-5">
+                                                        <span class="btn vd_btn vd_bg-green fileinput-button">
+                                                            <i class="glyphicon glyphicon-plus"></i>
+                                                            <span>Add files...</span>
+                                                            <!-- The file input field used as target for the file upload widget -->
+                                                            <input type="file" accept="image/*" name="image3"
+                                                                id="fileupload" class="js-photo-upload3" onchange="viewImage3(event)">
+                                                                
+                                                        </span>
+                                                        </div>
+
+                                                        <div class="modal fade remove-modal" tabindex="-1" role="dialog" id="cropperModal">
+                                                            <div class="modal-dialog modal-lg" role="document">
+                                                                <div class="modal-content text-center">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    <div class="modal-positioner">
+                                                                        <h1>Crop Photo</h1>
+                                                                        <hr>
+                                                                        <img style="width: 271px; height: 271px;" class="js-avatar-preview" src="">
+                                                                        <button class="btn btn-primary js-save-cropped-avatar">Save</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
+
+                                                        <br />
+                                                        <br />
+                                                        
+
+                                                        <h6 id="not-img3-error" style="color: rgb(163, 24, 24);display: none;">!! Please upload a image !!</h6>
+
+                                                        <div class="col-md-3">
+
+                                                        <img src="/images/product-images/{{product._id}}3.jpg" style="width: 60px;"
+                                                                        alt="product image" id="img3Disp" />
+
+
+                                                        
+
+                                                        <textarea name="image2Base64Data" id="image2Base64Data" cols="30" rows="10" hidden></textarea>
+
+                                                        </div>
+
+
+                                                    </div>
+
+
+                                                    <div class="row mt-5">
+                                                        <div class="col-md-5">
+                                                        <span class="btn vd_btn vd_bg-green fileinput-button">
+                                                            <i class="glyphicon glyphicon-plus"></i>
+                                                            <span>Add files...</span>
+                                                            <!-- The file input field used as target for the file upload widget -->
+                                                            <input type="file" accept="image/*" name="image4"
+                                                                id="fileupload" class="js-photo-upload4" onchange="viewImage4(event)">
+                                                                
+                                                        </span>
+                                                        </div>
+
+                                                        <div class="modal fade remove-modal" tabindex="-1" role="dialog" id="cropperModal">
+                                                            <div class="modal-dialog modal-lg" role="document">
+                                                                <div class="modal-content text-center">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    <div class="modal-positioner">
+                                                                        <h1>Crop Photo</h1>
+                                                                        <hr>
+                                                                        <img style="width: 271px; height: 271px;" class="js-avatar-preview" src="">
+                                                                        <button class="btn btn-primary js-save-cropped-avatar">Save</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
+
+                                                        <br />
+                                                        <br />
+                                                        
+
+                                                        <h6 id="not-img4-error" style="color: rgb(163, 24, 24);display: none;">!! Please upload a image !!</h6>
+
+                                                        <div class="col-md-3">
+
+                                                        <img src="/images/product-images/{{product._id}}4.jpg" style="width: 60px;"
+                                                                        alt="product image" id="img4Disp" />
+
+
+                                                        
+
+                                                        <textarea name="image3Base64Data" id="image3Base64Data" cols="30" rows="10" hidden></textarea>
+
+                                                        </div>
+
+
+                                                    </div>
+
+
+                                                    <div class="row mt-5">
+                                                        <div class="col-md-5">
+                                                        <span class="btn vd_btn vd_bg-green fileinput-button">
+                                                            <i class="glyphicon glyphicon-plus"></i>
+                                                            <span>Add files...</span>
+                                                            <!-- The file input field used as target for the file upload widget -->
+                                                            <input type="file" accept="image/*" name="image5"
+                                                                id="fileupload" class="js-photo-upload5" onchange="viewImage5(event)">
+                                                                
+                                                        </span>
+                                                        </div>
+
+                                                        <div class="modal fade remove-modal" tabindex="-1" role="dialog" id="cropperModal">
+                                                            <div class="modal-dialog modal-lg" role="document">
+                                                                <div class="modal-content text-center">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    <div class="modal-positioner">
+                                                                        <h1>Crop Photo</h1>
+                                                                        <hr>
+                                                                        <img style="width: 271px; height: 271px;" class="js-avatar-preview" src="">
+                                                                        <button class="btn btn-primary js-save-cropped-avatar">Save</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+
+
+                                                        <br />
+                                                        <br />
+                                                        
+
+                                                        <h6 id="not-img5-error" style="color: rgb(163, 24, 24);display: none;">!! Please upload a image !!</h6>
+
+                                                        <div class="col-md-3">
+
+                                                        <img src="/images/product-images/{{product._id}}5.jpg" style="width: 60px;"
+                                                                        alt="product image" id="img5Disp" />
+
+
+                                                        
+
+                                                        <textarea name="image4Base64Data" id="image4Base64Data" cols="30" rows="10" hidden></textarea>
+
+                                                        </div>
+
+
+                                                    </div>
                                                 {{!-- <div class="form-group">
                                                     <label class="control-label col-lg-3">
                                                         <span title="" data-toggle="tooltip" class="label-tooltip"
@@ -346,494 +588,21 @@
                                                     </div>
                                                 </div> --}}
 
-                                                <table id="imageTable" class="table table-dragable">
-                                                    <thead>
-                                                        <tr class="nodrag nodrop">
-                                                            <th style="width: 20px"></th>
-                                                            <th class="fixed-width-lg" style="width: 80px">
-                                                                <span class="title_box">Image</span>
-                                                            </th>
-                                                            <th class="fixed-width-lg">
-                                                                <span class="title_box">Caption</span>
-                                                            </th>
-                                                            <th class="fixed-width-xs" style="width: 20px">
-                                                                <span class="title_box">Position</span>
-                                                            </th>
-                                                            <th class="fixed-width-xs">
-                                                                <span class="title_box">Cover</span>
-                                                            </th>
-                                                            <th></th>
-                                                            <!-- action -->
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody id="imageList">
-                                                        <tr id="1">
-                                                            <td>
-                                                                <i class="fa fa-arrows vd_soft-grey"></i>
-                                                            </td>
-                                                            <td>
-                                                                <a data-rel="prettyPhoto" href="img/products/01.jpg">
-                                                                    <img src="/images/product-images/{{product._id}}1.jpg" style="width: 60px"
-                                                                        alt="product image" id="editImg"/>
-                                                                </a>
-                                                            </td>
-                                                            <td>Hard Disk</td>
-                                                            <td class="pointer text-center" id="td_1">
-                                                                1
-                                                            </td>
-                                                            <td class="cover">
-                                                                <div class="vd_radio radio-success">
-                                                                    <input type="radio" id="yes" name="optionyes"
-                                                                        value="0" checked />
-                                                                    <label for="yes">&nbsp;</label>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <a class="delete_product_image pull-right btn vd_btn vd_bg-yellow btn-sm"
-                                                                    href="/admin/delete_image_of_product">
-                                                                    <i class="icon-trash append-icon"></i>
-                                                                    Delete this image
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
 
-
-                                                <div>
+                                                <div class="text-center">
                                                     <input type="submit"
                                                         class="btn vd_btn vd_bg-blue btn-sm save-btn text-center m-5"
-                                                        value="Submit">
+                                                        value="Update">
                                                 </div>
 
                                         </form>
                                     </div>
-
-
-                                </div>
-                                <!-- #tabinfo -->
-                                <div id="tabprice" class="tab-pane">
-                                    <div class="vd_panel-menu">
-                                        <div>
-                                            <a class="btn vd_btn vd_bg-blue btn-sm save-btn"><i
-                                                    class="fa fa-save append-icon"></i> Save
-                                                Changes</a>
-                                            <a class="btn btn-default btn-sm" data-toggle="modal"
-                                                data-target="#myModal"><i class="fa fa-times append-icon"></i>
-                                                Cancel Changes</a>
-                                        </div>
-                                    </div>
-                                    <h3 class="mgtp-15 mgbt-xs-20">Product Price</h3>
-                                    <form class="form-horizontal">
-                                        <div class="form-group">
-                                            <label for="wholesale_price" class="control-label col-lg-3">
-                                                <span title="" data-toggle="tooltip" class="label-tooltip"
-                                                    data-original-title="The wholesale price is the price you paid for the product. Do not include the tax.">Wholesale
-                                                    price</span>
-                                            </label>
-                                            <div class="col-lg-2">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">$ </span>
-                                                    <input type="text"
-                                                        onchange="this.value = this.value.replace(/,/g, '.');"
-                                                        value="4.95" id="wholesale_price" name="wholesale_price"
-                                                        maxlength="14" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="priceTE" class="control-label col-lg-3">
-                                                <span title="" data-toggle="tooltip" class="label-tooltip"
-                                                    data-original-title="The pre-tax retail price is the price for which you intend sell this product to your customers. It should be higher than the pre-tax wholesale price: the difference between the two will be your margin.">Retail
-                                                    price</span>
-                                            </label>
-                                            <div class="col-lg-2">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">$ </span>
-                                                    <input type="hidden" value="16.510000" name="price"
-                                                        id="priceTEReal" />
-                                                    <input type="text"
-                                                        onkeyup="$('#priceType').val('TE'); $('#priceTEReal').val(this.value.replace(/,/g, '.')); if (isArrowKey(event)) return; calcPriceTI();"
-                                                        onchange="noComma('priceTE'); $('#priceTEReal').val(this.value);"
-                                                        value="16.510000" name="price_displayed" id="priceTE"
-                                                        maxlength="14" size="11" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="id_tax_rules_group" class="control-label col-lg-3">
-                                                Tax rule
-                                            </label>
-                                            <div class="col-lg-8">
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <select id="id_tax_rules_group" name="id_tax_rules_group"
-                                                            onchange="javascript:calcPrice(); unitPriceWithTax('unit');">
-                                                            <option value="0">No Tax</option>
-                                                            <option value="2">
-                                                                US-AK Rate (0%)
-                                                            </option>
-                                                            <option selected="selected" value="1">
-                                                                US-AL Rate (4%)
-                                                            </option>
-                                                            <option value="4">
-                                                                US-AR Rate (6%)
-                                                            </option>
-                                                            <option value="3">
-                                                                US-AZ Rate (6.6%)
-                                                            </option>
-                                                            <option value="5">
-                                                                US-CA Rate (8.25%)
-                                                            </option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-lg-5">
-                                                        <a href="#">
-                                                            <i class="fa fa-plus append-icon"></i>
-                                                            Create new tax
-                                                            <i class="fa fa-external-link font-xs"></i></a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="unit_price" class="control-label col-lg-3">
-                                                <span title="" data-toggle="tooltip" class="label-tooltip"
-                                                    data-original-title='When selling a pack of items, you can indicate the unit price for each item of the pack. For instance, "per bottle" or "per pound".'>Unit
-                                                    price</span>
-                                            </label>
-                                            <div class="col-lg-4">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">$ </span>
-                                                    <input type="text"
-                                                        onkeyup="if (isArrowKey(event)) return ;this.value = this.value.replace(/,/g, '.'); unitPriceWithTax('unit');"
-                                                        maxlength="14" value="0.00" name="unit_price" id="unit_price" />
-                                                    <span class="input-group-addon">per</span>
-                                                    <input type="text" onchange="unitySecond();"
-                                                        onkeyup="if (isArrowKey(event)) return ;unitySecond();"
-                                                        maxlength="10" value="" name="unity" id="unity" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <br />
-                                        <h3 class="mgtp-15 mgbt-xs-20">
-                                            Specific Price
-                                        </h3>
-                                        <a class="btn vd_btn btn-sm vd_bg-green" href="#" data-toggle="modal"
-                                            data-target="#addPriceModal"><i class="fa fa-plus append-icon"></i> Add
-                                            Price
-                                        </a>
-                                        <table class="table table-condensed table-striped mgtp-10"
-                                            id="specific_price_table">
-                                            <thead class="vd_bg-dark-blue vd_white">
-                                                <tr>
-                                                    <th>Combination</th>
-                                                    <th>Price</th>
-                                                    <th>Enabled</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>S - Grey</td>
-                                                    <td>$20</td>
-                                                    <td class="text-center">
-                                                        <i class="fa fa-check vd_green"></i>
-                                                    </td>
-                                                    <td class="menu-action">
-                                                        <a class="btn menu-icon vd_green" data-placement="top"
-                                                            data-toggle="tooltip" data-original-title="Disabled">
-                                                            <i class="fa fa-power-off"></i>
-                                                        </a>
-                                                        <a class="btn menu-icon vd_yellow" data-placement="top"
-                                                            data-toggle="tooltip" data-original-title="edit">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </a>
-                                                        <a class="btn menu-icon vd_red" data-placement="top"
-                                                            data-toggle="tooltip" data-original-title="delete">
-                                                            <i class="fa fa-times"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>S - Blue</td>
-                                                    <td>$20</td>
-                                                    <td class="text-center">
-                                                        <i class="fa fa-times vd_grey"></i>
-                                                    </td>
-                                                    <td class="menu-action">
-                                                        <a class="btn menu-icon vd_grey" data-placement="top"
-                                                            data-toggle="tooltip" data-original-title="Enabled">
-                                                            <i class="fa fa-power-off"></i>
-                                                        </a>
-                                                        <a class="btn menu-icon vd_yellow" data-placement="top"
-                                                            data-toggle="tooltip" data-original-title="edit">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </a>
-                                                        <a class="btn menu-icon vd_red" data-placement="top"
-                                                            data-toggle="tooltip" data-original-title="delete">
-                                                            <i class="fa fa-times"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>M - Grey</td>
-                                                    <td>$15</td>
-                                                    <td class="text-center">
-                                                        <i class="fa fa-check vd_green"></i>
-                                                    </td>
-                                                    <td class="menu-action">
-                                                        <a class="btn menu-icon vd_green" data-placement="top"
-                                                            data-toggle="tooltip" data-original-title="Disabled">
-                                                            <i class="fa fa-power-off"></i>
-                                                        </a>
-                                                        <a class="btn menu-icon vd_yellow" data-placement="top"
-                                                            data-toggle="tooltip" data-original-title="edit">
-                                                            <i class="fa fa-pencil"></i>
-                                                        </a>
-                                                        <a class="btn menu-icon vd_red" data-placement="top"
-                                                            data-toggle="tooltip" data-original-title="delete">
-                                                            <i class="fa fa-times"></i>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </form>
-                                </div>
-                                <!-- #tab-price -->
-
-
-
-                                <!-- tab-pane -->
-                                <div id="tabimage" class="tab-pane">
-                                    <h3 class="mgtp-15 mgbt-xs-20">Images</h3>
-                                    <form class="form-horizontal">
-                                        <div class="vd_panel-menu">
-                                            <div>
-                                                <a class="btn vd_btn vd_bg-blue btn-sm save-btn"><i
-                                                        class="fa fa-save append-icon"></i>
-                                                    Save Changes</a>
-                                                <a class="btn btn-default btn-sm" data-toggle="modal"
-                                                    data-target="#myModal"><i class="fa fa-times append-icon"></i>
-                                                    Cancel Changes</a>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-lg-3 file_upload_label">
-                                                <span title="" data-toggle="tooltip" class="label-tooltip"
-                                                    data-original-title="Format JPG, GIF, PNG. Filesize 8.00 MB max.">
-                                                    Add a new image to this product
-                                                </span>
-                                            </label>
-                                            <div class="col-lg-9">
-                                                <span class="btn vd_btn vd_bg-green fileinput-button">
-                                                    <i class="glyphicon glyphicon-plus"></i>
-                                                    <span>Add files...</span>
-                                                    <!-- The file input field used as target for the file upload widget -->
-                                                    <input type="file" multiple name="files[]" id="fileupload" />
-                                                </span>
-                                                <br />
-                                                <br />
-                                                <!-- The global progress bar -->
-                                                <div id="progress" class="progress">
-                                                    <div class="progress-bar progress-bar-success"></div>
-                                                </div>
-                                                <!-- The container for the uploaded files -->
-                                                <div id="files" class="files"></div>
-                                                <br />
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-lg-3">
-                                                <span title="" data-toggle="tooltip" class="label-tooltip"
-                                                    data-original-title="Invalid characters &lt;&gt;;=#{}">
-                                                    Caption
-                                                </span>
-                                            </label>
-                                            <div class="col-lg-9">
-                                                <div class="translatable-field row lang-1">
-                                                    <div class="col-lg-6">
-                                                        <input type="text" value="Faded Short Sleeve T-shirts"
-                                                            name="legend_1" id="legend_1" />
-                                                    </div>
-                                                    <div class="col-lg-2">
-                                                        <button tabindex="-1" data-toggle="dropdown"
-                                                            class="btn btn-default btn-xs dropdown-toggle"
-                                                            type="button">
-                                                            en <span class="caret"></span>
-                                                        </button>
-                                                        <ul class="dropdown-menu">
-                                                            <li>
-                                                                <a href="#">English (English)</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">Español (Spanish)</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">Français (French)</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">Italiano (Italian)</a>
-                                                            </li>
-                                                            <li>
-                                                                <a href="#">Deutsch (German)</a>
-                                                            </li>
-                                                            <li><a href="#">Dutch</a></li>
-                                                            <li><a href="#">Polish</a></li>
-                                                            <li><a href="#">Russian</a></li>
-                                                            <li>
-                                                                <a href="j.html#">Portuguese</a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <table id="imageTable" class="table table-dragable">
-                                            <thead>
-                                                <tr class="nodrag nodrop">
-                                                    <th style="width: 20px"></th>
-                                                    <th class="fixed-width-lg" style="width: 80px">
-                                                        <span class="title_box">Image</span>
-                                                    </th>
-                                                    <th class="fixed-width-lg">
-                                                        <span class="title_box">Caption</span>
-                                                    </th>
-                                                    <th class="fixed-width-xs" style="width: 20px">
-                                                        <span class="title_box">Position</span>
-                                                    </th>
-                                                    <th class="fixed-width-xs">
-                                                        <span class="title_box">Cover</span>
-                                                    </th>
-                                                    <th></th>
-                                                    <!-- action -->
-                                                </tr>
-                                            </thead>
-                                            <tbody id="imageList">
-                                                <tr id="1">
-                                                    <td>
-                                                        <i class="fa fa-arrows vd_soft-grey"></i>
-                                                    </td>
-                                                    <td>
-                                                        <a data-rel="prettyPhoto" href="img/products/01.jpg">
-                                                            <img src="img/products/01.jpg" style="width: 60px"
-                                                                alt="product image" />
-                                                        </a>
-                                                    </td>
-                                                    <td>Hard Disk</td>
-                                                    <td class="pointer text-center" id="td_1">
-                                                        1
-                                                    </td>
-                                                    <td class="cover">
-                                                        <div class="vd_radio radio-success">
-                                                            <input type="radio" id="yes" name="optionyes" value="0"
-                                                                checked />
-                                                            <label for="yes">&nbsp;</label>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <a class="delete_product_image pull-right btn vd_btn vd_bg-yellow btn-sm"
-                                                            href="#">
-                                                            <i class="icon-trash append-icon"></i>
-                                                            Delete this image
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr id="2">
-                                                    <td>
-                                                        <i class="fa fa-arrows vd_soft-grey"></i>
-                                                    </td>
-                                                    <td>
-                                                        <a data-rel="prettyPhoto" href="img/products/02.jpg">
-                                                            <img src="img/products/02.jpg" style="width: 60px"
-                                                                alt="product image" />
-                                                        </a>
-                                                    </td>
-                                                    <td>iMac</td>
-                                                    <td class="pointer text-center" id="td_2">
-                                                        2
-                                                    </td>
-                                                    <td class="cover">
-                                                        <div class="vd_radio radio-success">
-                                                            <input type="radio" id="yes2" name="optionyes" value="1" />
-                                                            <label for="yes2">&nbsp;</label>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <a class="delete_product_image pull-right btn vd_btn vd_bg-yellow btn-sm"
-                                                            href="#">
-                                                            <i class="icon-trash append-icon"></i>
-                                                            Delete this image
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr id="3">
-                                                    <td>
-                                                        <i class="fa fa-arrows vd_soft-grey"></i>
-                                                    </td>
-                                                    <td>
-                                                        <a data-rel="prettyPhoto" href="img/products/03.jpg">
-                                                            <img src="img/products/03.jpg" style="width: 60px"
-                                                                alt="product image" />
-                                                        </a>
-                                                    </td>
-                                                    <td>iPad</td>
-                                                    <td class="pointer text-center" id="td_3">
-                                                        3
-                                                    </td>
-                                                    <td class="cover">
-                                                        <div class="vd_radio radio-success">
-                                                            <input type="radio" id="yes3" name="optionyes" value="2" />
-                                                            <label for="yes3">&nbsp;</label>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <a class="delete_product_image pull-right btn vd_btn vd_bg-yellow btn-sm"
-                                                            href="#">
-                                                            <i class="icon-trash append-icon"></i>
-                                                            Delete this image
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                                <tr id="4">
-                                                    <td>
-                                                        <i class="fa fa-arrows vd_soft-grey"></i>
-                                                    </td>
-                                                    <td>
-                                                        <a data-rel="prettyPhoto" href="img/products/04.jpg">
-                                                            <img src="img/products/04.jpg" style="width: 60px"
-                                                                alt="product image" />
-                                                        </a>
-                                                    </td>
-                                                    <td>Galaxy Note 8</td>
-                                                    <td class="pointer text-center" id="td_4">
-                                                        4
-                                                    </td>
-                                                    <td class="cover">
-                                                        <div class="vd_radio radio-success">
-                                                            <input type="radio" id="yes4" name="optionyes" value="3" />
-                                                            <label for="yes4">&nbsp;</label>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <a class="delete_product_image pull-right btn vd_btn vd_bg-yellow btn-sm"
-                                                            href="#">
-                                                            <i class="icon-trash append-icon"></i>
-                                                            Delete this image
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </form>
                                 </div>
                                 <!-- tab-pane -->
                             </div>
                             <!-- tab-content -->
                         </div>
                         <!-- panel-body -->
-
                         <!-- form-horizontal -->
                     </div>
                     <!-- Panel Widget -->
@@ -887,7 +656,365 @@
         }
     </script>
 
+    <script>
+let cropper;
+let cropperModalId = '#cropperModal';
+let $jsPhotoUploadInput = $('.js-photo-upload');
+
+$jsPhotoUploadInput.on('change', function() {
+    var files = this.files;
+    if (files.length > 0) {
+        var photo = files[0];
+
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            var image = $('.js-avatar-preview')[0];
+            image.src = event.target.result;
+
+            cropper = new Cropper(image, {
+                viewMode: 1,
+                aspectRatio: 1,
+                minContainerWidth: 400,
+                minContainerHeight: 400,
+                minCropBoxWidth: 271,
+                minCropBoxHeight: 271,
+                movable: true,
+                ready: function () {
+                    console.log('ready');
+                    console.log(cropper.ready);
+                }
+            });
+
+            $(cropperModalId).modal();
+        };
+        reader.readAsDataURL(photo);
+    }
+});
+
+$('.js-save-cropped-avatar').on('click', function(event) {
+    event.preventDefault();
+
+    console.log(cropper.ready);
+
+    var $button = $(this);
+    {{!-- $button.text('uploading...');
+    $button.prop('disabled', true); --}}
+
+    const canvas = cropper.getCroppedCanvas();
+    const base64encodedImage = canvas.toDataURL();
+    console.log(base64encodedImage)
+    $('#img1Disp').attr('src', base64encodedImage);
+    $("#image1Base64Data").val(base64encodedImage);
+    $(cropperModalId).modal('hide');
+    
+});
+</script>
+
+<script>
+let cropper;
+let cropperModalId = '#cropperModal';
+let $jsPhotoUploadInput = $('.js-photo-upload2');
+
+$jsPhotoUploadInput.on('change', function() {
+    var files = this.files;
+    if (files.length > 0) {
+        var photo = files[0];
+
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            var image = $('.js-avatar-preview2')[0];
+            image.src = event.target.result;
+
+            cropper = new Cropper(image, {
+                viewMode: 1,
+                aspectRatio: 1,
+                minContainerWidth: 400,
+                minContainerHeight: 400,
+                minCropBoxWidth: 271,
+                minCropBoxHeight: 271,
+                movable: true,
+                ready: function () {
+                    console.log('ready');
+                    console.log(cropper.ready);
+                }
+            });
+
+            $(cropperModalId).modal();
+        };
+        reader.readAsDataURL(photo);
+    }
+});
+
+$('.js-save-cropped-avatar').on('click', function(event) {
+    event.preventDefault();
+
+    console.log(cropper.ready);
+
+    var $button = $(this);
+    {{!-- $button.text('uploading...');
+    $button.prop('disabled', true); --}}
+
+    const canvas = cropper.getCroppedCanvas();
+    const base64encodedImage = canvas.toDataURL();
+    console.log(base64encodedImage)
+    $('#img2Disp').attr('src', base64encodedImage);
+    $("#image2Base64Data").val(base64encodedImage);
+    $(cropperModalId).modal('hide');
+    
+});
+</script>
+
+    <script>
+let cropper;
+let cropperModalId = '#cropperModal';
+let $jsPhotoUploadInput = $('.js-photo-upload3');
+
+$jsPhotoUploadInput.on('change', function() {
+    var files = this.files;
+    if (files.length > 0) {
+        var photo = files[0];
+
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            var image = $('.js-avatar-preview')[0];
+            image.src = event.target.result;
+
+            cropper = new Cropper(image, {
+                viewMode: 1,
+                aspectRatio: 1,
+                minContainerWidth: 400,
+                minContainerHeight: 400,
+                minCropBoxWidth: 271,
+                minCropBoxHeight: 271,
+                movable: true,
+                ready: function () {
+                    console.log('ready');
+                    console.log(cropper.ready);
+                }
+            });
+
+            $(cropperModalId).modal();
+        };
+        reader.readAsDataURL(photo);
+    }
+});
+
+$('.js-save-cropped-avatar').on('click', function(event) {
+    event.preventDefault();
+
+    console.log(cropper.ready);
+
+    var $button = $(this);
+    {{!-- $button.text('uploading...');
+    $button.prop('disabled', true); --}}
+
+    const canvas = cropper.getCroppedCanvas();
+    const base64encodedImage = canvas.toDataURL();
+    console.log(base64encodedImage)
+    $('#img3Disp').attr('src', base64encodedImage);
+    $("#image3Base64Data").val(base64encodedImage);
+    $(cropperModalId).modal('hide');
+    
+});
+</script>
+
+    <script>
+let cropper;
+let cropperModalId = '#cropperModal';
+let $jsPhotoUploadInput = $('.js-photo-upload4');
+
+$jsPhotoUploadInput.on('change', function() {
+    console.log('what is')
+    var files = this.files;
+    if (files.length > 0) {
+        var photo = files[0];
+
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            var image = $('.js-avatar-preview')[0];
+            image.src = event.target.result;
+
+            cropper = new Cropper(image, {
+                viewMode: 1,
+                aspectRatio: 1,
+                minContainerWidth: 400,
+                minContainerHeight: 400,
+                minCropBoxWidth: 271,
+                minCropBoxHeight: 271,
+                movable: true,
+                ready: function () {
+                    console.log('ready');
+                    console.log(cropper.ready);
+                }
+            });
+
+            $(cropperModalId).modal();
+        };
+        reader.readAsDataURL(photo);
+    }
+});
+
+$('.js-save-cropped-avatar').on('click', function(event) {
+    event.preventDefault();
+
+    console.log(cropper.ready);
+
+    var $button = $(this);
+    {{!-- $button.text('uploading...');
+    $button.prop('disabled', true); --}}
+
+    const canvas = cropper.getCroppedCanvas();
+    const base64encodedImage = canvas.toDataURL();
+    console.log(base64encodedImage)
+    $('#img4Disp').attr('src', base64encodedImage);
+    $("#image4Base64Data").val(base64encodedImage);
+    $(cropperModalId).modal('hide');
+    
+});
+</script>
+
+<script>
+let cropper;
+let cropperModalId = '#cropperModal';
+let $jsPhotoUploadInput = $('.js-photo-upload5');
+
+$jsPhotoUploadInput.on('change', function() {
+    var files = this.files;
+    if (files.length > 0) {
+        var photo = files[0];
+
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            var image = $('.js-avatar-preview')[0];
+            image.src = event.target.result;
+
+            cropper = new Cropper(image, {
+                viewMode: 1,
+                aspectRatio: 1,
+                minContainerWidth: 400,
+                minContainerHeight: 400,
+                minCropBoxWidth: 271,
+                minCropBoxHeight: 271,
+                movable: true,
+                ready: function () {
+                    console.log('ready');
+                    console.log(cropper.ready);
+                }
+            });
+
+            $(cropperModalId).modal();
+        };
+        reader.readAsDataURL(photo);
+    }
+});
+
+$('.js-save-cropped-avatar').on('click', function(event) {
+    event.preventDefault();
+
+    console.log(cropper.ready);
+
+    var $button = $(this);
+    {{!-- $button.text('uploading...');
+    $button.prop('disabled', true); --}}
+
+    const canvas = cropper.getCroppedCanvas();
+    const base64encodedImage = canvas.toDataURL();
+    console.log(base64encodedImage)
+    $('#img5Disp').attr('src', base64encodedImage);
+    $("#image5Base64Data").val(base64encodedImage);
+    $(cropperModalId).modal('hide');
+    
+});
+</script>
+
+<script>
+        function viewImage1(event) {
+        document.getElementById('img1Disp').src = URL.createObjectURL(event.target.files[0])
+        let file = event.target.files[0].name
+
+        let filename = file.split('.').pop()
+        if (filename == 'jpeg' || filename == 'png' || filename == 'jpg') {
+            $('#add-product-button').show()
+            $('#not-img1-error').hide()
+            $('#img1Disp').show()
+        } else {
+            $('#not-img1-error').show()
+            $('#add-product-button').hide()
+            $('#img1Disp').hide()
+        }
+    }
+</script>
+
+<script>
+        function viewImage2(event) {
+        document.getElementById('img2Disp').src = URL.createObjectURL(event.target.files[0])
+        let file = event.target.files[0].name
+
+        let filename = file.split('.').pop()
+        if (filename == 'jpeg' || filename == 'png' || filename == 'jpg') {
+            $('#add-product-button').show()
+            $('#not-img2-error').hide()
+            $('#img2Disp').show()
+        } else {
+            $('#not-img2-error').show()
+            $('#add-product-button').hide()
+            $('#img2Disp').hide()
+        }
+    }
+</script>
+
+<script>
+        function viewImage3(event) {
+        document.getElementById('img3Disp').src = URL.createObjectURL(event.target.files[0])
+        let file = event.target.files[0].name
+
+        let filename = file.split('.').pop()
+        if (filename == 'jpeg' || filename == 'png' || filename == 'jpg') {
+            $('#add-product-button').show()
+            $('#not-img3-error').hide()
+            $('#img3Disp').show()
+        } else {
+            $('#not-img3-error').show()
+            $('#add-product-button').hide()
+            $('#img3Disp').hide()
+        }
+    }
+</script>
+
+<script>
+        function viewImage4(event) {
+        document.getElementById('img4Disp').src = URL.createObjectURL(event.target.files[0])
+        let file = event.target.files[0].name
+
+        let filename = file.split('.').pop()
+        if (filename == 'jpeg' || filename == 'png' || filename == 'jpg') {
+            $('#add-product-button').show()
+            $('#not-img4-error').hide()
+            $('#img4Disp').show()
+        } else {
+            $('#not-img4-error').show()
+            $('#add-product-button').hide()
+            $('#img4Disp').hide()
+        }
+    }
+</script>
+
+<script>
+        function viewImage5(event) {
+        document.getElementById('img5Disp').src = URL.createObjectURL(event.target.files[0])
+        let file = event.target.files[0].name
+
+        let filename = file.split('.').pop()
+        if (filename == 'jpeg' || filename == 'png' || filename == 'jpg') {
+            $('#add-product-button').show()
+            $('#not-img5-error').hide()
+            $('#img5Disp').show()
+        } else {
+            $('#not-img5-error').show()
+            $('#add-product-button').hide()
+            $('#img5Disp').hide()
+        }
+    }
+</script>
 
 </body>
-
-</html>

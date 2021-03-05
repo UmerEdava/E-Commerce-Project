@@ -25,7 +25,8 @@ router.get('/', async function (req, res, next) {
   if (adminLoggedIn) {
     isAdmin = true
     lastFiveUsers = await userHelpers.getLastFiveUsers()
-    console.log('haai',lastFiveUsers);
+    lastFourProducts = await productHelpers.getLastFourProducts()
+    console.log('haai',lastFourProducts);
     salesRevenue = await adminHelpers.salesRevenue()
     totalIncome = salesRevenue[0]
     totalOrders = await adminHelpers.getOrdersCount()
@@ -50,7 +51,8 @@ router.get('/', async function (req, res, next) {
       placedOrders,
       shippedOrders,
       cancelledOrders,
-      lastFiveUsers
+      lastFiveUsers,
+      lastFourProducts
     })
   } else {
     res.redirect('/admin/admin_login')
@@ -199,7 +201,13 @@ router.post('/edit_product/:id', (req, res) => {
   productHelpers.editProduct(req.params.id, req.body).then(() => {
     res.redirect('/admin/all_products')
     if (req.files.image) {
-      let image = req.files.image
+      let image1 = req.files.image1
+      var base64Str = req.body.imageBase64Data
+      var path = "./public/images/product-images/";
+      var optionalObj = { fileName: req.params.id+'1', type: "jpg" };
+      
+      base64ToImage(base64Str, path, optionalObj);
+
       image.mv('./public/images/product-images/' + req.params.id + '.jpg')
     }
   })

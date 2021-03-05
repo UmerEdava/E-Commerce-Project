@@ -80,7 +80,8 @@
                                     <h2>Sales Of The Year</h2>
                                 </div>
                                 <div class="card-body">
-                                    <canvas id="linechart" class="chartjs"></canvas>
+                                    {{!-- <canvas id="linechart" class="chartjs"></canvas> --}}
+                                    <canvas id="newChart" style="width: 657px; height: 434px;"></canvas>
                                 </div>
                                 <div class="card-footer d-flex flex-wrap bg-white p-0">
                                     <div class="col-6 px-0">
@@ -135,7 +136,7 @@
                         </div>
                     </div>
 
-                    <canvas id="newChart" width="400" height="400"></canvas>
+                    
 
                     {{!-- <div class="col-12">
                         <div class="card card-default pb-5">
@@ -169,7 +170,7 @@
                     </div> --}}
 
 
-                    <div class="row">
+                    {{!-- <div class="row">
                         <div class="col-xl-4 col-lg-6 col-12">
 
                             <!-- Polar and Radar Chart -->
@@ -287,7 +288,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="row">
                         <div class="col-xl-5">
@@ -334,8 +335,8 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                <td>2 Orders</td>
-                                                <td class="text-dark d-none d-md-block">$150</td>
+                                                {{!-- <td>2 Orders</td>
+                                                <td class="text-dark d-none d-md-block">$150</td> --}}
                                             </tr>
                                             {{/each}}
                                         </tbody>
@@ -347,7 +348,7 @@
                             <!-- Top Products -->
                             <div class="card card-default" data-scroll-height="580">
                                 <div class="card-header justify-content-between mb-4">
-                                    <h2>Top Products</h2>
+                                    <h2>New Products</h2>
                                     <div>
                                         <button class="text-black-50 mr-2 font-size-20"><i
                                                 class="mdi mdi-cached"></i></button>
@@ -368,59 +369,24 @@
 
                                 </div>
                                 <div class="card-body py-0">
+                                    {{#each lastFourProducts}}
                                     <div class="media d-flex mb-5">
                                         <div class="media-image align-self-center mr-3 rounded">
-                                            <a href="#"><img src="assets/img/products/p1.jpg" alt="customer image"></a>
+                                            <a href="#"><img src="/images/product-images/{{this._id}}1.jpg" alt="customer image" height="60px" width="80px"></a>
                                         </div>
                                         <div class="media-body align-self-center">
                                             <a href="#">
-                                                <h6 class="mb-3 text-dark font-weight-medium"> Coach Swagger</h6>
+                                                <h6 class="mb-3 text-dark font-weight-medium"> {{this.name}} </h6>
                                             </a>
-                                            <p class="float-md-right"><span class="text-dark mr-2">20</span>Sales</p>
-                                            <p class="d-none d-md-block">Statement belting with double-turnlock hardware
-                                                adds “swagger” to a simple.</p>
+                                            {{!-- <p class="float-md-right"><span class="text-dark mr-2">20</span>Sales</p> --}}
+                                            <p class="d-none d-md-block">{{this.shortDescription}}</p>
                                             <p class="mb-0">
-                                                <del>$300</del>
-                                                <span class="text-dark ml-3">$250</span>
+                                                {{#if this.actualPrice}}<del>&#8377;{{this.actualPrice}}</del>{{/if}}
+                                                <span class="text-dark ml-3">&#8377;{{this.price}}</span>
                                             </p>
                                         </div>
                                     </div>
-
-                                    <div class="media d-flex mb-5">
-                                        <div class="media-image align-self-center mr-3 rounded">
-                                            <a href="#"><img src="assets/img/products/p2.jpg" alt="customer image"></a>
-                                        </div>
-                                        <div class="media-body align-self-center">
-                                            <a href="#">
-                                                <h6 class="mb-3 text-dark font-weight-medium"> Coach Swagger</h6>
-                                            </a>
-                                            <p class="float-md-right"><span class="text-dark mr-2">20</span>Sales</p>
-                                            <p class="d-none d-md-block">Statement belting with double-turnlock hardware
-                                                adds “swagger” to a simple.</p>
-                                            <p class="mb-0">
-                                                <del>$300</del>
-                                                <span class="text-dark ml-3">$250</span>
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <div class="media d-flex mb-5">
-                                        <div class="media-image align-self-center mr-3 rounded">
-                                            <a href="#"><img src="assets/img/products/p3.jpg" alt="customer image"></a>
-                                        </div>
-                                        <div class="media-body align-self-center">
-                                            <a href="#">
-                                                <h6 class="mb-3 text-dark font-weight-medium"> Gucci Watch</h6>
-                                            </a>
-                                            <p class="float-md-right"><span class="text-dark mr-2">10</span>Sales</p>
-                                            <p class="d-none d-md-block">Statement belting with double-turnlock hardware
-                                                adds “swagger” to a simple.</p>
-                                            <p class="mb-0">
-                                                <del>$300</del>
-                                                <span class="text-dark ml-3">$50</span>
-                                            </p>
-                                        </div>
-                                    </div>
+                                    {{/each}}
                                 </div>
                             </div>
                         </div>
@@ -453,6 +419,7 @@
 
     <script>
         var ctx = document.getElementById('newChart').getContext('2d');
+        
         var newChart = new Chart(ctx, {
             type: 'bar',
             data: {

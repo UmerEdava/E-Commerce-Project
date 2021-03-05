@@ -236,12 +236,13 @@ router.post('/change_pro_qty', (req, res, next) => {
   userHelpers.changeProQty(req.body).then(async (response) => {
     response.total = await userHelpers.getCartTotal(req.body.user)
     response.subTotal = await userHelpers.getSubTotal(req.body.user,req.body.product)
+    response.cartCount = await userHelpers.getCartCount(req.body.user)
     if(response.subTotal>0 && response.total>0){
       res.json(response)
     }else if(response.total<=0){
       res.json({cartEmpty:true})
     } else{
-      res.json({removeProduct:true})
+      res.json({removeProduct:true,total:response.total,cartCount:response.cartCount})
     }    
   })
 })

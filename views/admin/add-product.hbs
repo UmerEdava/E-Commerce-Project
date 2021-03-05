@@ -351,7 +351,7 @@
                                                             <span>Add files...</span>
                                                             <!-- The file input field used as target for the file upload widget -->
                                                             <input type="file" accept="image/*" name="image1"
-                                                                id="fileupload" class="js-photo-upload" onchange="viewImage1(event)">
+                                                                id="fileupload" class="js-photo-upload" onchange="viewImage1(event)" required>
                                                                 
                                                         </span>
                                                         </div>
@@ -398,7 +398,7 @@
                                                             <span>Add files...</span>
                                                             <!-- The file input field used as target for the file upload widget -->
                                                             <input type="file" accept="image/*" name="image2"
-                                                                id="fileupload" class="js-photo-upload" onchange="viewImage2(event)"
+                                                                id="fileupload" required class="js-photo-upload" onchange="viewImage2(event)"
                                                                 />
                                                         </span>
                                                         <br />
@@ -420,7 +420,7 @@
                                                             <i class="glyphicon glyphicon-plus"></i>
                                                             <span>Add files...</span>
                                                             <!-- The file input field used as target for the file upload widget -->
-                                                            <input type="file" accept="image/*" name="image3"
+                                                            <input type="file" required accept="image/*" name="image3"
                                                                 id="fileupload" onchange="viewImage3(event)"
                                                                 />
                                                         </span>
@@ -443,7 +443,7 @@
                                                             <i class="glyphicon glyphicon-plus"></i>
                                                             <span>Add files...</span>
                                                             <!-- The file input field used as target for the file upload widget -->
-                                                            <input type="file" accept="image/*" name="image4"
+                                                            <input type="file" required accept="image/*" name="image4"
                                                                 id="fileupload" onchange="viewImage4(event)"
                                                                 />
                                                         </span>
@@ -466,7 +466,7 @@
                                                             <i class="glyphicon glyphicon-plus"></i>
                                                             <span>Add files...</span>
                                                             <!-- The file input field used as target for the file upload widget -->
-                                                            <input type="file" accept="image/*" name="image5"
+                                                            <input type="file" required accept="image/*" name="image5"
                                                                 id="fileupload" onchange="viewImage5(event)"
                                                                 />
                                                         </span>
@@ -512,7 +512,7 @@
                                                                 </div>
                                                             </td> --}}
                     
-                                                <div>
+                                                <div class="text-center">
                                                     <input id="add-product-button" type="submit"
                                                         class="btn vd_btn vd_bg-blue btn-sm save-btn text-center m-5"
                                                         value="Submit">

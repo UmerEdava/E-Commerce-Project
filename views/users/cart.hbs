@@ -87,7 +87,7 @@
                                         </div>
                                     </td>
                                     
-                                    <td id="subTotal" class="total-price first-row">{{this.subTotal}}</td>
+                                    <td id="subTotal{{this.product._id}}" class="total-price first-row">{{this.subTotal}}</td>
                                     
                                     <td class="close-td first-row"><i class="ti-close"
                                             onclick="removeProductFromCart('{{this._id}}','{{this.product._id}}')"></i>
@@ -118,8 +118,8 @@
                     <div class="row" id="cartComponent">
                         <div class="col-lg-4">
                             <div class="cart-buttons">
-                                <a href="#" class="primary-btn continue-shop">Continue shopping</a>
-                                <a href="#" class="primary-btn up-cart">Update cart</a>
+                                <a href="/" class="primary-btn continue-shop">Continue shopping</a>
+                                
                             </div>
                             <div class="discount-coupon">
                                 <h6>Discount Codes</h6>
@@ -133,7 +133,7 @@
                             <div class="proceed-checkout">
                                 <ul>
                                     {{!-- <li class="subtotal">Subtotal <span id="subtotal">{{total}}</span></li> --}}
-                                    <li class="total">Total <span id="total">{{total}}</span></li>
+                                    <li id="totalList" class="total">Total <span id="total">{{total}}</span></li>
                                 </ul>
                                 <a href="/checkout" class="proceed-btn">PROCEED TO CHECK OUT</a>
                             </div>
@@ -294,6 +294,8 @@
                     if (response.removeProduct) {
                         alert('Product removed from cart')
                         document.getElementById('this'+proId).hidden=true
+                        document.getElementById('total').innerHTML = response.total
+                        document.getElementById('cartCount').innerHTML = response.cartCount
                                                 
                     }else if(response.cartEmpty){
                         alert('Product removed from cart')
@@ -304,7 +306,7 @@
                         console.log(response)
                         document.getElementById(proId).value = quantity + count
                         document.getElementById('total').innerHTML = response.total
-                        document.getElementById('subTotal').innerHTML = response.subTotal
+                        document.getElementById('subTotal'+proId).innerHTML = response.subTotal
                     }
                 }
             })
@@ -326,8 +328,13 @@
                         document.getElementById('this'+product).style.display = "none"
                         document.getElementById('emptyCart').style.display = "block"
                         document.getElementById('cartComponent').style.display = "none"
+                        document.getElementById('total').innerHTML = response.total
+                        document.getElementById('cartCount').innerHTML = response.cartCount
                     }else{
                         document.getElementById('this'+product).style.display = "none"
+                        document.getElementById('total').innerHTML = response.total
+                        document.getElementById('cartCount').innerHTML = response.cartCount
+
                     }
                 }
             })
