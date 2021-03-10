@@ -231,22 +231,22 @@
                                                                 <div class="col-lg-9">
                                                                     <div class="vd_radio radio-success">
                                                                         <input type="radio" checked="" value="Men"
-                                                                            name="for" id="simple_product" />
+                                                                            name="for" id="men_category" />
                                                                         <label for="simple_product">Men</label>
                                                                     </div>
                                                                     <div class="vd_radio radio-success">
                                                                         <input type="radio" value="Women" name="for"
-                                                                            id="pack_product" />
+                                                                            id="women_category" />
                                                                         <label for="pack_product">Women</label>
                                                                     </div>
                                                                     <div class="vd_radio radio-success">
                                                                         <input type="radio" value="Boys" name="for"
-                                                                            id="virtual_product" />
+                                                                            id="boys_category" />
                                                                         <label for="virtual_product">Boys</label>
                                                                     </div>
                                                                     <div class="vd_radio radio-success">
                                                                         <input type="radio" value="Girls" name="for"
-                                                                            id="virtual_product" />
+                                                                            id="girls_category" />
                                                                         <label for="virtual_product">Girls</label>
                                                                     </div>
                                                                 </div>
@@ -273,22 +273,22 @@
                                                                                 required>
                                                                                 <option value="">Select</option>
                                                                                 {{#each menCategory}}
-                                                                                <option value="{{this.category}}">
+                                                                                <option class="menCategory" value="{{this.category}}">
                                                                                     {{this.category}}
                                                                                 </option>
                                                                                 {{/each}}
                                                                                 {{#each womenCategory}}
-                                                                                <option value="{{this.category}}">
+                                                                                <option class="womenCategory" value="{{this.category}}">
                                                                                     {{this.category}}
                                                                                 </option>
                                                                                 {{/each}}
                                                                                 {{#each boysCategory}}
-                                                                                <option value="{{this.category}}">
+                                                                                <option class="boysCategory" value="{{this.category}}">
                                                                                     {{this.category}}
                                                                                 </option>
                                                                                 {{/each}}
                                                                                 {{#each girlsCategory}}
-                                                                                <option value="{{this.category}}">
+                                                                                <option class="girlsCategory" value="{{this.category}}">
                                                                                     {{this.category}}
                                                                                 </option>
                                                                                 {{/each}}
