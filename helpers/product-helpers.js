@@ -299,7 +299,9 @@ module.exports = {
                 }
             })
 
-            resolve()
+            var username = user.firstName
+
+            resolve(username)
         })
     },
     getFeedback: (proId)=>{

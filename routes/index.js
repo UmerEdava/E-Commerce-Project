@@ -692,7 +692,10 @@ router.post('/add_comment', (req,res)=>{
 
 console.log('current date',date)
 
-  productHelpers.addComment(req.body,date).then(()=>{
+  productHelpers.addComment(req.body,date).then((username)=>{
+    // response.commenter = username
+    // response.date = date
+    // response.message = req.body.message
     res.json(response)
   })
 })

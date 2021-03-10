@@ -78,7 +78,7 @@
                 </div>
                 <div class="tab-pane" id="2" style="margin-top: 3rem;">
                     {{#each userAddress}}
-                    <div class="col-md-4">
+                    <div class="col-md-4" id="{{firstName}}{{streetAddress}}{{phone}}"> 
                         <div class="card mt-5" style="width: 20rem;">
                             <div class="card-body">
                                 <div style="">
@@ -93,8 +93,8 @@
                                 <p class="card-text n mt-2">Company: {{this.company}}</p>
                                 <p class="card-text n">{{this.email}}</p>
                                 <p class="card-text n mb-2">{{this.phone}}</p>
-                                <a href="#" class="card-link mt-3" style="font-size:1.5rem">Edit</a>
-                                <a href="#" class="card-link" style="font-size:1.5rem">Remove</a>
+                                {{!-- <a class="card-link mt-3" style="font-size:1.5rem">Edit</a> --}}
+                                <button class="btn" style="color: #d4970f;font-size: 1.5rem;" onclick="removeAddress('{{this.firstName}}','{{this.streetAddress}}','{{this.phone}}')" class="card-link" style="font-size:1.5rem">Remove</button>
                             </div>
                         </div>
                     </div>
@@ -235,3 +235,23 @@
 
 </div>
 </div>
+
+<script>
+    function removeAddress(firstName,streetAddress,phone){
+        $.ajax({
+            url:'/removeAddress',
+            data:{
+                firstName:firstName,
+                streetAddress:streetAddress,
+                phone:phone
+            },
+            method:'post',
+            success:(response)=>{
+                if(response){
+                    document.getElementById(firstName+streetAddress+phone).style.display = "none"
+                }
+            }
+        })
+        
+    }
+</script>

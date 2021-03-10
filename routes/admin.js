@@ -252,16 +252,16 @@ router.post('/edit_user/:id', (req, res) => {
   })
 })
 
-router.get('/add_user', verifyLogin, (req, res) => {
-  isAdmin = true
+// router.get('/add_user', verifyLogin, (req, res) => {
+//   isAdmin = true
 
-  res.render('admin/add-user', {
-    addUserError: req.session.addUserError,
-    isAdmin
-  })
-  req.session.addUserError = false
+//   res.render('admin/add-user', {
+//     addUserError: req.session.addUserError,
+//     isAdmin
+//   })
+//   req.session.addUserError = false
 
-})
+// })
 
 router.post('/add_user', (req, res) => {
   userHelpers.doRegister(req.body).then((response) => {
