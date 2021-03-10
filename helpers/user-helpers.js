@@ -135,13 +135,19 @@ module.exports = {
             let address = await db.get().collection(collections.USER_COLLECTION).findOne({
                 _id: objectId(userId)
             })
+            
+            var addresses = address.address
+            
+            var lastAddresses = addresses.slice(-3);
 
+            console.log('kittiyee...',lastAddresses);
 
-            resolve(address.address)
+            resolve(lastAddresses)
 
 
         })
     },
+    
     getUserDetailsByPhone: (phone) => {
         return new Promise((resolve, reject) => {
             db.get().collection(collections.USER_COLLECTION).findOne({
@@ -286,14 +292,12 @@ module.exports = {
                 }
             ]).toArray()
 
-            console.log(cartItems);
-
-            resolve(cartItems)
+             resolve(cartItems)
         })
     },
     getCartCount: (userId) => {
         return new Promise(async (resolve, reject) => {
-            console.log(userId, 'user id called');
+            
             let count = 0
             let cart = await db.get().collection(collections.CART_COLLECTION).findOne({
                 user: objectId(userId)
@@ -830,6 +834,19 @@ module.exports = {
             console.log('kittiyea....',users);
             resolve(users)
         })
-    }
+    },
     // getOrdersOfLastFiveUsers
+    removeAddress: (user,firstName,streetAddress,phone) => {
+        console.log('arrived');
+        console.log('saadhanama ethiyittunde..',user,firstName,streetAddress,phone);
+        var name = firstName
+        console.log(name);
+        
+        return new Promise((resolve,reject)=>{
+            db.get().collection(collections.USER_COLLECTION).updateOne({_id:objectId(user)},{
+                 $pull: { address: { firstName:firstName} } 
+            })
+            resolve()
+        })
+    }
 }

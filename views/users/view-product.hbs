@@ -64,7 +64,7 @@
                             <li><a href="/boys_collection">Boys</a></li>
                         </ul>
                     </div>
-                    <div class="filter-widget">
+                    {{!-- <div class="filter-widget">
                         <h4 class="fw-title">Brand</h4>
                         <div class="fw-brand-check">
                             <div class="bc-item">
@@ -176,7 +176,7 @@
                             <a href="#">Men's hats</a>
                             <a href="#">Backpack</a>
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="col-lg-9">
                     <div class="row">
@@ -346,7 +346,8 @@
                                 <div class="tab-pane fade" id="tab-3" role="tabpanel">
                                     <div class="customer-review-option">
                                         <h4>2 Comments</h4>
-                                        <div class="comment-option">
+                                        <div class="comment-option" id="commentBox">
+                                            {{#each feedback}}
                                             <div class="co-item">
                                                 <div class="avatar-pic">
                                                     <img src="img/product-single/avatar-1.png" alt="">
@@ -359,50 +360,35 @@
                                                         <i class="fa fa-star"></i>
                                                         <i class="fa fa-star-o"></i>
                                                     </div> --}}
-                                                    <h5>Brandon Kelley <span>27 Aug 2019</span></h5>
-                                                    <div class="at-reply">Nice !</div>
+                                                    <h5>{{this.commenter}} <span>{{this.date}}</span></h5>
+                                                    <div class="at-reply">{{this.message}}</div>
                                                 </div>
                                             </div>
-                                            <div class="co-item">
-                                                <div class="avatar-pic">
-                                                    <img src="img/product-single/avatar-2.png" alt="">
-                                                </div>
-                                                <div class="avatar-text">
-                                                    {{!-- <div class="at-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </div> --}}
-                                                    <h5>Roy Banks <span>27 Aug 2019</span></h5>
-                                                    <div class="at-reply">Nice !</div>
-                                                </div>
-                                            </div>
+                                            {{/each}}
                                         </div>
-                                        <div class="personal-rating">
+                                        {{!-- <div class="personal-rating">
                                             <h6>Your Ratind</h6>
-                                            {{!-- <div class="rating">
+                                            <div class="rating">
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star"></i>
                                                 <i class="fa fa-star-o"></i>
-                                            </div> --}}
-                                        </div>
+                                            </div>
+                                        </div> --}}
                                         <div class="leave-comment">
-                                            <h4>Leave A Comment</h4>
-                                            <form action="#" class="comment-form">
+                                            <h4 style="{{#unless userData}}margin-bottom: 16px;{{/unless}}{{#if userData}}margin-bottom:35px;{{/if}}">Leave A Comment</h4>
+                                            {{#unless userData}}
+                                            <h5 style="margin-bottom: 35px;color: #988f21;">You have to login for add a comment</h5>
+                                            {{/unless}}
+                                            <form action="" id="commentForm" class="comment-form">
+                                                <input type="text" value="{{userData._id}}" name="commenter" hidden>
+                                                <input type="text" value="{{product._id}}" name="proId" hidden>
                                                 <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <input type="text" placeholder="Name">
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <input type="text" placeholder="Email">
-                                                    </div>
+                                                    
                                                     <div class="col-lg-12">
-                                                        <textarea placeholder="Messages"></textarea>
-                                                        <button type="submit" class="site-btn">Send message</button>
+                                                        <textarea placeholder="Messages" id="message" name="message"></textarea>
+                                                        <button type="submit" class="site-btn" {{#unless userData}}disabled{{/unless}}>Send message</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -684,6 +670,26 @@
         {{!-- $('.thumb img').click(function() {
            $('.zoomImg').attr('src', $(this).attr('src'));
         }); --}}
+    </script>
+
+    <script>
+        $('#commentForm').submit((e) => {
+        console.log('clickiyeee')
+        e.preventDefault()
+        $.ajax({
+            url: '/add_comment',
+            method: 'post',
+            data: $('#commentForm').serialize(),
+            success: (response) => {
+                if(response){
+                    alert('Feedback added')
+                    document.getElementById("message").value = ""; 
+                    $('#commentBox').load()
+                    
+                }
+            }      
+        })
+        })
     </script>
 
     {{!-- <script>

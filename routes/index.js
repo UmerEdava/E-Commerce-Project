@@ -183,20 +183,25 @@ router.get('/logout', function (req, res) {
 router.get('/view_product/:id', async (req, res) => {
   let proId = req.params.id
   userData = req.session.user
+  console.log('what is this',userData);
   var cartCount = null
+  var feedback =await productHelpers.getFeedback(req.params.id)
+
+  console.log('ooi...kittippoyee',feedback);
 
   if (req.session.user) {
     cartCount = await userHelpers.getCartCount(req.session.user._id)
   }
 
-
+  var isUser = true
   productHelpers.getProductDetails(proId).then((product) => {
-    let isUser = true
+    
     res.render('users/view-product', {
       isUser,
       product,
       userData,
-      cartCount
+      cartCount,
+      feedback
     })
   })
 })
@@ -665,6 +670,31 @@ router.get('/edit_address_checkout/:firstName:lastName:streetAddress:town:state:
 
 router.get('/forget_password',(req,res)=>{
   res.render('users/retrieve-password')
+})
+
+router.post('/removeAddress', (req,res)=>{
+  console.log('router');
+  var firstName = req.body.firstName
+  var streetAddress = req.body.streetAddress
+  var phone = req.body.phone
+  var user = req.session.user._id
+
+  userHelpers.removeAddress(user,firstName,streetAddress,phone).then(()=>{
+    res.json(response)
+  })
+})
+
+router.post('/add_comment', (req,res)=>{
+  console.log('messageee messageee');
+  console.log(req.body);
+  
+  let date = new Date().toLocaleDateString()
+
+console.log('current date',date)
+
+  productHelpers.addComment(req.body,date).then(()=>{
+    res.json(response)
+  })
 })
 
 module.exports = router;

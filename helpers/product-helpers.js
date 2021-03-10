@@ -277,8 +277,40 @@ module.exports = {
         return new Promise(async (resolve, reject) => {
             console.log("mmm ethiyittund");
             let products = await db.get().collection(collections.PRODUCT_COLLECTION).find({$query: {}, $orderby: {$natural : -1}}).limit(4).toArray()
-            console.log('kittiyea....',products);
+            
             resolve(products)
+        })
+    },
+    addComment: (messageDetails,date)=>{
+        console.log('date vanno',date);
+        console.log('vannalloo',messageDetails);
+        return new Promise(async(resolve,reject)=>{
+            let user =await db.get().collection(collections.USER_COLLECTION).findOne({
+                _id:objectId(messageDetails.commenter)
+            })
+
+            console.log('userine kittiye',user);
+
+            db.get().collection(collections.PRODUCT_COLLECTION).updateOne({
+                _id:objectId(messageDetails.proId)
+            },{
+                $push:{
+                    feedback:{commenter:user.firstName,message:messageDetails.message,date:date}
+                }
+            })
+
+            resolve()
+        })
+    },
+    getFeedback: (proId)=>{
+        console.log('idKuttan',proId);
+        return new Promise(async(resolve,reject)=>{
+            var product =await db.get().collection(collections.PRODUCT_COLLECTION).findOne({
+                _id:objectId(proId)
+            })
+
+            console.log('enthaayi',product.feedback);
+            resolve(product.feedback)
         })
     }
 }

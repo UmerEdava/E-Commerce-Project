@@ -147,20 +147,43 @@ router.post('/add_product', (req, res) => {
 
     // image1.mv('./public/images/product-images/' + id + '1' + '.jpg')
 
-    var base64Str = req.body.imageBase64Data
-    console.log('ithaanalle',base64Str);
+    var base64Str1 = req.body.imageBase64Data1
+    console.log('ithaanalle',base64Str1);
     var path = "./public/images/product-images/";
     var optionalObj = { fileName: id+'1', type: "jpg" };
+    base64ToImage(base64Str1, path, optionalObj);
 
-    base64ToImage(base64Str, path, optionalObj);
+    var base64Str2 = req.body.imageBase64Data2
+    console.log('ithaanalle',base64Str2);
+    var path = "./public/images/product-images/";
+    var optionalObj = { fileName: id+'2', type: "jpg" };
+    base64ToImage(base64Str2, path, optionalObj);
 
-    image2.mv('./public/images/product-images/' + id + '2' + '.jpg')
+    var base64Str3 = req.body.imageBase64Data3
+    console.log('ithaanalle',base64Str3);
+    var path = "./public/images/product-images/";
+    var optionalObj = { fileName: id+'3', type: "jpg" };
+    base64ToImage(base64Str3, path, optionalObj);
 
-    image3.mv('./public/images/product-images/' + id + '3' + '.jpg')
+    var base64Str4 = req.body.imageBase64Data4
+    console.log('ithaanalle',base64Str4);
+    var path = "./public/images/product-images/";
+    var optionalObj = { fileName: id+'4', type: "jpg" };
+    base64ToImage(base64Str4, path, optionalObj);
 
-    image4.mv('./public/images/product-images/' + id + '4' + '.jpg')
+    var base64Str5 = req.body.imageBase64Data5
+    console.log('ithaanalle',base64Str5);
+    var path = "./public/images/product-images/";
+    var optionalObj = { fileName: id+'5', type: "jpg" };
+    base64ToImage(base64Str5, path, optionalObj);
 
-    image5.mv('./public/images/product-images/' + id + '5' + '.jpg')
+    // image2.mv('./public/images/product-images/' + id + '2' + '.jpg')
+
+    // image3.mv('./public/images/product-images/' + id + '3' + '.jpg')
+
+    // image4.mv('./public/images/product-images/' + id + '4' + '.jpg')
+
+    // image5.mv('./public/images/product-images/' + id + '5' + '.jpg')
 
     res.redirect('/admin/all_products')
 

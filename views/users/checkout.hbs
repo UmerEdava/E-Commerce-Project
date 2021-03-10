@@ -18,7 +18,7 @@
     <div class="container">
         <div class="row container-fluid mb-5">
             {{#each userAddress}}
-            <div class="col-md-4">
+            <div class="col-md-4" id="{{this.firstName}}{{this.streetAddress}}{{this.phone}}">
                 <div class="card" style="height: 21rem;">
                     <div class="card-body">
                         <div style="clear: both">
@@ -47,7 +47,7 @@
                             <button class="btn btn-primary"
                                 onclick="editAddress('{{this.firstName}}','{{this.lastName}}','{{this.streetAddress}}','{{this.town}}','{{this.state}}','{{this.country}}','{{this.pin}}','{{this.company}}','{{this.phone}}','{{this.email}}')">Edit</button>
 
-                            <button class="btn btn-primary" onclick="removeAddress()">Delete</button>
+                            <button class="btn btn-primary" onclick="removeAddress('{{this.firstName}}','{{this.streetAddress}}','{{this.phone}}')">Delete</button>
                         </div>
                     </div>
 
@@ -68,43 +68,43 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <label for="fir">First Name<span>*</span></label>
-                            <input type="text" id="firstName" name="firstName">
+                            <input type="text" id="firstName" name="firstName" required style="font-size: 20px;">
                         </div>
                         <div class="col-lg-6">
                             <label for="last">Last Name<span>*</span></label>
-                            <input type="text" id="lastName" name="lastName">
+                            <input type="text" id="lastName" name="lastName" required style="font-size: 20px;"> 
                         </div>
                         <div class="col-lg-12">
                             <label for="comp-name">Company Name</label>
-                            <input type="text" id="company" name="company">
+                            <input type="text" id="company" name="company" required style="font-size: 20px;">
                         </div>
                         <div class="col-lg-12">
                             <label for="country">Country<span>*</span></label>
-                            <input type="text" id="country" name="country" required>
+                            <input type="text" id="country" name="country" required style="font-size: 20px;">
                         </div>
                         <div class="col-lg-12">
                             <label for="country">State<span>*</span></label>
-                            <input type="text" id="state" name="state" required>
+                            <input type="text" id="state" name="state" required style="font-size: 20px;">
                         </div>
                         <div class="col-lg-12">
                             <label for="address">Street Address<span>*</span></label>
-                            <input type="text" id="streetAddress" class="street-first" name="address" required>
+                            <input type="text" id="streetAddress" class="street-first" name="address" required style="font-size: 20px;">
                         </div>
                         <div class="col-lg-12">
                             <label for="pin">Postcode / ZIP (optional)</label>
-                            <input type="text" id="pin" name="pin" required>
+                            <input type="number" id="pin" name="pin" required style="font-size: 20px;">
                         </div>
                         <div class="col-lg-12">
                             <label for="town">Town / City<span>*</span></label>
-                            <input type="text" id="town" name="town" required>
+                            <input type="text" id="town" name="town" required style="font-size: 20px;">
                         </div>
                         <div class="col-lg-6">
                             <label for="email">Email Address<span>*</span></label>
-                            <input type="text" id="email" name="email" required>
+                            <input type="email" id="email" name="email" required style="font-size: 20px;">
                         </div>
                         <div class="col-lg-6">
                             <label for="phone">Phone<span>*</span></label>
-                            <input type="text" id="phone" name="phone" required>
+                            <input type="number" id="phone" name="phone" required style="font-size: 20px;">
                         </div>
                         <input type="text" name="userId" value="{{user._id}}" hidden>
                         {{!-- <div class="col-lg-12">
@@ -128,13 +128,13 @@
                         <div class="order-total">
                             <ul class="order-table">
                                 <li>Product <span>Total</span></li>
-                                <li class="fw-normal">Combination x 1 <span>$60.00</span></li>
-                                <li class="fw-normal">Combination x 1 <span>$60.00</span></li>
-                                <li class="fw-normal">Combination x 1 <span>$120.00</span></li>
-                                <li class="fw-normal">Subtotal <span>${{total}}.00</span></li>
+                                <li class="fw-normal">Combination x 1 <span> &#8377; 60.00</span></li>
+                                <li class="fw-normal">Combination x 1 <span> &#8377; 60.00</span></li>
+                                <li class="fw-normal">Combination x 1 <span> &#8377; 120.00</span></li>
+                                <li class="fw-normal">Subtotal <span> &#8377; {{total}}.00</span></li>
                                 <li class="" style="border-bottom: none;color: #949191;"><span><s
                                             id="oldTotal"></s></span></li>
-                                <li class="total-price">Total <span id="total">${{total}}.00</span></li>
+                                <li class="total-price">Total <span id="total"> &#8377; {{total}}.00</span></li>
                             </ul>
 
                             <div class="row">
@@ -320,32 +320,24 @@
         document.getElementById('phone').value = phone
         document.getElementById('email').value = email
     }
+</script>
 
-    {
-        {
-            !-- function editAddress(firstName, lastName, streetAddress, town, state, country, pin, company, phone, email) {
-                console.log('clicked')
-                console.log(firstName, lastName, streetAddress, town, state, country, pin, company, phone, email)
-
-                $.ajax({
-                    url: '/edit_address_checkout',
-                    method: 'post',
-                    data: {
-                        firstName: firstName,
-                        lastName: lastName,
-                        streetAddress: streetAddress,
-                        town: town,
-                        state: state,
-                        country: country,
-                        pin: pin,
-                        company: company,
-                        phone: phone,
-                        email: email
-                    },
-                    success: (response) => {
-
-                    }
-                })
-            } --}
+<script>
+    function removeAddress(firstName,streetAddress,phone){
+        $.ajax({
+            url:'/removeAddress',
+            data:{
+                firstName:firstName,
+                streetAddress:streetAddress,
+                phone:phone
+            },
+            method:'post',
+            success:(response)=>{
+                if(response){
+                    document.getElementById(firstName+streetAddress+phone).style.display = "none"
+                }
+            }
+        })
+        
     }
 </script>

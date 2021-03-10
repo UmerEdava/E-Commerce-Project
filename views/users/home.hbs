@@ -137,7 +137,8 @@
                                         width: 38px;
                                         height: 38px;
                                         display: block;
-                                        transition: all 0.2s ease-out;" 
+                                        transition: all 0.2s ease-out;
+                                        " 
                                         class="btn" onclick="addToCart('{{this._id}}')"><i
                                             class="fa fa-shopping-cart"></i></button>
                                 </li>
@@ -168,7 +169,7 @@
 </section>
 
 
-<section class="deal-of-week set-bg spad" data-setbg="img/time-bg.jpg">
+{{!-- <section class="deal-of-week set-bg spad" data-setbg="img/time-bg.jpg">
     <div class="container">
         <div class="col-lg-6 text-center">
             <div class="section-title">
@@ -201,7 +202,7 @@
             <a href="#" class="primary-btn">Shop Now</a>
         </div>
     </div>
-</section>
+</section> --}}
 
 <!-- additional starts -->
 {{!-- <div id="shopify-section-1521705177678" class="shopify-section index-section">
@@ -1996,9 +1997,9 @@
                                 <i class="icon_heart_alt"></i>
                             </div>
                             <ul>
-                                <li class="w-icon active"><a href="#"><i class="icon_bag_alt"></i></a></li>
-                                <li class="quick-view"><a href="#">+ Quick View</a></li>
-                                <li class="w-icon"><a href="#"><i class="fa fa-random"></i></a></li>
+                                <li  onclick="addToCart('{{this._id}}')" class="w-icon active"><a><i class="icon_bag_alt"></i></a></li>
+                                <li class="quick-view"><a href="/view_product/{{this._id}}">+ Quick View</a></li>
+                                
                             </ul>
                         </div>
                         <div class="pi-text">
@@ -2007,7 +2008,7 @@
                                 <h5>{{this.name}}</h5>
                             </a>
                             <div class="product-price">
-                                {{this.price}}
+                                &#8377; {{this.price}}
                                 {{#if this.actualPrice}}<span>{{this.actualPrice}}</span>{{/if}}
                             </div>
                         </div>
@@ -2175,10 +2176,7 @@
                     <ul>
                         <li>Address: 60-49 Road 11378 New York</li>
                         <li>Phone: +65 11.188.888</li>
-                        <li>Email: <a href="https://preview.colorlib.com/cdn-cgi/l/email-protection"
-                                class="__cf_email__"
-                                data-cfemail="c8a0ada4a4a7e6aba7a4a7baa4a1aa88afa5a9a1a4e6aba7a5">[email&#160;protected]</a>
-                        </li>
+                        
                     </ul>
                     <div class="footer-social">
                         <a href="#"><i class="fa fa-facebook"></i></a>
