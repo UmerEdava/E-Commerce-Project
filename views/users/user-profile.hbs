@@ -2,21 +2,119 @@
     .n {
         font-size: 1.3rem;
     }
+
+    .imgCircle:hover .image {
+        opacity: 0.3;
+    }
+
+    .imgCircle:hover .change {
+        opacity: 1;
+    }
+
+    .change {
+        transition: .5s ease;
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .button {
+
+        color: white;
+        font-size: 16px;
+        padding-bottom: 2rem;
+    }
 </style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropper/4.1.0/cropper.min.js" integrity="sha512-E+gDQcIvNXE60SjCS38ysf1mGh4ObBpKcUOp0oEaHQHQAdaN2p7GelOpgEdpTuCLoIJyLkNXiqFZbyD9Ak/Ygw==" crossorigin="anonymous"></script>
+
 
 <div class="">
 
     <div class="">
         <div class="profile-content-left pt-5 pb-3 px-3 px-xl-5 mt-5 mb-3">
             <div class="card text-center widget-profile px-0 border-0">
-                <div class="card-img mx-auto rounded-circle">
-                    <img src="assets/img/user/u6.jpg" alt="user image">
+                <div class="card-img mx-auto rounded-circle imgCircle">
+                    <img src="assets/img/user/u6.jpg" id="profilePhoto" class="image profilePhoto" alt="user image"
+                        style="opacity: 1;
+                                                                        display: block;
+                                                                        width: 100%;
+                                                                        height: auto;
+                                                                        transition: .5s ease;
+                                                                        backface-visibility: hidden;">
+
+                    <div class="change">
+                        <div class="button">
+                            <button type="button" onclick="changePhoto()" class="btn btn-dark btn-pill btn-lg my-4"><i
+                                    class="fas fa-edit"></i>
+                            </button>
+
+                            
+
+                        </div>
+
+                    </div>
                 </div>
+
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">
+                                    Crop Image</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="result"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" id="load" class="btn btn-primary save">Save
+                                    changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="file" class="" value="change" id="profilePhotoInput" hidden onchange="viewPhoto(event)">
+
+                <textarea name="imageBase64Data" id="imageBase64Data" cols="30" rows="10" hidden></textarea>
+
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">
+                                    Crop Image</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="result"></div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" id="load" class="btn btn-primary save">Save
+                                    changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="card-body">
                     <h4 style="font-size: 2rem;" class="py-2 text-dark">{{userData.firstName}} {{userData.lastName}}
                     </h4>
                     <p style="font-size: 1.5rem;">{{userData.email}}</p>
-                    <a class="btn btn-primary btn-pill btn-lg my-4" href="#">Change photo</a>
+                    {{!-- <a class="btn btn-primary btn-pill btn-lg my-4" href="#">Change photo</a> --}}
                 </div>
             </div>
 
@@ -70,7 +168,7 @@
                         <p class="mt-3" style="font-size: 2rem;">Phone : {{userData.phone}}</p>
                         <p class="mt-3" style="font-size: 2rem;">Email : {{userData.email}}</p>
                         <p class="mt-3" style="font-size: 2rem;">Gender : {{userData.gender}}</p>
-                        <p class="mt-3" style="font-size: 2rem;">Gender : {{userData.age}}</p>
+                        <p class="mt-3" style="font-size: 2rem;">Age : {{userData.age}}</p>
 
                         <h4 class="mt-2">Referral Code: {{userData.referralCode}}788sf4r5f</h4>
                     </div>
@@ -78,7 +176,7 @@
                 </div>
                 <div class="tab-pane" id="2" style="margin-top: 3rem;">
                     {{#each userAddress}}
-                    <div class="col-md-4" id="{{firstName}}{{streetAddress}}{{phone}}"> 
+                    <div class="col-md-4" id="{{firstName}}{{streetAddress}}{{phone}}">
                         <div class="card mt-5" style="width: 20rem;">
                             <div class="card-body">
                                 <div style="">
@@ -94,7 +192,9 @@
                                 <p class="card-text n">{{this.email}}</p>
                                 <p class="card-text n mb-2">{{this.phone}}</p>
                                 {{!-- <a class="card-link mt-3" style="font-size:1.5rem">Edit</a> --}}
-                                <button class="btn" style="color: #d4970f;font-size: 1.5rem;" onclick="removeAddress('{{this.firstName}}','{{this.streetAddress}}','{{this.phone}}')" class="card-link" style="font-size:1.5rem">Remove</button>
+                                <button class="btn" style="color: #d4970f;font-size: 1.5rem;"
+                                    onclick="removeAddress('{{this.firstName}}','{{this.streetAddress}}','{{this.phone}}')"
+                                    class="card-link" style="font-size:1.5rem">Remove</button>
                             </div>
                         </div>
                     </div>
@@ -237,21 +337,111 @@
 </div>
 
 <script>
-    function removeAddress(firstName,streetAddress,phone){
+    function removeAddress(firstName, streetAddress, phone) {
         $.ajax({
-            url:'/removeAddress',
-            data:{
-                firstName:firstName,
-                streetAddress:streetAddress,
-                phone:phone
+            url: '/removeAddress',
+            data: {
+                firstName: firstName,
+                streetAddress: streetAddress,
+                phone: phone
             },
-            method:'post',
-            success:(response)=>{
-                if(response){
-                    document.getElementById(firstName+streetAddress+phone).style.display = "none"
+            method: 'post',
+            success: (response) => {
+                if (response) {
+                    document.getElementById(firstName + streetAddress + phone).style.display = "none"
                 }
             }
         })
-        
+
+    }
+</script>
+
+<script>
+    function changePhoto() {
+        console.log('uui')
+        $('#profilePhotoInput').click()
+
+        let result = document.querySelector('.result'),
+                save = document.querySelector('.save'),
+                cropped = document.querySelector('.profilePhoto'),
+                upload = document.querySelector('#profilePhotoInput'),
+                cropper = '';
+
+            upload.addEventListener('change', (e) => {
+                if (e.target.files.length) {
+                    // start file reader
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        if (e.target.result) {
+                            // create new image
+                            $("#exampleModalCenter").modal("show");
+                            let img = document.createElement('img');
+                            img.id = 'image';
+                            img.src = e.target.result
+                            // clean result before
+                            result.innerHTML = '';
+                            // append new image
+                            result.appendChild(img);
+                            // init cropper
+                            cropper = new Cropper(img);
+                        }
+                    };
+                    reader.readAsDataURL(e.target.files[0]);
+                }
+            });
+            save.addEventListener('click', (e) => {
+                e.preventDefault();
+                // get result to data uri
+                let imgSrc = cropper.getCroppedCanvas({
+                    width: 300 // img disp value
+                }).toDataURL();
+                $("#exampleModalCenter").modal("hide");
+
+                console.log('src', imgSrc)
+
+
+                cropped.src = imgSrc;
+
+                console.log('imagee', imgSrc)
+                $("#imageBase64Data").val(imgSrc);
+
+                var base = document.getElementById('imageBase64Data').value
+                console.log('kittiyeaa', base)
+            });        
+
+    }
+</script>
+
+<script>
+    function viewPhoto(event) {
+        document.getElementById('profilePhoto').src = URL.createObjectURL(event.target.files[0])
+        let file = event.target.files[0].name
+
+        let filename = file.split('.').pop()
+        if (filename == 'jpeg' || filename == 'png' || filename == 'jpg') {
+            
+            $('#not-img-error').hide()
+            $('#profilePhoto').show()
+        } else {
+            $('#not-img-error').show()
+            
+            $('#profilePhoto').hide()
+        }
+
+        var newPhoto = $('#profilePhotoInput').val()
+        console.log('dey..', newPhoto)
+
+        $.ajax({
+            url: '/changeProfilePhoto',
+            method: 'post',
+            data: {
+                profilePhoto: newPhoto
+            },
+            success: (response) => {
+                if (response) {
+                    alert('added')
+                }
+            }
+        })
     }
 </script>

@@ -685,7 +685,7 @@ router.post('/removeAddress', (req,res)=>{
 })
 
 router.post('/add_comment', (req,res)=>{
-  console.log('messageee messageee');
+  
   console.log(req.body);
   
   let date = new Date().toLocaleDateString()
@@ -698,6 +698,16 @@ console.log('current date',date)
     // response.message = req.body.message
     res.json(response)
   })
+})
+
+router.post('/changeProfilePhoto', (req,res)=>{
+  console.log('arrivede..')
+  console.log(req.body)
+  let user = req.session.user._id
+  // userHelpers.changeProfilePhoto(req.body.user).then(()=>{
+        
+  // })
+
 })
 
 module.exports = router;
